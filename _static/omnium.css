@@ -1,0 +1,36 @@
+@import url("default.css");
+
+body{
+	font-family:  Arial,sans-serif;
+	font-size: 90%;
+}
+
+p.caption {
+    font-size: 75%;
+    text-align: center;
+}
+
+div.figure img{
+    border: 1px solid black;
+}
+
+div.figure {
+    margin: auto;
+    text-align: center;
+}
+
+table.docutils {
+    margin: auto;
+}
+
+dt {
+    font-weight: bold;
+}
+
+blockquote {
+    background-color: #eee;
+    color: #333;
+    font-family: monospace;
+    padding: 1em;
+}
+/* Clases */
