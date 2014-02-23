@@ -127,7 +127,7 @@ Solicitará la constraseña del usuario osm y cargará los datos que hay en los 
 
 Podemos investigar qué ha hecho ImpOSM lanzando la aplicación pgAdmin III que está instalada en la máquina virtual en el menú ``Development``. Podemos comprobar que ha creado 24 tablas nuevas, todas con el sufijo ``new_``
 
-.. image:: /img/pgAdminImport.png
+.. image:: ../img/pgAdminImport.png
    :width: 600 px
    :alt: Tablas cargadas por ImpOSM
    :align: center
@@ -222,7 +222,7 @@ lo copiamos y editamos empleando los siguientes comandos:
 
 Buscamos la cadena ``amenities = Points`` usando el comando buscar de `gedit` al que se llama con la combinación de teclas `Ctrl + F`.
 
-.. image:: /img/imposmnanoamenities.png
+.. image:: ../img/imposmnanoamenities.png
    :width: 600 px
    :alt: Tablas cargadas por ImpOSM
    :align: center

@@ -33,7 +33,7 @@ Bueno, no tienen porqué serlo ...
 
 Algunos ejemplos de mapas hechos con TileMill.
 
-.. image:: /img/ejemplosmapas.png
+.. image:: ../img/ejemplosmapas.png
    :width: 600 px
    :alt: algunos mapas hechos con TileMill
    :align: center
@@ -95,7 +95,7 @@ Pintando puntos
 Existen dos tipos de *puntos* **Point** y **Marker** entre los dos suman 24
 propiedades.
 
-.. image:: /img/ejemplopuntos.png
+.. image:: ../img/ejemplopuntos.png
    :width: 600 px
    :alt: ejemplo con algunos puntos dibujados
    :align: center
@@ -113,7 +113,7 @@ Pintando lineas
 
 Existen 11 propiedades distintas para las ĺíneas.
 
-.. image:: /img/ejemplolineas.png
+.. image:: ../img/ejemplolineas.png
    :width: 600 px
    :alt: ejemplo con algunas líneas dibujadas
    :align: center
@@ -132,7 +132,7 @@ Pintando áreas
 
 Existen 5 propiedades distintas para las áreas.
 
-.. image:: /img/ejemploarea.png
+.. image:: ../img/ejemploarea.png
    :width: 600 px
    :alt: ejemplo con áreas dibujadas
    :align: center
@@ -208,7 +208,7 @@ Por ejemplo para pintar puntos de interes
   }
 
 
-.. image:: /img/ejemploiconos.png
+.. image:: ../img/ejemploiconos.png
    :width: 600 px
    :alt: ejemplo con iconos
    :align: center
@@ -238,7 +238,7 @@ Pintando cajas de carretera
 
 ¿No sabes lo que es una caja de carretera?
 
-.. image:: /img/ejemplocaja.png
+.. image:: ../img/ejemplocaja.png
    :width: 350 px
    :alt: ejemplo con carreteras
    :align: center
@@ -278,7 +278,7 @@ Mapas interactivos
 
 TileMill admite cierta interactividad que se puede configurar para cada mapa.
 
-.. image:: /img/ejemplointeractivo.png
+.. image:: ../img/ejemplointeractivo.png
    :width: 600 px
    :alt: ejemplo de mapa interactivo
    :align: center

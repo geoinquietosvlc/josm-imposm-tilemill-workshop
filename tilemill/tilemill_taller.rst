@@ -40,14 +40,14 @@ Creando el proyecto
 
 TileMill carga por defecto la pestaña de `Projects` y en ella tenemos el botón `+ New Project` que pulsaremos definir nuestro proyecto.
 
-.. image:: /img/tilemillnewproject.png
+.. image:: ../img/tilemillnewproject.png
    :width: 600 px
    :alt: Nuevo proyecto con TileMill
    :align: center
 
 Nos muestra la ventana de información del proyecto en la que deberemos introducir los datos básicos que lo identifiquen.
 
-.. image:: /img/tilemillprojectinfo.png
+.. image:: ../img/tilemillprojectinfo.png
    :width: 600 px
    :alt: Información del nuevo proyecto
    :align: center
@@ -76,14 +76,14 @@ Añadiendo una capa de puntos
 
 Procederemos ahora a añadir nuestra primera capa de puntos, para lo que desplegaremos el menú de capas pulsando en el botón |btnmenucapas| y seleccionamos `+ Add layer`
 
-.. |btnmenucapas| image:: /img/tilemillbtnmenucapa.png
+.. |btnmenucapas| image:: ../img/tilemillbtnmenucapa.png
     :width: 48 px
     :alt: Menú de capas
     :align: middle
 
 En la ventana que aparece seleccionaremos la opción de `PostGIS` y rellenamos los campos como se indica.
 
-.. image:: /img/tilemilladdpostgis.png
+.. image:: ../img/tilemilladdpostgis.png
    :width: 600 px
    :alt: Añadiendo una capa PostGIS
    :align: center
@@ -116,7 +116,7 @@ Y pulsamos `Save & Style` para que añada los datos.
 
 Veremos como inmediatamente aparece un punto en la zona de España.
 
-.. image:: /img/tilemillpuntosnivel2.png
+.. image:: ../img/tilemillpuntosnivel2.png
    :width: 600 px
    :alt: Añadiendo una capa PostGIS
    :align: center
@@ -124,7 +124,7 @@ Veremos como inmediatamente aparece un punto en la zona de España.
 Corrigiendo la visualización por defecto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. |btnconfigprj| image:: /img/tilemillbtnconfigproyecto.png
+.. |btnconfigprj| image:: ../img/tilemillbtnconfigproyecto.png
     :width: 48 px
     :alt: Menú de capas
     :align: middle
@@ -140,7 +140,7 @@ Center
 Bounds
    2.8256, 41.9834, 2.8304, 41.9867
 
-.. image:: /img/tilemillconfigproyecto.png
+.. image:: ../img/tilemillconfigproyecto.png
     :width: 348 px
     :alt: Menú de capas
     :align: center
@@ -235,7 +235,7 @@ Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
 Añadiendo etiquetas
 ---------------------------
 
-.. |btnfuentes| image:: /img/tilemillbtnfuentes.png
+.. |btnfuentes| image:: ../img/tilemillbtnfuentes.png
    :width: 48 px
    :alt: botón del gestor de fuentes
    :align: middle
@@ -280,14 +280,14 @@ TileMill habrá asignado a la capa un estilo por defecto para capas de líneas, 
        text-placement: line;
    }
 
-.. |btnayudainline| image:: /img/tilemillbtnayudainline.png
+.. |btnayudainline| image:: ../img/tilemillbtnayudainline.png
    :width: 48px
    :alt: Botón de ayuda
    :align: middle
 
 Estos son los elementos mínimos para que una etiqueta aparezca en TileMill, aunque si vamos a la ayuda del programa |btnayudainline| y vemos la sección `text` veremos que las etiquetas tienen 30 opciones de configuración distintas.
 
-.. image:: /img/tilemillayudatexto.png
+.. image:: ../img/tilemillayudatexto.png
    :width: 600 px
    :alt: Ayuda de texto desplegada
    :align: center
@@ -320,7 +320,7 @@ Si volvemos a abrir TileMill veremos que se ahora existe un proyecto nuevo llama
 
 En el ejemplo proporcionado por MapBox se puede ver como se representan muchos elementos y como condicionar la visualización usando niveles de zoom.
 
-.. image:: /img/tilemillosmbright.png
+.. image:: ../img/tilemillosmbright.png
    :width: 600 px
    :alt: La zona de trabajo usando OSM Bright
    :align: center

@@ -14,13 +14,13 @@ desarrolladores web.
 Autores del taller
 ------------------------------
 
-.. |imgvehrka| image:: /img/vehrka.jpg
+.. |imgvehrka| image:: img/vehrka.jpg
     :width: 48 px
 
-.. |imgivan| image:: /img/ivansanchez.png
+.. |imgivan| image:: img/ivansanchez.png
     :width: 48 px
 
-.. |imgsantra| image:: /img/santra.png
+.. |imgsantra| image:: img/santra.png
     :width: 48 px
 
 |imgvehrka| Pedro-Juan Ferrer Matoses
@@ -69,7 +69,7 @@ El taller constará de los siguientes contenidos:
 :ref:`tallertilemill`
     Trabajando con Tilemill
 
-.. |licencia| image:: /img/88x31.png
+.. |licencia| image:: img/88x31.png
 .. _licencia: http://creativecommons.org/licenses/by-sa/3.0/
 
 

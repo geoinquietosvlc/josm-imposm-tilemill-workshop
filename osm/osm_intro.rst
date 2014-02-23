@@ -25,7 +25,7 @@ OpenStreetMap es un proyecto colaborativo para crear mapas libres y editables.
 Se dice que OSM es a lo mapas, como la Wikipedia a las enciclopedias.
 Actualmente hay más de 500.000 usuarios registrados.
 
-.. image:: /img/inicioosm.png
+.. image:: ../img/inicioosm.png
    :width: 600 px
    :alt: ejemplo de mapa osm
    :align: center
@@ -112,14 +112,14 @@ Una vez recopilada la información, esta debe ser incorporada a la base de datos
 de OSM. Para ello existen diversos médios, aunque principalmente se emplea el
 cliente web Potlach2:
 
-.. image:: /img/potlach2.png
+.. image:: ../img/potlach2.png
    :width: 600 px
    :alt: editor potlach2
    :align: center
 
 y el cliente de escritorio JOSM:
 
-.. image:: /img/josmgirona.png
+.. image:: ../img/josmgirona.png
    :width: 600 px
    :alt: editor josm
    :align: center
@@ -176,7 +176,7 @@ Los principales motores de renderizado son:
 
 * Osmarender En realidad se trata más bien de un conjunto de reglas XLST que genera SVG.
 
-.. image:: /img/osmarender.png
+.. image:: ../img/osmarender.png
    :width: 600 px
    :alt: mapa renderizado con osmarender
    :align: center
@@ -185,7 +185,7 @@ Los principales motores de renderizado son:
 
 * Mapnik Toma los datos y los carga en un PostGIS para posteriormente renderizar tiles de 256x256.
 
-.. image:: /img/mapnik.png
+.. image:: ../img/mapnik.png
    :width: 600 px
    :alt: mapa renderizado con mapnik
    :align: center
@@ -291,7 +291,7 @@ Pese a ser una primitiva reconocida por la API de OSM en realidad está integrad
 dentro de las otras primitivas y nos permite definir los atributos de las
 mismas.
 
-.. image:: /img/etiquetas.png
+.. image:: ../img/etiquetas.png
    :width: 600 px
    :alt: web de map features
    :align: center
@@ -305,7 +305,7 @@ preferido por la comunidad OSM, ya que tiene muchas funcionalidades
 implementadas y permite editar gran cantidad de datos, aunque su curva de
 aprendizaje puede resultar un poco pronunciada al inicio.
 
-.. image:: /img/iniciojosm.png
+.. image:: ../img/iniciojosm.png
    :width: 600 px
    :alt: splash de josm
    :align: center
@@ -318,7 +318,7 @@ Para obtener un archivo de la zona con la que se quiere trabajar hay que pulsar
 el botón de Descarga de datos del servidor. Al pulsar el botón se muestra una
 interfaz donde se puede seleccionar la porción de datos que quiere obtenerse.
 
-.. image:: /img/josmdescargar.png
+.. image:: ../img/josmdescargar.png
    :width: 600 px
    :alt: splash de josm
    :align: center
@@ -332,7 +332,7 @@ capa que aparecerá en lado izquierdo de JOSM. Pulsando con el botón derecho
 sobre el nombre de la capa nos permitirá almacenar la capa con la ruta y nombre
 de archivo deseados.
 
-.. image:: /img/josmguardar.png
+.. image:: ../img/josmguardar.png
    :width: 600 px
    :alt: splash de josm
    :align: center
@@ -350,7 +350,7 @@ Carga de datos GNSS
 JOSM permite cargar información obtenida a través de un receptor GNSS usando
 para ello el formato de intercambio estandar GPX.
 
-.. image:: /img/josmgpx.png
+.. image:: ../img/josmgpx.png
    :width: 600 px
    :alt: Carga de gpx
    :align: center
@@ -370,7 +370,7 @@ cargar imágenes base provenientes de diversos Proveedores a través de Internet
 cuya información ya viene integrada en el propio JOSM o incluso se pueden
 agregar nuevos como por ejemplo orígenes de datos WMS o TMS.
 
-.. image:: /img/josmpnoa.png
+.. image:: ../img/josmpnoa.png
    :width: 600 px
    :alt: Carga de gpx
    :align: center
@@ -378,7 +378,7 @@ agregar nuevos como por ejemplo orígenes de datos WMS o TMS.
 Se puede acceder a la configuración de los proveedores a través del menú
 **Editar>Preferencias>WMS/TMS**
 
-.. image:: /img/josmproveeimg.png
+.. image:: ../img/josmproveeimg.png
    :width: 600 px
    :alt: Carga de gpx
    :align: center
@@ -393,7 +393,7 @@ el borrado de todos los datos aportados por ese usuario.
 
 Se puede regular la opacidad de una capa para mejorar la visualización.
 
-.. image:: /img/josmopa.png
+.. image:: ../img/josmopa.png
    :width: 600 px
    :alt: Carga de gpx
    :align: center
@@ -404,7 +404,7 @@ Digitalizar
 La digitalización en Josm consiste en utilizar las primitivas de *Punto*,
 *Línea* y *Área* para representar los elementos del terreno.
 
-.. image:: /img/osmprimitivas.png
+.. image:: ../img/osmprimitivas.png
    :width: 600 px
    :alt: Primitivas
    :align: center
@@ -412,32 +412,32 @@ La digitalización en Josm consiste en utilizar las primitivas de *Punto*,
 
 Los comandos más utilizados son
 
-.. |icosel| image:: /img/josmiconosel.png
+.. |icosel| image:: ../img/josmiconosel.png
    :width: 35 px
    :align: middle
    :alt: Icono seleccionar
 
-.. |icoagr| image:: /img/josmiconoagr.png
+.. |icoagr| image:: ../img/josmiconoagr.png
    :width: 35 px
    :align: middle
    :alt: Icono agregar
 
-.. |icosep| image:: /img/josmiconosep.png
+.. |icosep| image:: ../img/josmiconosep.png
    :width: 35 px
    :align: middle
    :alt: Icono separar vía
 
-.. |icocom| image:: /img/josmiconocom.png
+.. |icocom| image:: ../img/josmiconocom.png
    :width: 35 px
    :align: middle
    :alt: Icono combinar vía
 
-.. |icozoo| image:: /img/josmiconozoo.png
+.. |icozoo| image:: ../img/josmiconozoo.png
    :width: 35 px
    :align: middle
    :alt: Icono Zoom
 
-.. |icobor| image:: /img/josmiconobor.png
+.. |icobor| image:: ../img/josmiconobor.png
    :width: 35 px
    :align: middle
    :alt: Icono Borrar
@@ -462,21 +462,21 @@ trabajo.
 
 Antes de aplicar un filtro:
 
-.. image:: /img/josmfiltroantes.png
+.. image:: ../img/josmfiltroantes.png
    :width: 600 px
    :alt: Antes de aplicar el filtro
    :align: center
 
 Tras aplicar el filtro:
 
-.. image:: /img/josmfiltrodespues.png
+.. image:: ../img/josmfiltrodespues.png
    :width: 600 px
    :alt: Después de aplicar el filtro
    :align: center
 
 Para definir nuevos filtros se utiliza la ventana de *Filtrar*
 
-.. image:: /img/josmfiltro.png
+.. image:: ../img/josmfiltro.png
    :width: 350 px
    :alt: Primitivas
    :align: center
@@ -496,14 +496,14 @@ Poner etiquetas
 Para añadir etiquetas a un objeto se emplea el botón *Añadir* de la ventana
 *Propiedades/Relaciones*
 
-.. image:: /img/josmetiquetas.png
+.. image:: ../img/josmetiquetas.png
    :width: 350 px
    :alt: Ventana de etiquetas
    :align: center
 
 En una nueva ventana se nos permite poner el par clave/valor:
 
-.. image:: /img/josmetiquetaanyade.png
+.. image:: ../img/josmetiquetaanyade.png
    :width: 350 px
    :alt: Ventana de etiquetas
    :align: center

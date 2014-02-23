@@ -73,7 +73,7 @@ y para lanzarlo teclearemos
 
 El script comprobará si la versión de JOSM es la más reciente y de no ser así la descargará. Después lanzará automáticamente el programa.
 
-.. image:: /img/iniciojosm.png
+.. image:: ../img/iniciojosm.png
    :width: 600 px
    :alt: splash de josm
    :align: center
@@ -83,7 +83,7 @@ Descargando datos
 
 Lo primero que hay que hacer es seleccionar una zona para descargar los datos, para lo que pulsaremos el botón de descarga |btndownl| que abrirá una nueva ventana para seleccionar el área de descarga.
 
-.. image:: /img/josmdescargar.png
+.. image:: ../img/josmdescargar.png
    :width: 600 px
    :alt: splash de josm
    :align: center
@@ -108,14 +108,14 @@ Filtrando la información
 
 En determinadas zonas la cantidad de información que puede llegar a mostrarse es abrumadora, por lo que a veces es necesario filtrarla para poder trabajar cómodamente.
 
-.. image:: /img/josmgironaantesfiltro.png
+.. image:: ../img/josmgironaantesfiltro.png
    :width: 600 px
    :alt: Girona antes del filtro
    :align: center
 
 Para filtrar la información utilizaremos la ventana de filtros a la que se accede pulsando el botón de filtro |btnfiltro|.
 
-.. image:: /img/josmfiltro.png
+.. image:: ../img/josmfiltro.png
    :width: 350 px
    :alt: Ventana de filtro
    :align: center
@@ -142,7 +142,7 @@ Los filtros se activan o desactivan usando las dos cajas de comprobación que ha
 
 La primera caja, marcada con una `E` activa o desactiva el filtro y la segunda, marcada con una `H` oculta o muestra los objetos filtrados.
 
-.. image:: /img/josmgironadespuesfiltro.png
+.. image:: ../img/josmgironadespuesfiltro.png
    :width: 600 px
    :alt: Girona antes del filtro
    :align: center
@@ -154,7 +154,7 @@ Aunque existen muchos servicios de imágenes que podemos añadir como referencia
 
 Añadir las imágenes de fondo es un proceso en dos pasos, primero hay que definir el origen de datos y después seleccionarlo para que cargue en la zona de visualización.
 
-.. image:: /img/anyadirPNOA.png
+.. image:: ../img/anyadirPNOA.png
    :width: 600 px
    :alt: Añadir la imagen de referencia del PNOA
    :align: center
@@ -173,7 +173,7 @@ Para probar la digitalización crearemos una nueva capa en la que poder trabajar
 
 Al crear la nueva capa, la capa de datos anterior deja de ser la capa de datos activa y aparecerá como líneas de color negro. Es conveniente desactivar la capa para poder ver la ortofotografía, para lo que seleccionaremos la capa y pulsaremos en botón de cambiar la visibilidad |btnverocul|.
 
-.. image:: /img/josmocultalayer.png
+.. image:: ../img/josmocultalayer.png
    :width: 600 px
    :alt: Ocultar la capa con la información ya registrada
    :align: center
@@ -187,7 +187,7 @@ Nodos
 
 Digitalizamos los árboles poniendo un punto, haciendo un solo click, sobre cada copa de la ortofotografía. JOSM está pensado para añadir elementos lineales por lo que por defecto espera tener que añadir líneas, para añadir tan solo puntos deberemos pulsar la tecla ``ESC`` después de hacer click sobre cada árbol.
 
-.. image:: /img/josmanyadearbol.png
+.. image:: ../img/josmanyadearbol.png
    :width: 600 px
    :alt: Digitalizar copas de los árboles poniendo un nodo en cada uno.
    :align: center
@@ -205,7 +205,7 @@ Puede que tengamos que desplazarnos por la imagen, pero como estamos en modo edi
 
 Para digitalizar la vía vamos marcando nodos de manera consecutiva intentando seguir el eje de esta y respetar la forma siguiéndola sobre la ortofotografía. Es interesante que además pongamos un nodo en cada intersección que tenga la vía, lo que facilitará interconectar las vías entre si.
 
-.. image:: /img/josmanyadevia.png
+.. image:: ../img/josmanyadevia.png
    :width: 600 px
    :alt: Digitalizar la vía teniendo en cuenta su forma y las posibles intersecciones.
    :align: center
@@ -227,14 +227,14 @@ Las áreas no son más que una vía que empieza y acaba en el mismo punto y tien
 
 En este ejemplo, digitalizaremos el área de aparcamiento que hay en la zona en la que estamos trabajando, teniendo en cuenta que deberemos cerrar la vía pulsando al final sobre el primer nodo que digitalicemos.
 
-.. image:: /img/josmanyadeparking.png
+.. image:: ../img/josmanyadeparking.png
    :width: 600 px
    :alt: Digitalizar el parking acabando en el mismo nodo en el que se comenzó.
    :align: center
 
 Los edificios son seguramente el caso más típico de áreas a digitalizar.
 
-.. image:: /img/josmanyadeedificio.png
+.. image:: ../img/josmanyadeedificio.png
    :width: 600 px
    :alt: Digitalizar el edificio acabando en el mismo nodo en el que se comenzó.
    :align: center
@@ -249,7 +249,7 @@ Seleccionaremos el primer árbol que hemos digitalizado para lo que hay que entr
 
 Una vez seleccionado, pulsamos el botón ``Add`` de la ventana `Properties/Memberships` para poder añadir las Etiquetas correspondientes.
 
-.. image:: /img/josmanyadeetqarbol.png
+.. image:: ../img/josmanyadeetqarbol.png
    :width: 600 px
    :alt: Pulsar el botón Add para añadir la etiqueta
    :align: center
@@ -259,7 +259,7 @@ Una vez seleccionado, pulsamos el botón ``Add`` de la ventana `Properties/Membe
 
 Lo mejor SIEMPRE es consultar la wiki de OSM donde tienen un `listado de elementos comunes en los mapas Map Features en español <http://wiki.openstreetmap.org/wiki/ES:Map_Features>`_ y cómo emplearlos. En este caso buscaremos la entrada de árbol en la página y vemos que se corresponde con el par clave/valor *natural*/*tree*.
 
-.. image:: /img/wikiosmfeaturestree.png
+.. image:: ../img/wikiosmfeaturestree.png
    :width: 600 px
    :alt: Entrada para árbol singular en la página de Map Features de OSM
    :align: center
@@ -293,7 +293,7 @@ Consultaremos los elementos en su página correspondiente y  añadiremos las eti
 
 El resultado tras aplicar las etiquetas será parecido a este:
 
-.. image:: /img/josmestadofinal.png
+.. image:: ../img/josmestadofinal.png
    :width: 600 px
    :alt: Tras aplicar las etiquetas en el ejercicio
    :align: center
@@ -335,39 +335,39 @@ min lat 39.1899 min lon -0.3773
 max lat 39.2025 max lon -0.3603
 ======= ======= ======= =======
 
-.. image:: /img/polinya.png
+.. image:: ../img/polinya.png
    :width: 600 px
    :alt: Estado de Polinyà de Xúquer al redactar el taller
    :align: center
 
 Como ejercicio del taller se propone levantar el entramado de calles de Polinyà del Xúquer, digitalizar los edificios de una manzana y señalar algunos elementos puntuales.
 
-.. |btnfiltro| image:: /img/josmbotonfiltro.png
+.. |btnfiltro| image:: ../img/josmbotonfiltro.png
    :width: 35 px
    :align: middle
    :alt: Icono seleccionar
 
-.. |btndownl| image:: /img/josmbotondescarga.png
+.. |btndownl| image:: ../img/josmbotondescarga.png
    :width: 35 px
    :align: middle
    :alt: Icono seleccionar
 
-.. |btnverocul| image:: /img/josmbotonverocultar.png
+.. |btnverocul| image:: ../img/josmbotonverocultar.png
    :width: 35 px
    :align: middle
    :alt: Botón ver/ocultar
 
-.. |btntrans| image:: /img/josmbotontrans.png
+.. |btntrans| image:: ../img/josmbotontrans.png
    :width: 35 px
    :align: middle
    :alt: Botón transparencia
 
-.. |btnagr| image:: /img/josmiconoagr.png
+.. |btnagr| image:: ../img/josmiconoagr.png
    :width: 35 px
    :align: middle
    :alt: Icono agregar
 
-.. |btnsel| image:: /img/josmiconosel.png
+.. |btnsel| image:: ../img/josmiconosel.png
    :width: 35 px
    :align: middle
    :alt: Icono seleccionar

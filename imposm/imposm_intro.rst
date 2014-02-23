@@ -159,7 +159,7 @@ Para trabajar sobre las tablas se debería hacer un despliegue de las mismas, co
 
 Para que cambie el prefijo a osm\_. Si ya hubieramos hecho otro despliegue las actuales tablas osm\_ se renombran automáticamente a osm\_old\_. Cada vez que se hace un despliegue se borrarán primero las osm\_old\_.
 
-.. image:: /img/imposmflujodeploy.png
+.. image:: ../img/imposmflujodeploy.png
    :width: 600 px
    :alt: Flujo de despliegue de Imposm
    :align: center
@@ -176,7 +176,7 @@ Y para borrar las tablas con prefijo.
 
     $ imposm -d osm --remove-backup-tables
 
-.. image:: /img/imposmflujorecover.png
+.. image:: ../img/imposmflujorecover.png
    :width: 600 px
    :alt: Flujo Imposm II
    :align: center
