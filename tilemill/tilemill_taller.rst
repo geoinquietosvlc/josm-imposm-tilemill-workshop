@@ -4,6 +4,20 @@
 Taller de TileMill
 ====================
 
+.. note::
+
+    Autores:
+
+    * |pferrer|
+    * |isanchez|
+    * |stramoyeres|
+
+    Licencia:
+
+    Excepto donde quede reflejado de otra manera, la presente documentación
+    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
 A continuación se detalla una práctica guiada en la que se verán los detalles básicos del manejo de la aplicación TileMill.
 
 Se espera del lector que vaya ejecutando las instrucciones que se detallan a continuación y en caso de duda pregunte al facilitador.
@@ -188,7 +202,7 @@ Para representarlo usaremos el código siguiente:
 
     #calles_lineas {
         line-width:1;
-        
+
         [type = 'footway'], [type = 'pedestrian'] {
               line-color:#f2f974;
         }
@@ -226,7 +240,7 @@ Añadiendo etiquetas
    :alt: botón del gestor de fuentes
    :align: middle
 
-Por último, añadiremos los nombres de las calles, para lo cual primero tenemos que definir una variable, preferentemente al principio de todas las definiciones, que tenga el nombre de la fuente y las posibles fuentes sustitutas si la fuente no está instalada en el sistema. 
+Por último, añadiremos los nombres de las calles, para lo cual primero tenemos que definir una variable, preferentemente al principio de todas las definiciones, que tenga el nombre de la fuente y las posibles fuentes sustitutas si la fuente no está instalada en el sistema.
 
 .. code-block:: css
 
@@ -302,7 +316,7 @@ Si queremos ver como quedaría nuestro juego de datos con este estilo deberemos 
     $ cd ../..
     $ imposm --read UniversitatGirona.osm --write --database osm --host localhost --user osm --optimize --overwrite-cache --deploy-production-tables -m /home/jornadas/taller_osm_tilemill/datos/mapbox-osm-bright/imposm-mapping.py
 
-Si volvemos a abrir TileMill veremos que se ahora existe un proyecto nuevo llamado `OSM Bright Universitat de Girona` y tras abrirlo, teniendo en cuenta que puede tardar un poco mientras comprueba las capas, 
+Si volvemos a abrir TileMill veremos que se ahora existe un proyecto nuevo llamado `OSM Bright Universitat de Girona` y tras abrirlo, teniendo en cuenta que puede tardar un poco mientras comprueba las capas,
 
 En el ejemplo proporcionado por MapBox se puede ver como se representan muchos elementos y como condicionar la visualización usando niveles de zoom.
 

@@ -3,6 +3,21 @@
 Taller de ImpOSM
 ======================
 
+.. note::
+
+    Autores:
+
+    * |pferrer|
+    * |isanchez|
+    * |stramoyeres|
+
+    Licencia:
+
+    Excepto donde quede reflejado de otra manera, la presente documentación
+    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
+
 A continuación se detalla una práctica guiada en la que se verán los detalles básicos del manejo de la aplicación ImpOSM.
 
 Se espera del lector que vaya ejecutando las instrucciones que se detallan a continuación y en caso de duda pregunte al facilitador.
@@ -12,23 +27,23 @@ Preparando el juego de datos
 
 Para trabajar con los datos primero crearemos una carpeta con la copia del juego de datos del taller.
 
-Abrimos una terminal y cambiamos al directorio tecleando 
+Abrimos una terminal y cambiamos al directorio tecleando
 
 .. code-block:: bash
-    
+
     $ cd /home/jornadas/taller_osm_tilemill/
 
 Creamos un nuevo directorio y accedemos a el
 
 .. code-block:: bash
-    
+
     $ mkdir tallerimposm
     $ cd tallerimposm
 
 y copiamos los datos al directorio
 
 .. code-block:: bash
-    
+
     $ cp ../../datos/UniversitatGirona.osm .
 
 Este juego de datos es una copia de la zona que trabajamos en el taller anterior.
@@ -39,13 +54,13 @@ Preparando la base de datos
 El primer paso para la carga de datos es la creación de la base de datos que se hace utilizando el comando ``imposm-psqldb``, este comando nos devuelve una estructura de datos para la base de datos PostGIS, lo mejor es asignar una salida directa del comando a un archivo de texto.
 
 .. code-block:: bash
-    
+
     $ imposm-psqldb > create-db.sh
 
 A continuación editamos el archivo *create-db.sh* para comprobar si las rutas a los scripts de PostGIS y al archibo *pg_hba.conf* son correctas.
 
 .. code-block:: bash
-    
+
     $ gedit create-db.sh
 
 En una instalación estándar de Ubuntu estos archivos se encuentran en:
@@ -61,7 +76,7 @@ Guardamos el archivo con  y salimos de `gedit`.
 A continuación ejecutamos el script *crate-db.sh*, pero hay que hacerlo como usuario postgres por lo  que teclearemos las instrucciones siguientes:
 
 .. code-block:: bash
-    
+
     $ sudo su postgres
     $ bash create-db.sh
     $ exit
@@ -84,7 +99,7 @@ Lectura
 Se realiza empleando el comando:
 
 .. code-block:: bash
-    
+
     $ imposm --read UniversitatGirona.osm
 
 Como la cantidad de datos no es muy grande, solo tardará unos segundos.
@@ -92,7 +107,7 @@ Como la cantidad de datos no es muy grande, solo tardará unos segundos.
 Una vez acaba podemos comprobar que ha creado los archivos de cache listando los archivos del directorio:
 
 .. code-block:: bash
-    
+
     $ ls
 
     create-db.sh  imposm_coords.cache  imposm_nodes.cache  imposm_relations.cache  imposm_ways.cache  UniversitatGirona.osm
@@ -105,7 +120,7 @@ Escritura
 Se realiza empleando el comando:
 
 .. code-block:: bash
-    
+
     $ imposm --write --database osm --host localhost --user osm
 
 Solicitará la constraseña del usuario osm y cargará los datos que hay en los archivos *.cache*.
@@ -139,7 +154,7 @@ Optimización
 El último paso de la carga de datos sería la optimización de los datos que se realiza empleando el comando:
 
 .. code-block:: bash
-    
+
     $ imposm --optimize -d osm
 
 Todo en un paso
@@ -148,7 +163,7 @@ Todo en un paso
 En realidad los tres pasos anteriores se pueden ejecutar en un solo comando:
 
 .. code-block:: bash
-    
+
     $ imposm --read --write --optimize -d osm UniversitatGirona.osm
 
 Flujo de trabajo
@@ -157,17 +172,17 @@ Flujo de trabajo
 El flujo de trabajo recomendado permite el despliegue de las tablas conservando hasta 3 versiones a la vez del mismo juego de datos. El despliegue se inicia al ejecutar el comando:
 
 .. code-block:: bash
-    
+
     $ imposm -d osm --deploy-production-tables
 
-Podremos comprobar con pgAdmin III como se ha cambiado el nombre de todas las tablas perdiendo el prefijo **new\_**. 
+Podremos comprobar con pgAdmin III como se ha cambiado el nombre de todas las tablas perdiendo el prefijo **new\_**.
 
 Cuando se suban unas nuevas tablas y se deplieguen, las tablas que no tengan prefijo pasarán a tener el prefijo **old\_**.
 
 Y para borrar *definitivamente* las tablas marcadas con **old\_** y las marcadas con **new\_** se emplea el comando:
 
 .. code-block:: bash
-    
+
     $ imposm -d osm --remove-backup-tables
 
 
@@ -190,7 +205,7 @@ Por ejemplo, en nuestro caso no se está incluyendo en la base de datos ningún 
   * place of worship
   * parking
 
-* Natural 
+* Natural
 * Tourism
 * Barrier
 
@@ -201,7 +216,7 @@ Por lo que debemos modificar el archivo de `mapping` para que los incluya. El ar
 lo copiamos y editamos empleando los siguientes comandos:
 
 .. code-block:: bash
-    
+
     $ cp /usr/local/lib/python2.7/dist-packages/imposm/defaultmapping.py mappingudg.py
     $ gedit mappingudg.py
 
@@ -217,7 +232,7 @@ Como podemos ver, ImpOSM por defecto tiene determinados tipos de Amenity cuando 
 Vamos a añadir al argumento `mapping` los elementos que le faltan (no importa el orden) respetando la sintaxis de tuplas de Python de forma que quede de la siguiente manera:
 
 .. code-block:: python
-    
+
     amenities = Points(
         name='amenities',
         mapping = {
@@ -243,7 +258,7 @@ El caso de los árboles (*natural/tree*) es distinto ya que por defecto ImpOSM n
 Si observamos el juego de datos usando JOSM veremos que los árboles tiene además del par clave/valor que los define, algunos pares de claves/valor más, de todos ellos solo nos interesa el campo `type` pero en caso de existir ese campo lo crea por defecto ImpOSM por lo que no es necesario escribirlo explícitamente en la definición:
 
 .. code-block:: python
-    
+
     arboles = Points(
         name = 'arboles',
         mapping = {
@@ -258,7 +273,7 @@ Guardamos el archivo con y salimos de `gedit`.
 Ejecutamos el comando para escribir y optimizar los datos en la base de datos:
 
 .. code-block:: bash
-    
+
     $ imposm --read UniversitatGirona.osm --write --database osm --host localhost --user osm --optimize --overwrite-cache --deploy-production-tables -m mappingudg.py
 
 
@@ -272,7 +287,7 @@ Como ejercicio del taller se propone crear el `mapping` para las claves de OSM *
 .. note:: En el directorio **datos** puedes encontrar el archivo ``mappinngudg.py`` que ya tiene las modificaciones necesarias, en el caso qse que no te de tiempo a realizarlas en el taller puedes usar el siguiente comando:
 
     .. code-block:: bash
-        
+
         $ imposm --read UniversitatGirona.osm --write --database osm --host localhost --user osm --optimize --overwrite-cache --deploy-production-tables -m datos/mappingudg.py
 
 

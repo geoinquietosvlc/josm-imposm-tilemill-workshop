@@ -3,6 +3,21 @@
 Qué son OSM y JOSM
 ====================
 
+.. note::
+
+    Autores:
+
+    * |pferrer|
+    * |isanchez|
+    * |stramoyeres|
+
+    Licencia:
+
+    Excepto donde quede reflejado de otra manera, la presente documentación
+    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
+
 Introducción a OpenStreetMap
 ------------------------------
 
@@ -129,7 +144,7 @@ OpenStreetMap solo reconoce 2 tipos de datos gráficos:
   * **Vías abiertas:** Vías que tienen entre 2 y 2000 nodos
   * **Vías cerradas:** Vías que empiezan y acaban en el mismo nodo y definen una forma poligonal.
 
-    * **Áreas:** Zonas contenidas dentro de *Vías cerradas* 
+    * **Áreas:** Zonas contenidas dentro de *Vías cerradas*
 
 
 Edición alfanumérica de los datos
@@ -159,7 +174,7 @@ permiten obtener una imagen de la información de la base de datos.
 
 Los principales motores de renderizado son:
 
-* Osmarender En realidad se trata más bien de un conjunto de reglas XLST que genera SVG. 
+* Osmarender En realidad se trata más bien de un conjunto de reglas XLST que genera SVG.
 
 .. image:: /img/osmarender.png
    :width: 600 px
@@ -206,7 +221,7 @@ Además el Nodo puede contener información asociada al estilo OSM a traves de
 pares key/value
 
 .. code-block:: none
-  
+
     <node id="25496583" lat="51.5173639" lon="-0.140043" version="1" changeset="203496" user="80n" uid="1238" visible="true" timestamp="2007-01-28T11:40:26Z">
         <tag k="highway" v="traffic_signals"/>
     </node>
@@ -227,7 +242,7 @@ referencia id de los nodos que agrupa. Además la Vía puede contener informaci�
 asociada al estilo OSM a traves de pares key/value
 
 .. code-block:: none
-  
+
     <way id="5090250" visible="true" timestamp="2009-01-19T19:07:25Z" version="8" changeset="816806" user="Blumpsy" uid="64226">
         <nd ref="822403"/>
         <nd ref="21533912"/>
@@ -260,7 +275,7 @@ permiten configurar la relación y unas etiquetas tag para describir el tipo de
 relación.
 
 .. code-block:: none
-  
+
     <relation id="77" visible="true" timestamp="2006-03-14T10:07:23+00:00" user="fred">
       <member type="way" id="343" role="from" />
       <member type="node" id="911" role="via" />
@@ -292,7 +307,7 @@ aprendizaje puede resultar un poco pronunciada al inicio.
 
 .. image:: /img/iniciojosm.png
    :width: 600 px
-   :alt: splash de josm 
+   :alt: splash de josm
    :align: center
 
 Descarga de datos
@@ -305,7 +320,7 @@ interfaz donde se puede seleccionar la porción de datos que quiere obtenerse.
 
 .. image:: /img/josmdescargar.png
    :width: 600 px
-   :alt: splash de josm 
+   :alt: splash de josm
    :align: center
 
 El servidor limita las peticiones que cubran gran extensión para no colapsar el
@@ -319,7 +334,7 @@ de archivo deseados.
 
 .. image:: /img/josmguardar.png
    :width: 600 px
-   :alt: splash de josm 
+   :alt: splash de josm
    :align: center
 
 Edición básica
@@ -337,7 +352,7 @@ para ello el formato de intercambio estandar GPX.
 
 .. image:: /img/josmgpx.png
    :width: 600 px
-   :alt: Carga de gpx 
+   :alt: Carga de gpx
    :align: center
 
 Se recomienda encarecidamente no subir esta información directamente sin depurar
@@ -357,7 +372,7 @@ agregar nuevos como por ejemplo orígenes de datos WMS o TMS.
 
 .. image:: /img/josmpnoa.png
    :width: 600 px
-   :alt: Carga de gpx 
+   :alt: Carga de gpx
    :align: center
 
 Se puede acceder a la configuración de los proveedores a través del menú
@@ -365,7 +380,7 @@ Se puede acceder a la configuración de los proveedores a través del menú
 
 .. image:: /img/josmproveeimg.png
    :width: 600 px
-   :alt: Carga de gpx 
+   :alt: Carga de gpx
    :align: center
 
 En España está autorizado el uso del PNOA para digitalizar sobre las ortofotos
@@ -380,7 +395,7 @@ Se puede regular la opacidad de una capa para mejorar la visualización.
 
 .. image:: /img/josmopa.png
    :width: 600 px
-   :alt: Carga de gpx 
+   :alt: Carga de gpx
    :align: center
 
 Digitalizar

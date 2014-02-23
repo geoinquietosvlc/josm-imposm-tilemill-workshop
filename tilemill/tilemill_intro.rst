@@ -3,6 +3,20 @@
 Qué es TileMill
 ================
 
+.. note::
+
+    Autores:
+
+    * |pferrer|
+    * |isanchez|
+    * |stramoyeres|
+
+    Licencia:
+
+    Excepto donde quede reflejado de otra manera, la presente documentación
+    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
 TileMill es un herramienta que permite un acercamiento al diseño cartográfico a
 través de un lenguaje que es familiar a los desarrolladores web.
 
@@ -71,7 +85,7 @@ Pintando puntos
 ```````````````````
 
 .. code-block:: css
-  
+
   #puntos{
     marker-width: 2;
     marker-fill: #EE0000;
@@ -90,8 +104,8 @@ Pintando lineas
 ```````````````````
 
 .. code-block:: css
-  
-  #linea { 
+
+  #linea {
     line-color: #c0d8ff;
     line-cap: round;
     line-join: round;
@@ -108,7 +122,7 @@ Pintando áreas
 ```````````````````
 
 .. code-block:: css
-  
+
   #areas {
     line-color: #FFFABB;
     line-width: 0.5;
@@ -132,7 +146,7 @@ Para el que se lo haya preguntado ... también se pueden usar clases (y
 condiciones)
 
 .. code-block:: css
-  
+
   .natural[TYPE='water'],
   .water {
     polygon-fill:#c0d8ff;
@@ -145,10 +159,10 @@ condiciones)
 Y alguna cosilla más
 ```````````````````````
 
-El uso de **@** te permite definir **variables** 
+El uso de **@** te permite definir **variables**
 
 .. code-block:: css
-  
+
   @water:#c0d8ff;
   @forest:#cea;
 
@@ -157,7 +171,7 @@ Y los selectores se pueden anidar
 .. code-block:: css
 
   .highway[TYPE='motorway'] {
-    .line[zoom>=7]  { 
+    .line[zoom>=7]  {
       line-color:spin(darken(@motorway,36),-10);
       line-cap:round;
       line-join:round;
@@ -205,7 +219,7 @@ Pintando cajas de carretera
 .. code-block:: css
 
   .highway[TYPE='motorway'] {
-    .line[zoom>=7]  { 
+    .line[zoom>=7]  {
       line-color:spin(darken(@motorway,36),-10);
       line-cap:round;
       line-join:round;
@@ -216,7 +230,7 @@ Pintando cajas de carretera
       line-join:round;
     }
   }
-  
+
   .highway[zoom=13] {
     .line[TYPE='motorway']      { line-width: 2.0 + 2; }
     .fill[TYPE='motorway']      { line-width: 2.0; }

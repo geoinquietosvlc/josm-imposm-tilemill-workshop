@@ -4,6 +4,20 @@
 Taller de JOSM
 ====================
 
+.. note::
+
+    Autores:
+
+    * |pferrer|
+    * |isanchez|
+    * |stramoyeres|
+
+    Licencia:
+
+    Excepto donde quede reflejado de otra manera, la presente documentación
+    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
 A continuación se detalla una práctica guiada en la que se verán los detalles básicos del manejo de la aplicación JOSM.
 
 Se espera del lector que vaya ejecutando las instrucciones que se detallan a continuación y en caso de duda pregunte al facilitador.
@@ -15,10 +29,10 @@ La aplicación JOSM se encuentra en la carpeta
 
     /home/jornadas/taller_osm_tilemill/
 
-**Abrimos una terminal** y cambiamos al directorio tecleando 
+**Abrimos una terminal** y cambiamos al directorio tecleando
 
 .. code-block:: bash
-    
+
     $ cd /home/jornadas/taller_osm_tilemill/
 
 Para lanzarla deberemos teclear el comando
@@ -30,17 +44,17 @@ Sin embargo, debido a la rápida frecuencia de actualización de JOSM, es recome
 Para crear el script tecleamos:
 
 .. code-block:: bash
-    
+
     $ gedit josm.sh
 
 Y tecleamos:
 
     #!/bin/bash
-    
+
     mv josm-latest.jar josm-latest_0.jar
-    
+
     wget -N http://josm.openstreetmap.de/josm-latest.jar
-    
+
     java -jar josm-latest.jar
 
 Guardamos el archivo y salimos.
@@ -48,20 +62,20 @@ Guardamos el archivo y salimos.
 Hay que dar permisos de ejecución al script para poder lanzarlo, para lo que teclearemos:
 
 .. code-block:: bash
-    
+
     $ chmod 755 josm.sh
 
 y para lanzarlo teclearemos
 
 .. code-block:: bash
-    
+
     $ ./josm.sh
 
 El script comprobará si la versión de JOSM es la más reciente y de no ser así la descargará. Después lanzará automáticamente el programa.
 
 .. image:: /img/iniciojosm.png
    :width: 600 px
-   :alt: splash de josm 
+   :alt: splash de josm
    :align: center
 
 Descargando datos
@@ -71,7 +85,7 @@ Lo primero que hay que hacer es seleccionar una zona para descargar los datos, p
 
 .. image:: /img/josmdescargar.png
    :width: 600 px
-   :alt: splash de josm 
+   :alt: splash de josm
    :align: center
 
 Se puede utilizar el mapa que se nos muestra para seleccionar una zona, o bien a través de las pestañas dar unas coordenadas que definan un área de trabajo o buscar por nombre usando el servicio `Nominatim`.
@@ -122,7 +136,7 @@ El primer filtro ocultará solamente los `Nodos` que no tengan ninguna etiqueta,
 
 El segundo filtro ocultará los elementos etiquetados con el par clave - valor `natural - tree`, en la imagen las efes rojas.
 
-Por último, el tercer filtro ocultará cualquier elemento que tenga la clave `amenity` sea cual sea el valor de esta. 
+Por último, el tercer filtro ocultará cualquier elemento que tenga la clave `amenity` sea cual sea el valor de esta.
 
 Los filtros se activan o desactivan usando las dos cajas de comprobación que hay al lado de cada uno.
 
@@ -240,7 +254,7 @@ Una vez seleccionado, pulsamos el botón ``Add`` de la ventana `Properties/Membe
    :alt: Pulsar el botón Add para añadir la etiqueta
    :align: center
 
-¿Qué etiquetas se emplean para indicar que es un árbol? 
+¿Qué etiquetas se emplean para indicar que es un árbol?
 ```````````````````````````````````````````````````````````
 
 Lo mejor SIEMPRE es consultar la wiki de OSM donde tienen un `listado de elementos comunes en los mapas Map Features en español <http://wiki.openstreetmap.org/wiki/ES:Map_Features>`_ y cómo emplearlos. En este caso buscaremos la entrada de árbol en la página y vemos que se corresponde con el par clave/valor *natural*/*tree*.
