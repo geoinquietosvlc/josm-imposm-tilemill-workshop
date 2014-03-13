@@ -1,7 +1,7 @@
 .. _osmyjosm:
 
-Qué son OSM y JOSM
-====================
+Qué son OpenStreetMap y JOSM
+===============================
 
 .. note::
 
@@ -21,9 +21,11 @@ Qué son OSM y JOSM
 Introducción a OpenStreetMap
 ------------------------------
 
-OpenStreetMap es un proyecto colaborativo para crear mapas libres y editables.
-Se dice que OSM es a lo mapas, como la Wikipedia a las enciclopedias.
-Actualmente hay más de 500.000 usuarios registrados.
+OpenStreetMap (en adelante OSM) es un proyecto colaborativo para crear mapas
+libres y editables. Se dice que OSM es a lo mapas, como la Wikipedia a las
+enciclopedias. Actualmente hay más de 1.500.000 usuarios registrados (estadísticas_).
+
+.. _estadísticas: http://www.openstreetmap.org/stats/data_stats.html
 
 .. image:: ../img/inicioosm.png
    :width: 600 px
@@ -34,21 +36,22 @@ La página principal de OSM es http://www.openstreetmap.org/ donde puede verse e
 mapa que generan los usuarios. La comunidad se organiza a través de una wiki
 cuya dirección es http://wiki.openstreetmap.org/
 
-El proyecto es propiedad de la Fundación OpenStreetMap cuyo objetivo es
-*fomentar el crecimiento, desarrollo y distribución de datos geoespaciales
-libres y a proveer datos geoespaciales a cualquiera para usar y compartir*. Los
-datos tienen una licencia `Creative Commons Attribution-ShareAlike 2.0
-<http://creativecommons.org/licenses/by-sa/2.0/>`_, aunque está en proceso de
-ser cambiada a `Open Database License 1.0
-<http://www.opendatacommons.org/licenses/odbl/>`_.
+El proyecto es propiedad de la Fundación OpenStreetMap, cuyo objetivo es
+*«fomentar el crecimiento, desarrollo y distribución de datos geoespaciales
+libres y a proveer datos geoespaciales a cualquiera para usar y compartir»*. Los
+datos tienen una licencia conocida como `Open Database License 1.0
+<http://www.opendatacommons.org/licenses/odbl/>`_ especialmente ideada para
+publicar bases de datos.
 
 Historia
 -----------
 
-El proyecto nace de la mano de Steve Coast en 2004 que por discrepancias
+El proyecto nace de la mano de `Steve Coast`_ en 2004 que por discrepancias
 personales con la gestión cartográfica y los precios del organismo británico
-Ordnance Survey decide crear una base de datos cartográfica accesible a todos
+*Ordnance Survey* decide crear una base de datos cartográfica accesible a todos
 los públicos.
+
+.. _Steve Coast: http://stevecoast.com/
 
 En 2006 el proyecto toma forma de fundación sin ánimo de lucro y en ese mismo
 año Yahoo autoriza a la fundación a utilizar su capa de imágenes aéreas de todo
@@ -56,19 +59,23 @@ el mundo para que los usuarios puedan digitalizar información sobre ellas.
 
 En 2007 la empresa Automotive Navigation Data (AND) dona sus datos de los Países
 Bajos y de las principales carreteras de la India y China a la fundación y
-además se incorpora la información de TIGER (Censo de EEUU).
+además se incorpora la información de la base de datos TIGER_ (Censo de EEUU).
+
+.. _TIGER: https://www.census.gov/geo/maps-data/data/tiger.html
 
 En 2008 la aparece la empresa CloudMade con el objetivo de explotar
 comercialmente la información del proyecto y que dona a la fundación 2,4
-Millones ; en ese mismo año la iniciativa pública canadiense GeoBase.ca dona sus
+Millones; en ese mismo año la iniciativa pública canadiense GeoBase.ca dona sus
 datos de Canadá al proyecto.
 
 En 2009 se libera la versión 0.6 de la API y se incrementan en casi 100.000 el
 número de usuarios duplicando los existentes en solo un años.
 
-En 2010 tiene lugar en Girona la conferencia State of the Map, Bing Maps
+En 2010 tiene lugar en Girona la conferencia `State of the Map`_, Bing Maps
 (Microsost) permite el uso de sus imágenes para digitalizar información y el
-Ordnance Survey decide liberar sus dato.
+Ordnance Survey decide liberar sus datos.
+
+.. _State of the Map: http://2010.stateofthemap.org/
 
 En 2011 se superan los 500.000 usuarios.
 
@@ -97,20 +104,28 @@ personalmente para garantizar la máxima calidad del resultado.
 
 Los orígenes más comunes de datos son:
 
-* Trazas GPS, resultado de recorrer la zona usando un dispositivo GPS que almacene dicha información.
+* Trazas GPS, resultado de recorrer la zona usando un dispositivo GPS que
+  almacene dicha información.
 
-  * También suelen usarse waypoints, fotos geolocalizadas y archivos de audio geolocalizados
+  * También suelen usarse *waypoints*, fotos geolocalizadas y archivos de audio geolocalizados
 
-* Imágenes de Yahoo, Bing Maps, el PNOA en España, Landsat y en general cualquier imágen cuyos derechos de autor hayan sido expresamente cedidos, se hayan extinguido o estén en el dominio público.
-* Mapas e información de los usuarios. Siempre que se trate de información en el dominio público o cuyos derechos de autor hayan sido expresamente cedidos.
+* Imágenes de Yahoo, Bing Maps, el PNOA en España, Landsat y en general cualquier
+  imagen cuyos derechos de autor hayan sido expresamente cedidos, se hayan extinguido
+  o estén en el dominio público.
+
+* Mapas e información de los usuarios. Siempre que se trate de información en
+  el dominio público o cuyos derechos de autor hayan sido expresamente cedidos.
+
 * Información prévia existente que requiera ser incluida en un mapa.
 
 Subida de datos a los servidores de OpenStreetMap
 ``````````````````````````````````````````````````````````
 
 Una vez recopilada la información, esta debe ser incorporada a la base de datos
-de OSM. Para ello existen diversos médios, aunque principalmente se emplea el
-cliente web Potlach2:
+de OSM. Para ello existen diversos medios, aunque principalmente se emplean
+clientes web como hasta hace poco Potlach2 y actualmente iD:
+
+.. (jorge) me quedo revisando por aquí
 
 .. image:: ../img/potlach2.png
    :width: 600 px

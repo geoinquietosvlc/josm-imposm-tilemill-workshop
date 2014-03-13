@@ -11,34 +11,11 @@ una serie de herramientas FOSS4G que permiten crear estos mapas de una manera
 sencilla y con un lenguaje de diseño cartográfico especialmente próximo a los
 desarrolladores web.
 
-Autores del taller
-------------------------------
+Facilitadores
+-----------------
 
-.. |imgvehrka| image:: img/vehrka.jpg
-    :width: 48 px
-
-.. |imgivan| image:: img/ivansanchez.png
-    :width: 48 px
-
-.. |imgsantra| image:: img/santra.png
-    :width: 48 px
-
-|imgvehrka| Pedro-Juan Ferrer Matoses
-   Project Manager en Omnium Inteligencia Estratégica y geofriki. `Email: pedro.ferrer (a) omniumie.com <mailto:pedro.ferrer@omniumie.com>`_ | `Twitter: @vehrka <http://twitter.com/vehrka>`_
-
-|imgsantra| Santiago Tramoyeres Cuesta
-   DBA en Omnium Inteligencia Estratégica y geek. `Email: santiago.tramoyeres (a) omniumie.com <mailto:santiago.tramoyeres@omniumie.com>`_ | `Twitter: @santracraus <http://twitter.com/santracraus>`_
-
-|imgivan| Iván Sanchez Ortega
-   Presidente de OpenStreetMap España y geonerd. `Email: ivan (a) sanchezortega.es <mailto:ivan@sanchezortega.es>`_ | `Twitter: @realivansanchez <http://twitter.com/realivansanchez>`_
-
-
-Licencia
----------------
-
-|licencia|_
-
-Taller Josm + ImpOSM + Tilemill por `Pedro-Juan Ferrer Matoses <http://vehrka.net>`_ se encuentra bajo una Licencia `Creative Commons Atribución-CompartirIgual 4.0 Unported <http://creativecommons.org/licenses/by-sa/4.0/>`_ .
+* |pferrer|
+* |jsanz|
 
 Agenda
 -----------
@@ -48,10 +25,10 @@ El taller constará de los siguientes contenidos:
 .. rubric:: OSM y JOSM
 
 :ref:`osmyjosm`
-    Por qué molan tanto los mapas de OSM y cómo obtengo sus datos.
+    Por qué la base de datos del proyecto OpenStreetMap (OSM) es tan relevante y cómo obtengo sus datos.
 
 :ref:`tallerosmyjosm`
-    Trabajando con Josm.
+    Trabajando con JOSM.
 
 .. rubric:: ImpOSM
 
@@ -72,6 +49,41 @@ El taller constará de los siguientes contenidos:
 .. |licencia| image:: img/88x31.png
 .. _licencia: http://creativecommons.org/licenses/by-sa/3.0/
 
+
+Autores del taller
+------------------------------
+
+.. |imgvehrka| image:: img/vehrka.jpg
+    :width: 48 px
+
+.. |imgivan| image:: img/ivansanchez.png
+    :width: 48 px
+
+.. |imgsantra| image:: img/santra.png
+    :width: 48 px
+
+.. |imgjsanz| image:: img/jsanz.jpg
+    :width: 48 px
+
+|imgvehrka| Pedro-Juan Ferrer Matoses
+   Project Manager en Omnium Inteligencia Estratégica y geofriki. `Email: pedro.ferrer (a) omniumie.com <mailto:pedro.ferrer@omniumie.com>`_ | `Twitter: @vehrka <http://twitter.com/vehrka>`_
+
+|imgsantra| Santiago Tramoyeres Cuesta
+   Consultor TI y geek. `Linkedin <http://www.linkedin.com/in/stramoyeresc>`_ | `Twitter: @santracraus <http://twitter.com/santracraus>`_
+
+|imgivan| Iván Sanchez Ortega
+   Presidente de OpenStreetMap España y geonerd. `Email: ivan (a) sanchezortega.es <mailto:ivan@sanchezortega.es>`_ | `Twitter: @realivansanchez <http://twitter.com/realivansanchez>`_
+
+|imgjsanz| Jorge Gaspar Sanz Salinas
+   Consultor en Prodevelop y geofriki. `Email: jsanz (a) osgeo.org <mailto:jsanz@osgeo.org>`_ | `Twitter: @xurxosanz <http://twitter.com/xurxosanz>`_
+
+
+Licencia
+---------------
+
+|licencia|_
+
+Taller JOSM + ImpOSM + Tilemill por `Pedro-Juan Ferrer Matoses <http://vehrka.net>`_ se encuentra bajo una Licencia `Creative Commons Atribución-CompartirIgual 4.0 Unported <http://creativecommons.org/licenses/by-sa/4.0/>`_ .
 
 
 
