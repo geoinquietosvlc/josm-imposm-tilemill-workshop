@@ -1,95 +1,9 @@
-.. OSM + IMPOSM + TILEMILL Documentation documentation master file, created by
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Taller de OSM + IMPOSM + TILEMILL  VI Jornadas de SIG Libre
+Taller de OSM + IMPOSM + TILEMILL
 =============================================================
-
-Este taller pretende ser una breve introducción a un flujo de trabajo que
-permite tener mapas funcionales y estéticos. A lo largo del taller vamos a ver
-una serie de herramientas FOSS4G que permiten crear estos mapas de una manera
-sencilla y con un lenguaje de diseño cartográfico especialmente próximo a los
-desarrolladores web.
-
-Facilitadores
------------------
-
-* |pferrer|
-* |jsanz|
-
-Agenda
------------
-
-El taller constará de los siguientes contenidos:
-
-.. rubric:: OSM y JOSM
-
-:ref:`osmyjosm`
-    Por qué la base de datos del proyecto OpenStreetMap (OSM) es tan relevante y cómo obtengo sus datos.
-
-:ref:`tallerosmyjosm`
-    Trabajando con JOSM.
-
-.. rubric:: ImpOSM
-
-:ref:`imposm`
-    La herramienta que convierte el XML de OSM en una base de datos como $deity manda.
-
-:ref:`tallerimposm`
-    Trabajando con ImpOSM.
-
-.. rubric:: TileMill
-
-:ref:`tilemill`
-    Haciendo mapas bonitos con Mapnik y su lenguaje Carto.
-
-:ref:`tallertilemill`
-    Trabajando con Tilemill
-
-.. |licencia| image:: img/88x31.png
-.. _licencia: http://creativecommons.org/licenses/by-sa/3.0/
-
-
-Autores del taller
-------------------------------
-
-.. |imgvehrka| image:: img/vehrka.jpg
-    :width: 48 px
-
-.. |imgivan| image:: img/ivansanchez.png
-    :width: 48 px
-
-.. |imgsantra| image:: img/santra.png
-    :width: 48 px
-
-.. |imgjsanz| image:: img/jsanz.jpg
-    :width: 48 px
-
-|imgvehrka| Pedro-Juan Ferrer Matoses
-   Project Manager en Omnium Inteligencia Estratégica y geofriki. `Email: pedro.ferrer (a) omniumie.com <mailto:pedro.ferrer@omniumie.com>`_ | `Twitter: @vehrka <http://twitter.com/vehrka>`_
-
-|imgsantra| Santiago Tramoyeres Cuesta
-   Consultor TI y geek. `Linkedin <http://www.linkedin.com/in/stramoyeresc>`_ | `Twitter: @santracraus <http://twitter.com/santracraus>`_
-
-|imgivan| Iván Sanchez Ortega
-   Presidente de OpenStreetMap España y geonerd. `Email: ivan (a) sanchezortega.es <mailto:ivan@sanchezortega.es>`_ | `Twitter: @realivansanchez <http://twitter.com/realivansanchez>`_
-
-|imgjsanz| Jorge Gaspar Sanz Salinas
-   Consultor en Prodevelop y geofriki. `Email: jsanz (a) osgeo.org <mailto:jsanz@osgeo.org>`_ | `Twitter: @xurxosanz <http://twitter.com/xurxosanz>`_
-
-
-Licencia
----------------
-
-|licencia|_
-
-Taller JOSM + ImpOSM + Tilemill por `Pedro-Juan Ferrer Matoses <http://vehrka.net>`_ se encuentra bajo una Licencia `Creative Commons Atribución-CompartirIgual 4.0 Unported <http://creativecommons.org/licenses/by-sa/4.0/>`_ .
-
-
 
 .. toctree::
    :hidden:
-   :numbered:
 
    osm/osm_intro
    osm/osm_taller
@@ -97,4 +11,84 @@ Taller JOSM + ImpOSM + Tilemill por `Pedro-Juan Ferrer Matoses <http://vehrka.ne
    imposm/imposm_taller
    tilemill/tilemill_intro
    tilemill/tilemill_taller
+
+Este taller pretende ser una breve introducción a un flujo de trabajo que
+permite tener mapas funcionales y estéticos. A lo largo del taller vamos a ver
+una serie de herramientas FOSS4G que permiten crear estos mapas de una manera
+sencilla y con un lenguaje de diseño cartográfico especialmente próximo a los
+desarrolladores web.
+
+El taller tiene tres partes en las que veremos:
+
+
+* Por qué la base de datos del proyecto OpenStreetMap (OSM) es tan relevante
+  y cómo obtengo sus datos y cómo se trabaja con JOSM.
+
+* La herramienta *ImpOSM* que convierte el XML de OSM en una base de datos
+  geográfica.
+
+* Cómo hacer buenos mapas para la web con Mapnik y su lenguaje Carto.
+
+.. note:: La url del taller es http://bit.ly/cfp2014-jitw
+
+¿Qué es Geoinquietos Valencia?
+------------------------------
+
+La idea detrás de Geoinquietos Valencia es la misma que la que hay detrás de
+los otros grupos de Geoinquietos (Barcelona, Cantabria, Zona norte y Madrid)
+se trata de compartir la pasión que tenemos por todo lo geo y mantenernos al
+tanto de noticias y novedades. ¿Cómo? Pues muy fácil, asistiendo a las
+reuniones que tienen lugar aproximadamente cada mes.
+
+La estructura de estas reuniones no puede ser más sencilla... nos reunimos
+en un sitio con suficiente espacio y a ser posible conexión a Internet y a
+ser muy posible proyector, para tratar los temas que se hayan propuesto con
+anterioridad usando `una wiki <http://wiki.osgeo.org/wiki/Category:Geoinquietos_Valencia>`_
+como espacio de colaboración ágil. Todo el
+mundo está invitado a añadir contenidos para enriquecer la página.
+
+Estos temas a tratar también pueden estar aderezados con alguna pequeña
+charla de uno de los asistentes en la que puede explicar en que consiste su
+trabajo, su hobby, algo que le haya resultado curioso, pero todo relacionado
+con el mundillo geo.
+
+Facilitadores
+-----------------
+
+* |pferrer|
+* |jsanz|
+
+Autores
+------------------------------
+
+* |pferrer|
+
+  * Project Manager en Omnium SI
+  * Geofriki
+
+* |isanchez|
+
+  * Developer en `Aptomar <https://www.aptomar.com/>`_
+  * Más geofriki aún si cabe
+
+* |stramoyeres|
+
+  * `Freelance for hire <https://es.linkedin.com/in/stramoyeresc/>`_
+  * Muy friki de lo suyo
+
+* |jsanz|
+
+  * GISguy en `Prodevelop <http://www.prodevelop.es>`_
+  * Geofriki
+
+Licencia
+---------------
+
+Excepto donde quede reflejado de otra manera, la presente documentación
+se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
+<https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
+
+.. image:: img/by-sa.png
+   :width: 200px
+   :alt: CC BY SA
 
