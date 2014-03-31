@@ -5,12 +5,12 @@ Taller de OSM + IMPOSM + TILEMILL
 .. toctree::
    :hidden:
 
-   osm/osm_intro
-   osm/osm_taller
-   imposm/imposm_intro
-   imposm/imposm_taller
-   tilemill/tilemill_intro
-   tilemill/tilemill_taller
+   osm/osm_intro.rst
+   osm/osm_taller.rst
+   imposm/imposm_intro.rst
+   imposm/imposm_taller.rst
+   tilemill/tilemill_intro.rst
+   tilemill/tilemill_taller.rst
 
 Este taller pretende ser una breve introducción a un flujo de trabajo que
 permite tener mapas funcionales y estéticos. A lo largo del taller vamos a ver

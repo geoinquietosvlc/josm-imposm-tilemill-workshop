@@ -3,21 +3,6 @@
 Qué son OpenStreetMap y JOSM
 ===============================
 
-.. note::
-
-    Autores:
-
-    * |pferrer|
-    * |isanchez|
-    * |stramoyeres|
-
-    Licencia:
-
-    Excepto donde quede reflejado de otra manera, la presente documentación
-    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
-    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
-
-
 Introducción a OpenStreetMap
 ------------------------------
 
@@ -38,51 +23,75 @@ cuya dirección es http://wiki.openstreetmap.org/
 
 El proyecto es propiedad de la Fundación OpenStreetMap, cuyo objetivo es
 *«fomentar el crecimiento, desarrollo y distribución de datos geoespaciales
-libres y a proveer datos geoespaciales a cualquiera para usar y compartir»*. Los
-datos tienen una licencia conocida como `Open Database License 1.0
+libres y a proveer datos geoespaciales a cualquiera para usar y compartir»*.
+Los datos tienen una licencia conocida como `Open Database License 1.0
 <http://www.opendatacommons.org/licenses/odbl/>`_ especialmente ideada para
 publicar bases de datos.
 
-Historia
------------
+Historia de OSM
+----------------
 
 El proyecto nace de la mano de `Steve Coast`_ en 2004 que por discrepancias
 personales con la gestión cartográfica y los precios del organismo británico
-*Ordnance Survey* decide crear una base de datos cartográfica accesible a todos
-los públicos.
+*Ordnance Survey* decide crear una base de datos cartográfica accesible a
+todos los públicos.
 
 .. _Steve Coast: http://stevecoast.com/
 
-En 2006 el proyecto toma forma de fundación sin ánimo de lucro y en ese mismo
-año Yahoo autoriza a la fundación a utilizar su capa de imágenes aéreas de todo
-el mundo para que los usuarios puedan digitalizar información sobre ellas.
+En 2006 el proyecto toma forma de fundación sin ánimo de lucro y en ese
+mismo año Yahoo autoriza a la fundación a utilizar su capa de imágenes
+aéreas de todo el mundo para que los usuarios puedan digitalizar información
+sobre ellas.
 
-En 2007 la empresa Automotive Navigation Data (AND) dona sus datos de los Países
-Bajos y de las principales carreteras de la India y China a la fundación y
-además se incorpora la información de la base de datos TIGER_ (Censo de EEUU).
+En 2007 la empresa Automotive Navigation Data (AND) dona sus datos de los
+Países Bajos y de las principales carreteras de la India y China a la
+fundación y además se incorpora la información de la base de datos TIGER_
+(Censo de EEUU).
 
 .. _TIGER: https://www.census.gov/geo/maps-data/data/tiger.html
 
 En 2008 la aparece la empresa CloudMade con el objetivo de explotar
 comercialmente la información del proyecto y que dona a la fundación 2,4
-Millones; en ese mismo año la iniciativa pública canadiense GeoBase.ca dona sus
-datos de Canadá al proyecto.
+Millones; en ese mismo año la iniciativa pública canadiense GeoBase.ca dona
+sus datos de Canadá al proyecto.
 
-En 2009 se libera la versión 0.6 de la API y se incrementan en casi 100.000 el
-número de usuarios duplicando los existentes en solo un años.
+En 2009 se libera la versión 0.6 de la API y se incrementan en casi 100.000
+el número de usuarios duplicando los existentes en solo un años.
 
 En 2010 tiene lugar en Girona la conferencia `State of the Map`_, Bing Maps
 (Microsost) permite el uso de sus imágenes para digitalizar información y el
-Ordnance Survey decide liberar sus datos.
+Ordnance Survey decide liberar sus datos. Terremoto de Haití.
 
 .. _State of the Map: http://2010.stateofthemap.org/
 
-En 2011 se superan los 500.000 usuarios.
+En 2011 se superan los 500.000 usuarios y los 1.000.000.000 nodos.
 
-En 2012 Foursquare abandona el uso de Google Maps y pasa a usar datos de OSM renderizados por MapBox. Apple emplea (sin respetar la licencia) los datos de OSM para su aplicación iPhoto 11.
+En 2012 Foursquare abandona el uso de Google Maps y pasa a usar datos de OSM
+renderizados por MapBox. Se cambia la licencia a ODbL. Apple hace un uso sin
+atribución de los datos de OSM para sus aplicaciones.
 
-Procedimiento
----------------
+En 2013 se supera el millón de usuarios y tiene lugar el Tifón Yolanda
+
+En 2014 se han superado los 1,5 millones de usuarios.
+
+HOT
+---
+
+**Humanitarian OpenStreetMap Team**
+
+Se organiza a partir del terremoto de Haití con el objetivo de proporcionar
+a los equipos de emergencias mejores mapas de la zona. Su función es servir
+de puente entre los Actores tradicionales de respuesta humanitaria y la
+comunidad de OpenStreetMap.
+
+Su labor consiste en recopilar datos, aunque también se realizan trabajos de
+formación en zonas necesitadas. Aún así, la mayor parte del trabajo es
+remoto y llevado a cabo por voluntarios.
+
+Actualmente trabajando en Haití, Indonesia, Somalia, Costa de Marfil...
+
+Procedimiento de creación de mapas
+-------------------------------------
 
 Los mapas se realizan siguiendo 3 pasos:
 
@@ -97,37 +106,38 @@ Los mapas se realizan siguiendo 3 pasos:
 Toma de datos
 ````````````````
 
-Los datos se recopilan por observación directa, preferentemente empleando GPS,
-aunque pueden emplearse otros medios como fotografía aérea si los derechos de la
-imagen lo permite. Aún así el proyecto recomienda conocer y recorrer la zona
-personalmente para garantizar la máxima calidad del resultado.
+Los datos se recopilan por observación directa, preferentemente empleando
+GPS, aunque pueden emplearse otros medios como fotografía aérea si los
+derechos de la imagen lo permite. Aún así el proyecto recomienda conocer y
+recorrer la zona personalmente para garantizar la máxima calidad del
+resultado.
 
 Los orígenes más comunes de datos son:
 
 * Trazas GPS, resultado de recorrer la zona usando un dispositivo GPS que
   almacene dicha información.
 
-  * También suelen usarse *waypoints*, fotos geolocalizadas y archivos de audio geolocalizados
+  * También suelen usarse *waypoints*, fotos geolocalizadas y archivos de
+    audio geolocalizados
 
-* Imágenes de Yahoo, Bing Maps, el PNOA en España, Landsat y en general cualquier
-  imagen cuyos derechos de autor hayan sido expresamente cedidos, se hayan extinguido
-  o estén en el dominio público.
+* Imágenes de Yahoo, Bing Maps, el PNOA en España, Landsat y en general
+  cualquier imagen cuyos derechos de autor hayan sido expresamente cedidos,
+  se hayan extinguido o estén en el dominio público.
 
-* Mapas e información de los usuarios. Siempre que se trate de información en
-  el dominio público o cuyos derechos de autor hayan sido expresamente cedidos.
+* Mapas e información de los usuarios. Siempre que se trate de información
+  en el dominio público o cuyos derechos de autor hayan sido expresamente
+  cedidos.
 
-* Información prévia existente que requiera ser incluida en un mapa.
+* Información previa existente que requiera ser incluida en un mapa.
 
 Subida de datos a los servidores de OpenStreetMap
 ``````````````````````````````````````````````````````````
 
-Una vez recopilada la información, esta debe ser incorporada a la base de datos
-de OSM. Para ello existen diversos medios, aunque principalmente se emplean
-clientes web como hasta hace poco Potlach2 y actualmente iD:
+Una vez recopilada la información, esta debe ser incorporada a la base de
+datos de OSM. Para ello existen diversos medios, aunque principalmente se
+emplean clientes web como iD:
 
-.. (jorge) me quedo revisando por aquí
-
-.. image:: ../img/potlach2.png
+.. image:: ../img/id.png
    :width: 600 px
    :alt: editor potlach2
    :align: center
@@ -139,25 +149,27 @@ y el cliente de escritorio JOSM:
    :alt: editor josm
    :align: center
 
-En cualquier caso lo más frecuente es convertir los datos GPS tomados al formato
-estándar GPX y subirlos posteriormente al repositorio de trazas GPS de OSM de
-forma que cualquier usuario pueda acceder a dicha información.
+En cualquier caso lo más frecuente es convertir los datos GPS tomados al
+formato estándar GPX y subirlos posteriormente al repositorio de trazas GPS
+de OSM de forma que cualquier usuario pueda acceder a dicha información.
 
 Edición gráfica de los datos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Empleando alguna de las aplicaciones que lo permiten; como Potlach2, JOSM o
-Merkaartor por ejemplo; se descarga del servidor la porción de información que
-se quiere editar, para que esta se ajuste a los estándares acordados en el
-proyecto.
+Empleando alguna de las aplicaciones que lo permiten; como iD, Potlach2,
+JOSM o Merkaartor por ejemplo; se descarga del servidor la porción de
+información que se quiere editar, para que esta se ajuste a los estándares
+acordados en el proyecto.
 
 OpenStreetMap solo reconoce 2 tipos de datos gráficos:
 
 * **Nodos:** Son elementos puntuales
 * **Vías:** Conexiones lineales entre nodos.
 
-  * **Vías abiertas:** Vías que tienen entre 2 y 2000 nodos
-  * **Vías cerradas:** Vías que empiezan y acaban en el mismo nodo y definen una forma poligonal.
+  * **Vías abiertas:** Vías que tienen entre 2 y 2000 nodos 
+
+  * **Vías cerradas:** Vías que empiezan y acaban en el mismo nodo y definen
+    una forma poligonal.
 
     * **Áreas:** Zonas contenidas dentro de *Vías cerradas*
 
@@ -167,18 +179,20 @@ Edición alfanumérica de los datos
 
 OpenStreetMap reconoce 2 tipos de datos alfanuméricos:
 
-* **Relación:** Lista ordenada de nodos con un rol, como por ejemplo una restricción de giro.
+* **Relación:** Lista ordenada de nodos con un rol, como por ejemplo una
+  restricción de giro.
+
 * **Etiqueta:** Par clave/valor que permite definir atributos.
 
-El modelo de datos alfanuméricos de OSM se basa en el uso de etiquetas *tags*
-consensuadas por los usuarios a través de la wiki del proyecto.
+El modelo de datos alfanuméricos de OSM se basa en el uso de etiquetas
+*tags* consensuadas por los usuarios a través de la wiki del proyecto.
 
-Las etiquetas se definen por un par clave/valor. Actualmente `hay más de 700
-claves "oficialmente" reconocidas <http://wiki.openstreetmap.org/wiki/Tags>`_ y
-varios centenares propuestos.
+Las etiquetas se definen por un par clave/valor. Actualmente `hay casi 1000
+claves "oficialmente" reconocidas
+<http://wiki.openstreetmap.org/wiki/Tags>`_ y varios centenares propuestos.
 
-Esta información adicional alfanumérica permite clasificar los datos para que el
-proceso de renderizado los muestre correctamente representados.
+Esta información adicional alfanumérica permite clasificar los datos para
+que el proceso de renderizado los muestre correctamente representados.
 
 Renderizado de los mapas
 ``````````````````````````````````````````````````````````
@@ -189,16 +203,17 @@ permiten obtener una imagen de la información de la base de datos.
 
 Los principales motores de renderizado son:
 
-* Osmarender En realidad se trata más bien de un conjunto de reglas XLST que genera SVG.
+* Osmarender En realidad se trata más bien de un conjunto de reglas XLST que
+  genera SVG.
 
 .. image:: ../img/osmarender.png
    :width: 600 px
    :alt: mapa renderizado con osmarender
    :align: center
 
-.. note:: Desde Febrero de 2012 ya no se emplea Osmarender de manera oficial y recomendada por OSM.
-
-* Mapnik Toma los datos y los carga en un PostGIS para posteriormente renderizar tiles de 256x256.
+* Mapnik Toma los datos y los carga en un PostGIS para posteriormente
+  renderizar tiles de 256x256. Es el motor de render más utilizado
+  actualmente.
 
 .. image:: ../img/mapnik.png
    :width: 600 px
@@ -232,6 +247,11 @@ Los Nodos tienen, entre otras informaciones, las siguientes características:
 * **timestamp:** marca de tiempo de creación
 * **version:** incremental para cada objeto.
 
+.. image:: ../img/node.png
+   :width: 400 px
+   :align: center
+
+
 Además el Nodo puede contener información asociada al estilo OSM a traves de
 pares key/value
 
@@ -251,6 +271,10 @@ Las Vías son listas ordenadas de nodos que tienen información como:
 * **user:** usuario que creó el nodo
 * **timestamp:** marca de tiempo de creación
 * **version:** incremental para cada objeto.
+
+.. image:: ../img/way.png
+   :width: 400 px
+   :align: center
 
 Debe tener una lista de nodos agrupados cada uno con su etiqueta XML *nd* con la
 referencia id de los nodos que agrupa. Además la Vía puede contener información
@@ -285,6 +309,10 @@ entre cualquier tipo de objeto. También tienen información como:
 * **user:** usuario que creó el nodo
 * **timestamp:** marca de tiempo de creación
 
+.. image:: ../img/relation.png
+   :width: 600 px
+   :align: center
+
 Y además en una etiqueta XML member definir atributos *type*, *id* y *role* que
 permiten configurar la relación y unas etiquetas tag para describir el tipo de
 relación.
@@ -310,6 +338,37 @@ mismas.
    :width: 600 px
    :alt: web de map features
    :align: center
+
+La API de OSM
+-------------
+
+.. (nota de Perico) me quedo aquí de momento
+
+Único medio de modificar datos
+v0.6 desde 2009
+RESTful
+Consultas anónimas, 
+actualizaciones por OAuth
+Soporte de versionado
+Descargas limitadas
+a cuadrados de 15'
+No está enfocada a consulta, sino a edición
+
+Actualización de datos
+~~~~~~~~~~~~~~~~~~~~~~
+
+PUT /api/0.6/changeset/create
+PUT /api/0.6/changeset/#id/close
+PUT /api/0.6/[N|W|R]/create
+DELETE /api/0.6/[N|W|R]/#id
+
+Otras consultas
+~~~~~~~~~~~~~~~
+
+GET /api/0.6/[N|W|R]/#id/relations
+GET /api/0.6/node/#id/ways
+GET /api/0.6/[W|R]/#id/full
+
 
 JOSM
 -------------------------------------
