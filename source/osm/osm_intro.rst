@@ -8,7 +8,11 @@ Introducción a OpenStreetMap
 
 OpenStreetMap (en adelante OSM) es un proyecto colaborativo para crear mapas
 libres y editables. Se dice que OSM es a lo mapas, como la Wikipedia a las
-enciclopedias. Actualmente hay más de 1.500.000 usuarios registrados (estadísticas_).
+enciclopedias. Actualmente hay más de 1.500.000 usuarios registrados
+(estadísticas_).
+
+La mejor definición de OSM es que se trata de una **Comunidad de usuarios**
+que crea una **Base de datos colaborativa** con datos geográficos.
 
 .. _estadísticas: http://www.openstreetmap.org/stats/data_stats.html
 
@@ -17,9 +21,10 @@ enciclopedias. Actualmente hay más de 1.500.000 usuarios registrados (estadíst
    :alt: ejemplo de mapa osm
    :align: center
 
-La página principal de OSM es http://www.openstreetmap.org/ donde puede verse el
-mapa que generan los usuarios. La comunidad se organiza a través de una wiki
-cuya dirección es http://wiki.openstreetmap.org/
+La página principal de OSM es http://www.openstreetmap.org/ donde puede
+verse el mapa que se genera con los datos aportados por los usuarios. La
+comunidad se organiza a través de una wiki cuya dirección es
+http://wiki.openstreetmap.org/
 
 El proyecto es propiedad de la Fundación OpenStreetMap, cuyo objetivo es
 *«fomentar el crecimiento, desarrollo y distribución de datos geoespaciales
@@ -223,17 +228,91 @@ Los principales motores de renderizado son:
 Obteniendo los datos de OpenStreetMap
 ----------------------------------------
 
-Daremos un rápido vistazo al formato XML de OSM y a JOSM como herramienta para
-obtener y mejorar los datos.
+Daremos un rápido vistazo a la API de OSM y al formato XML de OSM.
+
+La API de OSM
+``````````````````````````````````````````````````````````
+
+La API_ de OSM es el único medio de modificar datos de la base de datos.
+Todas las aplicaciones que quieran obtener datos y subir datos a la base de
+datos de OSM lo tienen que hacer usando dicha API.
+
+La versión actual de la API es la v0.6 y su uso es obligatorio desde 2009.
+
+La API es una API RESTful_ de edición, esto quiere decir que utiliza
+directamente el HTTP para manipular la información y que recibe los
+mensajes y resultados en formato XML.
+
+Toas las consultas se realizan de forma anónima, pero las actualizaciones se
+realizan usando OAuth_ (son necesarios un usuario y una contraseña válidos)
+
+La API da soporte de versionado directamente, de forma que todas las
+actualizaciones quedan registradas con un número de versión de forma que
+permite detectar errores y conflictos de manera eficiente.
+
+Las descargas están limitadas a cuadrados de 15' de arco y además existe una
+limitación de ancho de banda, de forma que si se excede la primera
+limitación el sistema responde un mensaje de error y si se excede la segunda
+se bloquearán los accesos de manera temporal.
+
+La API no está enfocada a consulta, sino a edición, para consultar la base
+de datos es más eficiente emplear otros métodos que básicamente consisten en
+obtener uno de los archivos Planet_, convertirlo a una base de datos
+local y consultar sobre ésta.
+
+.. _API: https://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones
+.. _RESTful: https://es.wikipedia.org/wiki/Representational_State_Transfer
+.. _OAuth: http://es.wikipedia.org/wiki/OAuth
+.. _Planet: https://wiki.openstreetmap.org/wiki/Planet.osm
+
+Actualización de datos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ejemplos de actualización de datos::
+
+    PUT /api/0.6/changeset/create
+    PUT /api/0.6/changeset/#id/close
+    PUT /api/0.6/[N|W|R]/create
+    DELETE /api/0.6/[N|W|R]/#id
+
+Ejemplo de respuesta::
+
+    <osm>
+      <changeset>
+        <tag k="created_by" v="JOSM 1.61"/>
+        <tag k="comment" v="Just adding some streetnames"/>
+        ...
+      </changeset>
+      ...
+    </osm>
+
+Otras consultas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ejemplos de consultas::
+
+    GET /api/0.6/[N|W|R]/#id/relations
+    GET /api/0.6/node/#id/ways
+    GET /api/0.6/[W|R]/#id/full
+
+Ejemplo de respuesta::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <osm version="0.6" generator="OpenStreetMap server">
+      <gpx_file id="836619" name="track.gpx" lat="52.0194" lon="8.51807" 
+                user="Hartmut Holzgraefe" visibility="public" pending="false"  
+                timestamp="2010-10-09T09:24:19Z">
+        <description>PHP upload test</description>
+        <tag>test</tag>
+        <tag>php</tag>
+      </gpx_file>
+    </osm>
 
 OSM XML Data: el formato OpenStreetMap
 ``````````````````````````````````````````````````````````
 
-Toda la API de OSM está basada en arquitectura RESTFul y reconoce los cuatro
-elementos.
-
 El formato de intercambio estándar de la API es un XML compuesto por
-combinaciones de esos elementos.
+combinaciones de los cuatro elementos principales.
 
 Nodos (Node)
 ^^^^^^^^^^^^^^^^^^
@@ -338,36 +417,6 @@ mismas.
    :width: 600 px
    :alt: web de map features
    :align: center
-
-La API de OSM
--------------
-
-.. (nota de Perico) me quedo aquí de momento
-
-Único medio de modificar datos
-v0.6 desde 2009
-RESTful
-Consultas anónimas, 
-actualizaciones por OAuth
-Soporte de versionado
-Descargas limitadas
-a cuadrados de 15'
-No está enfocada a consulta, sino a edición
-
-Actualización de datos
-~~~~~~~~~~~~~~~~~~~~~~
-
-PUT /api/0.6/changeset/create
-PUT /api/0.6/changeset/#id/close
-PUT /api/0.6/[N|W|R]/create
-DELETE /api/0.6/[N|W|R]/#id
-
-Otras consultas
-~~~~~~~~~~~~~~~
-
-GET /api/0.6/[N|W|R]/#id/relations
-GET /api/0.6/node/#id/ways
-GET /api/0.6/[W|R]/#id/full
 
 
 JOSM
