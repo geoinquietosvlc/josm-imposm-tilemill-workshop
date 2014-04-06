@@ -1,209 +1,281 @@
 .. _tallerosmyjosm:
 
-
 Taller de JOSM
 ====================
 
-.. note::
-
-    Autores:
-
-    * |pferrer|
-    * |isanchez|
-    * |stramoyeres|
-
-    Licencia:
-
-    Excepto donde quede reflejado de otra manera, la presente documentación
-    se halla bajo licencia `Creative Commons Reconocimiento Compartir Igual
-    <https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES>`_
-
-A continuación se detalla una práctica guiada en la que se verán los detalles básicos del manejo de la aplicación JOSM.
-
-Se espera del lector que vaya ejecutando las instrucciones que se detallan a continuación y en caso de duda pregunte al facilitador.
-
-Arrancando JOSM
-----------------------------
-
-La aplicación JOSM se encuentra en la carpeta
-
-    /home/jornadas/taller_osm_tilemill/
-
-**Abrimos una terminal** y cambiamos al directorio tecleando
-
-.. code-block:: bash
-
-    $ cd /home/jornadas/taller_osm_tilemill/
-
-Para lanzarla deberemos teclear el comando
-
-    $ java -jar josm-latest.jar
-
-Sin embargo, debido a la rápida frecuencia de actualización de JOSM, es recomendable utilizar un sencillo script en BASH que permite ejecutar, siempre que se tenga conexión a Internet, una versión actualizada.
-
-Para crear el script tecleamos:
-
-.. code-block:: bash
-
-    $ gedit josm.sh
-
-Y tecleamos:
-
-    #!/bin/bash
-
-    mv josm-latest.jar josm-latest_0.jar
-
-    wget -N http://josm.openstreetmap.de/josm-latest.jar
-
-    java -jar josm-latest.jar
-
-Guardamos el archivo y salimos.
-
-Hay que dar permisos de ejecución al script para poder lanzarlo, para lo que teclearemos:
-
-.. code-block:: bash
-
-    $ chmod 755 josm.sh
-
-y para lanzarlo teclearemos
-
-.. code-block:: bash
-
-    $ ./josm.sh
-
-El script comprobará si la versión de JOSM es la más reciente y de no ser así la descargará. Después lanzará automáticamente el programa.
+JOSM es el acrónimo de Java OpenStreetMap Editor, se trata de una aplicación
+multiplataforma desarrollada por Immanuel Scholz y Frederik Ramm. Es el editor
+preferido por la comunidad OSM, ya que tiene muchas funcionalidades
+implementadas y permite editar gran cantidad de datos, aunque su curva de
+aprendizaje puede resultar un poco pronunciada al inicio.
 
 .. image:: ../img/iniciojosm.png
    :width: 600 px
    :alt: splash de josm
    :align: center
 
-Descargando datos
-----------------------------
 
-Lo primero que hay que hacer es seleccionar una zona para descargar los datos, para lo que pulsaremos el botón de descarga |btndownl| que abrirá una nueva ventana para seleccionar el área de descarga.
+Una sesión de edición en JOSM suele incluir los siguientes pasos:
+
+#. Carga de datos GPS o el uso de imágenes satélite u ortofotografías
+#. Digitalización de información
+#. Etiquetado de la información
+#. Validación y subida de datos al servidor de OSM
+
+.. important:: Durante la explicación del funcionamiento de JOSM el alumno puede
+   trabajar con cualquier zona y experimentar en zonas sin datos para habituarse
+   a la mecánica de trabajo de JOSM. Una vez revisado el funcionamiento de
+   JOSM se propondrá un ejercicio práctico.
+
+
+Instalación y arranque
+--------------------------
+
+La instalación de JOSM es muy sencilla, si tenemos una versión reciente de
+Java probablemente sea tan fácil como ejecutar el enlace ``josm.jnlp`` de
+la `web de JOSM <http://josm.openstreetmap.de/>`_. Este método utiliza una
+característica llamada *Java Web Start*, y tiene la ventaja de que comprueba
+al inicio si existe una versión más reciente de JOSM y se actualiza
+automáticamente.
+
+Si este método no funciona puedes descargarte de la misma web la versión actual
+del enlace ``josm-tested.jar`` y hacer doble clic en el archivo descargado.
+
+.. note:: Puedes consultar más documentación sobre la instalación y ejecución de JOSM
+    en la sección `Running <http://josm.openstreetmap.de/wiki/InstallNotes#Running>`_
+    de las notas de instalación de JOSM.
+
+Crear un *script* de actualización y arranque en Linux
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Si se utiliza un sistema Linux u OSX y no se dispone de soporte para *Java Web
+Start* se puede crear un *script* como el siguiente para automatizar la
+descarga de la versión más reciente de JOSM antes de ejecutarlo. Esto resulta
+interesante porque JOSM se actualiza con mucha frecuencia.
+
+El *script* sería el siguiente:
+
+.. code-block:: bash
+
+    #!/bin/bash
+
+    cd /tmp
+    wget -N http://josm.openstreetmap.de/josm-tested.jar
+    java -jar josm-tested.jar
+
+A este *script* bastaría con darle permisos de ejecución y ubicarlo en algún
+lugar accesible. Al ejecutarlo comprobará si la versión de JOSM es la más reciente
+y de no ser así la descargará. Después lanzará automáticamente el programa.
+
+.. image:: ../img/iniciojosm.png
+   :width: 400 px
+   :alt: splash de josm
+   :align: center
+
+
+Cargar datos de referencia
+-----------------------------
+
+
+Carga de datos GNSS
++++++++++++++++++++++++++++++
+
+JOSM permite cargar información obtenida a través de un receptor GNSS usando
+para ello el formato de intercambio estandar GPX.
+
+.. image:: ../img/josmgpx.png
+   :width: 600 px
+   :alt: Carga de gpx
+   :align: center
+
+.. important:: Se recomienda encarecidamente no subir esta información directamente sin depurar
+    o sin tratar, es preferible siempre usarla como base para digitalizar sobre ella
+    y añadir los atributos correspondientes.
+
+
+Cargar servicios de imágenes
++++++++++++++++++++++++++++++
+
+Además de utilizar los datos recogidos en campo con GPS, notas, etc. se pueden
+también usar imágenes en distintos formatos para usarlas como cartografía de
+referencia y poder digitalizar sobre ellas.
+
+En especial tienen significativa importancia dentro de JOSM la posibilidad de
+cargar imágenes base provenientes de diversos proveedores a través de Internet
+cuya información ya viene integrada en el propio JOSM o incluso se pueden
+agregar nuevos como por ejemplo orígenes de datos WMS o TMS.  En España está
+autorizado el uso del PNOA y del Catastro para digitalizar sobre las ortofotos
+siempre que se identifiquen el origen y la resolución temporal con las
+etiquetas ``source`` y ``sourcedate``.
+
+.. image:: ../img/josmpnoa.png
+   :width: 600 px
+   :alt: Carga de gpx
+   :align: center
+
+Se puede acceder a la configuración de los proveedores a través del menú
+:menuselection:`Editar --> Preferencias --> WMS/TMS`. Primero se busca el
+proveedor a partir del código de país y una vez seleccionado se puede hacer
+clic en el botón :guilabel:`Activar` y confirmar el diálogo.
+
+.. image:: ../img/josmproveeimg.png
+   :width: 600 px
+   :alt: Carga de gpx
+   :align: center
+
+
+Tras los cambios aparentemente nada habrá cambiado, pero ahora hay una nueva
+entrada en el menú :menuselection:`Imágenes` y al pulsarla se cargará una
+capa, debajo de la capa de datos actual, con la ortofotografía de la zona. Es
+una capa que se puede activar o desactivar |btnverocul| , o cambiar la
+transparencia |btntrans|.
+
+.. image:: ../img/josmopa.png
+   :width: 600 px
+   :alt: Carga de gpx
+   :align: center
+
+
+Descarga de datos
+------------------------------
+
+JOSM trabaja por defecto con archivos de formato XML de OSM (archivos
+:file:`.osm`). Para obtener un archivo de la zona con la que se quiere
+trabajar hay que pulsar el botón de :guilabel:`Descarga` de datos del servidor
+o desde el menú :menuselection:`Archivo --> Descargar desde OSM`. Al pulsar el
+botón se muestra una interfaz donde se puede seleccionar la porción de datos
+que quiere obtenerse.
+
+.. note:: En este mapa se usan la rueda y los dos botones del ratón: el izquierdo
+   para seleccionar la zona y la rueda y el derecho para desplazarse por el mapa.
 
 .. image:: ../img/josmdescargar.png
    :width: 600 px
    :alt: splash de josm
    :align: center
 
-Se puede utilizar el mapa que se nos muestra para seleccionar una zona, o bien a través de las pestañas dar unas coordenadas que definan un área de trabajo o buscar por nombre usando el servicio `Nominatim`.
+El servidor limita las peticiones que cubran gran extensión para no colapsar el
+servicio, pero si se requiere gran cantidad de datos se pueden realizar diversas
+peticiones que acabarán almacenándose en un solo fichero.
 
-El servidor limita el tamaño de las peticiones, por lo que para zonas de trabajo grandes o con gran cantidad de datos, habrá que realizar la descarga en varias tandas.
+Una vez seleccionada la zona y aceptada la petición por el servidor, JOSM
+creará una capa que aparecerá en el panel superior del lado derecho.
 
-Buscaremos el área de la `Universitat de Girona` y sus alrededores, definiremos un rectángulo que las contenga y pulsaremos el botón ``Download``.
+.. image:: ../img/josmguardar.png
+   :width: 600 px
+   :alt: splash de josm
+   :align: center
 
-======= ======= ======= ======
-======= ======= ======= ======
-min lat 41.9834 min lon 2.8256
-max lat 41.9867 max lon 2.8304
-======= ======= ======= ======
-
-.. 2.8256, 41.9834, 2.8304, 41.9867
-.. 2.8279,41.9855,14
 
 Filtrando la información
 ----------------------------
 
-En determinadas zonas la cantidad de información que puede llegar a mostrarse es abrumadora, por lo que a veces es necesario filtrarla para poder trabajar cómodamente.
+Los filtros son una característica de JOSM que permite ocultar temporalmente
+elementos cargados en pantalla para tener una mejor visibilidad del área de
+trabajo descartando aquellos elementos que no nos interesen.
 
-.. image:: ../img/josmgironaantesfiltro.png
+Antes de aplicar un filtro:
+
+.. image:: ../img/josmfiltroantes.png
    :width: 600 px
-   :alt: Girona antes del filtro
+   :alt: Antes de aplicar el filtro
    :align: center
 
-Para filtrar la información utilizaremos la ventana de filtros a la que se accede pulsando el botón de filtro |btnfiltro|.
+Tras aplicar el filtro:
 
-.. image:: ../img/josmfiltro.png
+.. image:: ../img/josmfiltrodespues.png
+   :width: 600 px
+   :alt: Después de aplicar el filtro
+   :align: center
+
+Para definir nuevos filtros se utiliza el panel :guilabel:`Filtrar` que suele
+encontrarse en la parte inferior del panel del lado derecho.
+
+.. _josmfiltro:
+
+.. figure:: ../img/josmfiltro.png
    :width: 350 px
-   :alt: Ventana de filtro
+   :alt: Primitivas
    :align: center
 
-Pulsando en ``Add`` añadiremos los siguientes filtros:
+   Filtros en JOSM
 
-+--------------------+
-| Filtro             |
-+====================+
-| type:node untagged |
-+--------------------+
-| natural=tree       |
-+--------------------+
-| amenity:           |
-+--------------------+
+La sintaxis de los filtros es bastante sencilla y al *Añadir* uno nuevo se nos
+muestra una pequeña guía con ejemplos. Los filtros que se muestran en la
+figura :ref:`josmfiltro` realizan lo siguiente:
 
-El primer filtro ocultará solamente los `Nodos` que no tengan ninguna etiqueta, son los pequeños cuadraditos amarillos.
-
-El segundo filtro ocultará los elementos etiquetados con el par clave - valor `natural - tree`, en la imagen las efes rojas.
-
-Por último, el tercer filtro ocultará cualquier elemento que tenga la clave `amenity` sea cual sea el valor de esta.
-
-Los filtros se activan o desactivan usando las dos cajas de comprobación que hay al lado de cada uno.
-
-La primera caja, marcada con una `E` activa o desactiva el filtro y la segunda, marcada con una `H` oculta o muestra los objetos filtrados.
-
-.. image:: ../img/josmgironadespuesfiltro.png
-   :width: 600 px
-   :alt: Girona antes del filtro
-   :align: center
-
-Añadiendo imágenes
-----------------------------
-
-Aunque existen muchos servicios de imágenes que podemos añadir como referencia para la digitalización de contenidos, en España existe la autorización tácita para emplear las imágenes del Plan Nacional de Ortofotografía Aérea (PNOA).
-
-Añadir las imágenes de fondo es un proceso en dos pasos, primero hay que definir el origen de datos y después seleccionarlo para que cargue en la zona de visualización.
-
-.. image:: ../img/anyadirPNOA.png
-   :width: 600 px
-   :alt: Añadir la imagen de referencia del PNOA
-   :align: center
-
-Pulsando la tecla ``F12`` aparece el menú de preferencias, hay que pulsar en la pestaña ``WMS TMS`` para que aparezcan las opciones. Buscaremos en la lista la opción `ES PNOA Spain` y pulsamos el botón ``Activate`` que añade la capa a las opciones de menú, tras lo que podemos pulsar ``OK``.
-
-Aparentemente nada habrá cambiado, pero ahora hay una nueva entrada en el menú ``Imagery`` y al pulsarla se cargará una capa, debajo de la capa de datos actual, con la ortofotografía de la zona.
-
-Es una capa que se puede activar o desactivar |btnverocul| , o cambiar la transparencia |btntrans|.
+* Filtrar todos los nodos que no tengan etiqueta
+* Filtrar todos los nodos que tengan la etiqueta *name* sea cual sea el valor
+  de esta
+* Filtrar todos los nodos que tengan la etiqueta *amenity*
+  (otra forma de filtrar sin que importe el valor de la etiqueta)
+* Filtrar todas las vías que **no** estén cerradas (usando el
+  *check* para invertir la búsqueda)
 
 
 Digitalizando
 ----------------------------
 
-Para probar la digitalización crearemos una nueva capa en la que poder trabajar sin modificar los datos que se han descargado, para crear la capa usaremos el menú ``File > New Layer`` o el atajo de teclado ``Ctrl+N``.
+Para probar la digitalización crearemos una nueva capa en la que poder
+trabajar sin modificar los datos que se han descargado, para crear la capa
+usaremos el menú :menuselection:`File --> New Layer` o el atajo de teclado
+:kbd:`Ctrl + N`.
 
-Al crear la nueva capa, la capa de datos anterior deja de ser la capa de datos activa y aparecerá como líneas de color negro. Es conveniente desactivar la capa para poder ver la ortofotografía, para lo que seleccionaremos la capa y pulsaremos en botón de cambiar la visibilidad |btnverocul|.
+.. note:: Al crear la nueva capa, la capa de datos anterior deja de ser la capa de datos
+  activa y aparecerá como líneas de color negro. Es conveniente desactivar la
+  capa para poder ver la ortofotografía, para ello seleccionaremos la capa y
+  pulsaremos en botón de cambiar la visibilidad |btnverocul|.
 
 .. image:: ../img/josmocultalayer.png
    :width: 600 px
    :alt: Ocultar la capa con la información ya registrada
    :align: center
 
-También es recomendable desactivar los filtros pulsando en la casilla `E`.
+.. note:: También es recomendable desactivar los filtros pulsando en la casilla `E`.
 
-Para digitalizar un punto, haremos zoom sobre una zona con árboles, el zoom se controla con la barra que hay arriba a la izquierda, pero también con la rueda del ratón. Pulsaremos con el botón derecho del ratón sobre el nombre de la capa del PNOA y seleccionaremos ``Change resolution``. A continuación pulsamos sobre el botón agregar |btnagr| o pulsamos la tecla ``A`` para entrar en el modo de edición.
+Para digitalizar un punto, haremos *zoom* sobre una zona con árboles, el
+*zoom* se controla con la barra que hay arriba a la izquierda, pero también
+con la rueda del ratón. A continuación pulsamos sobre el botón agregar
+|btnagr| o pulsamos la tecla :kbd:`A` para entrar en el modo de edición.
+
 
 Nodos
-````````````
+++++++++++
 
-Digitalizamos los árboles poniendo un punto, haciendo un solo click, sobre cada copa de la ortofotografía. JOSM está pensado para añadir elementos lineales por lo que por defecto espera tener que añadir líneas, para añadir tan solo puntos deberemos pulsar la tecla ``ESC`` después de hacer click sobre cada árbol.
+Digitalizamos los árboles poniendo un punto, haciendo un solo clic, sobre cada
+copa de la ortofotografía. JOSM está pensado para añadir elementos lineales
+por lo que por defecto espera tener que añadir líneas, para añadir tan solo
+puntos deberemos pulsar la tecla :kbd:`Esc` después de hacer clic sobre cada
+árbol.
 
 .. image:: ../img/josmanyadearbol.png
    :width: 600 px
    :alt: Digitalizar copas de los árboles poniendo un nodo en cada uno.
    :align: center
 
-Hay una manera de acelerar la digitalización de puntos aprovechando que JOSM tiene *muchos* atajos de teclado: si mantienes pulsada la tecla ``Shift`` mientras añades nodos no tendrás la necesidad de ir pulsando la tecla ``ESC`` después de poner cada nodo.
+.. note:: JOSM tiene **muchos atajos**. Si mantienes pulsada la tecla :kbd:`Shift`
+    no es necesario pulsar la tecla :kbd:`Esc`, JOSM insertará nodos individuales.
 
-En realidad estamos simplemente poniendo los *Nodos*, para que OSM los reconozca como árboles deberíamos añadir también las *Etiquetas*, como veremos más adelante.
+De momento en realidad estamos simplemente poniendo los *Nodos*. Para que OSM
+los reconozca como árboles deberíamos añadir también las *Etiquetas*, como
+veremos más adelante.
+
 
 Vías
-````````````
+++++++++++
 
-Para digitalizar una vía, buscaremos un nivel de zoom que nos permita ver la vía en su totalidad por lo menos una parte muy significativa de ella.
+Para digitalizar una vía, buscaremos un nivel de *zoom* que nos permita ver la
+vía en su totalidad por lo menos una parte muy significativa de ella. Puede
+que tengamos que desplazarnos por la imagen, pero como estamos en modo edición
+si hacemos clic con el botón izquierdo añadiríamos un nuevo nodo. Para
+**desplazarnos** sin salir del modo edición podemos conseguirlo haciendo clic
+en el botón **derecho** del ratón y movernos por el mapa sin soltarlo.
 
-Puede que tengamos que desplazarnos por la imagen, pero como estamos en modo edición si hacemos click con el botón izquierdo añadiríamos un nuevo nodo ... para **Desplazarnos** hacemos click *Derecho* con el ratón y sin soltar movemos la imagen.
-
-Para digitalizar la vía vamos marcando nodos de manera consecutiva intentando seguir el eje de esta y respetar la forma siguiéndola sobre la ortofotografía. Es interesante que además pongamos un nodo en cada intersección que tenga la vía, lo que facilitará interconectar las vías entre si.
+Para digitalizar la vía vamos marcando nodos de manera consecutiva intentando
+seguir el eje de esta y respetar la forma siguiéndola sobre la ortofotografía.
+Es interesante que además pongamos un nodo en cada intersección que tenga la
+vía, lo que facilitará digitalizar las vías que conectan con ésta más
+adelante.
 
 .. image:: ../img/josmanyadevia.png
    :width: 600 px
@@ -212,20 +284,26 @@ Para digitalizar la vía vamos marcando nodos de manera consecutiva intentando s
 
 Un par de atajos de teclado útiles a la hora de digitalizar vías:
 
-Pulsar la tecla ``Alt`` mientras digitalizas vías, te permite hacer que el próximo nodo, aunque esté conectado al nodo anterior, forme una vía nueva.
+- Pulsar la tecla :kbd:`Alt` mientras digitalizas vías, te permite hacer
+  que el próximo nodo, aunque esté conectado al nodo anterior, forme una vía nueva.
 
-Cuando tenemos una vía seleccionada (también funciona con vías cerradas) tener la tecla ``Ctrl`` pulsada te permite rotar el elemento seleccionado.
+- Cuando tenemos una vía seleccionada (también funciona con vías cerradas)
+  tener la tecla :kbd:`Shipt + Ctrl` pulsada te permite rotar el elemento seleccionado.
 
-Si pulsamos ``Ctrl + Alt`` podremos cambiar la escala del elemento seleccionada.
+- Si pulsamos :kbd:`Ctrl + Alt` podremos cambiar la escala del elemento seleccionada.
 
-Por último, si mientras digitalizamos pulsamos la tecla ``Tab`` una vez entraremos en el modo *ortogonal* en el que las líneas irán adaptándose a ángulos pre-establecidos y que pueden ser configurados. Para abandonar el modo *ortogonal* se vuelve a pulsar ``Tab``.
+- Por último, si mientras digitalizamos hacemos clic con el ratón en el ángulo de la barra
+  inferior (el cuarto elemento) activaremos el modo de ayuda de dibujado de geometrías
+  que nos asiste con ángulos establecidos e intersecciones.
 
 Áreas
-``````````````
+++++++++++
 
 Las áreas no son más que una vía que empieza y acaba en el mismo punto y tiene una etiqueta que la identifica.
 
-En este ejemplo, digitalizaremos el área de aparcamiento que hay en la zona en la que estamos trabajando, teniendo en cuenta que deberemos cerrar la vía pulsando al final sobre el primer nodo que digitalicemos.
+En este ejemplo, digitalizaremos el área de aparcamiento que hay en la zona en
+la que estamos trabajando, teniendo en cuenta que deberemos cerrar la vía
+pulsando al final sobre el primer nodo que digitalicemos.
 
 .. image:: ../img/josmanyadeparking.png
    :width: 600 px
@@ -239,15 +317,57 @@ Los edificios son seguramente el caso más típico de áreas a digitalizar.
    :alt: Digitalizar el edificio acabando en el mismo nodo en el que se comenzó.
    :align: center
 
+El *plugin* ``building tools``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Al activar este plugin se nos muestra un nuevo modo en la barra de
+herramientas. Este modo permite dibujar edificios de forma muy eficiente al
+evitar dibujar todos los nodos del mismo. Está pensado para dibujar edificios
+que tienen una forma rectangular.
+
+Si una vez dibujado el primer edificio lo seleccionamos, los siguientes
+edificios se crean orientados en la misma dirección, teniendo únicamente que
+marcar las esquinas opuestas del mismo.
+
+La herramienta ``Crear áreas``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Existen diversas herramientas que permiten manipular las geometrías, una de
+las más interesantes (especialmente combinada con la anterior) es la de
+``Crear áreas``. Esta herramienta permite mover una sección de un área hacia
+fuera o dentro en paralelo a la dirección existente. En la figura
+:ref:`retranqueo` se muestra el proceso.
+
+1. Dibujar un edificio con el modo ``Edificio`` (en este caso sobre la terraza)
+2. Dibujar los puntos de corte de la zona de la fachada a desplazar
+3. Mediante la herrameinta ``Crear áreas`` llevar meter la fachada hacia dentro
+4. Mover el edificio a su ubicación en la parte inferior
+
+
+.. _retranqueo:
+.. figure:: ../img/retranqueo.png
+   :width: 700px
+   :alt: Dibujar un edificio ortogonal
+   :align: center
+
+   Dibujar un edificio ortogonal
+
+
 
 Añadiendo etiquetas
 ----------------------------
 
-Para el siguiente paso es preferible desactivar la capa del PNOA seleccionándola y pulsando el botón correspondiente |btnverocul|.
+.. note:: Para el siguiente paso es preferible desactivar la capa del PNOA
+   seleccionándola y pulsando el botón correspondiente |btnverocul|.
 
-Seleccionaremos el primer árbol que hemos digitalizado para lo que hay que entrar en modo selección pulsando el botón selección |btnsel| o la tecla ``S`` y hacemos click sobre uno de los nodos que representan a los árboles, puede que tengamos que hacer un poco de zoom.
+Seleccionaremos el primer árbol que hemos digitalizado para lo que hay que
+entrar en modo selección pulsando el botón selección |btnsel| o la tecla
+:kbd:`S` y hacemos clic sobre uno de los nodos que representan a los árboles,
+puede que tengamos que hacer un poco de *zoom*.
 
-Una vez seleccionado, pulsamos el botón ``Add`` de la ventana `Properties/Memberships` para poder añadir las Etiquetas correspondientes.
+Una vez seleccionado, pulsamos el botón :kbd:`Add` de la ventana
+:guilabel:`Properties/Memberships` para poder añadir las Etiquetas
+correspondientes.
 
 .. image:: ../img/josmanyadeetqarbol.png
    :width: 600 px
@@ -255,16 +375,24 @@ Una vez seleccionado, pulsamos el botón ``Add`` de la ventana `Properties/Membe
    :align: center
 
 ¿Qué etiquetas se emplean para indicar que es un árbol?
-```````````````````````````````````````````````````````````
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Lo mejor SIEMPRE es consultar la wiki de OSM donde tienen un `listado de elementos comunes en los mapas Map Features en español <http://wiki.openstreetmap.org/wiki/ES:Map_Features>`_ y cómo emplearlos. En este caso buscaremos la entrada de árbol en la página y vemos que se corresponde con el par clave/valor *natural*/*tree*.
+Lo mejor **SIEMPRE** es consultar la wiki de OSM donde tienen un
+`listado de elementos comunes en los mapas Map Features en español <http://wiki.openstreetmap.org/wiki/ES:Map_Features>`_
+y cómo emplearlos. En este caso buscaremos la entrada de árbol en
+la página y vemos que se corresponde con el par clave/valor ``natural/tree``.
 
 .. image:: ../img/wikiosmfeaturestree.png
    :width: 600 px
    :alt: Entrada para árbol singular en la página de Map Features de OSM
    :align: center
 
-Pero además si pulsamos sobre la palabra `tree <http://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree>`_ nos lleva a la entrada específica de la wiki en la que explican las características a tener en cuenta y generalmente se detallan las claves a las que también suelen estar asociadas las entidades a cartografiar e incluso ejemplos.
+Pero además si pulsamos sobre la palabra
+`tree <http://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree>`_
+nos lleva a la entrada específica de la wiki en la que explican las
+características a tener en cuenta y generalmente se detallan las
+claves a las que también suelen estar asociadas las entidades a
+cartografiar e incluso ejemplos.
 
 En definitiva, los árboles suelen etiquetarse usando las siguientes claves:
 
@@ -274,73 +402,197 @@ En definitiva, los árboles suelen etiquetarse usando las siguientes claves:
 * *height*
 * *name:botanical*
 
-La aplicación JOSM tiene, para determinados elementos, una serie de entradas de menú que permiten rellenar de manera cómoda las etiquetas. En el caso de los árboles, tras seleccionar uno usaremos las opciones de menú ``Presets > Geography > Nature > Tree``.
+Pueden asignarse etiquetas a grupos de elementos, para lo que primero hay que
+seleccionarlos manteniendo pulsada la tecla *Mayúsculas* mientras se va
+haciendo clic; para posteriormente aplicar la etiqueta, según el procedimiento
+ya visto.
 
-Pueden asignarse etiquetas a grupos de elementos, para lo que primero hay que seleccionarlos manteniendo pulsada la tecla *Mayúsculas* mientras se va haciendo click; para posteriormente aplicar la etiqueta, según el procedimiento ya visto.
+También pueden *copiarse* etiquetas entre elementos, seleccionamos el elemento
+que tiene las etiquetas y lo copiamos con :kbd:`Ctrl + C` y después seleccionamos
+el elemento destino y pulsamos :kbd:`Ctrl + Shift + V` y le asignará
+automáticamente las etiquetas del primer elemento.
 
-También pueden *copiarse* etiquetas entre elementos, seleccionamos el elemento que tiene las etiquetas y lo copiamos con ``Ctrl + C`` y después seleccionamos el elemento destino y pulsamos ``Ctrl + Shift + V`` y le asignará automáticamente las etiquetas del primer elemento.
+Ahora hay que proceder igual con los demás elementos de nuestro dibujo, tales como
+`carreteras <http://wiki.openstreetmap.org/wiki/Tag:highway%3Dresidential>`_,
+`parkings <http://wiki.openstreetmap.org/wiki/Tag:amenity%3Dparking>`_,
+`edificios <http://wiki.openstreetmap.org/wiki/Key:building>`_, etc...
 
-Resto de etiquetas
-``````````````````````````
+.. note:: El *plugin* ``building tools`` ya inserta la etiqueta de edificio por
+   nosotros.
 
-Ahora hay que proceder igual con los demás elementos de nuestro dibujo.
-
-* `Carretera <http://wiki.openstreetmap.org/wiki/Tag:highway%3Dresidential>`_
-* `Parking <http://wiki.openstreetmap.org/wiki/Tag:amenity%3Dparking>`_
-* `Edificio <http://wiki.openstreetmap.org/wiki/Key:building>`_
-
-Consultaremos los elementos en su página correspondiente y  añadiremos las etiquetas que creamos sean necesarias para describir la realidad.
-
-El resultado tras aplicar las etiquetas será parecido a este:
+Consultaremos los elementos en su página correspondiente y  añadiremos las
+etiquetas que creamos sean necesarias para describir la realidad. El resultado
+tras aplicar las etiquetas podría ser parecido a este:
 
 .. image:: ../img/josmestadofinal.png
    :width: 600 px
    :alt: Tras aplicar las etiquetas en el ejercicio
    :align: center
 
+Añadir etiquetas predefinidas
+++++++++++++++++++++++++++++++++++
+
+Añadir las etiquetas una a una es muy costoso. En lugar de hacerlo de esta
+forma, JOSM ofrece todo un conjunto de diálogos predefinidos para los tipos de
+datos más comunes. Para ello una vez añadida o seleccionada la geometría (vía
+o nodo) podemos usar la entrada de menú :menuselection:`Predefinidos` y
+navegar por los diferentes tipos de datos. Por ejemplo para dar de alta una
+rotonda podemos navegar a
+:menuselection:`Predefinidos --> Viales --> Calles/Carreteras --> Rotonda`.
+
+.. image:: ../img/josm-presets.png
+   :width: 450 px
+   :alt: Menú de presets
+   :align: center
+
+Si ya sabemos cómo se identificia un elemento en el menú, resulta muy cómodo
+usar el buscador que se lanza con la tecla :kbd:`F3`. Por lo tanto, basta con
+empezar a escribir ``Rotonda`` para que el buscador encuentre nuestra etiqueta.
+
+
+.. image:: ../img/josm-presets-f3.png
+   :width: 250 px
+   :alt: F3 para buscar elementos
+   :align: center
+
+De cualquiera de estas dos formas, al final llegaremos a un diálogo que ofrece
+una interfaz para añadir las etiquetas más comunes referidas al tipo
+seleccionado, usando listas para elegir las opciones más habituales, botones
+de tipo *check* para indicar características que solo toman un valor e incluso
+disponemos de un enlace a la documentación ampliada en el wiki del proyecto y
+un botón que nos permite *«anclar»* el elemento a la barra de herramientas en
+caso de que vayamos a usar mucho este tipo de elemento.
+
+.. image:: ../img/josm-presets-dialog.png
+   :width: 250 px
+   :alt: Dialogo para rotonda
+   :align: center
+
+
+
 Especificar las fuentes
-``````````````````````````
+++++++++++++++++++++++++++
 
-Es muy importante identificar los orígenes de datos de la información, ya que es una de las formas de medir la calidad de los datos que almacena OSM.
+Es muy importante identificar los orígenes de datos de la información, ya que
+es una de las formas de medir la calidad de los datos que almacena OSM.
 
-En España, si se digitalizan datos sobre la ortofotografía del PNOA hay que añadir a **TODOS** los elementos digitalizados el par clave valor *source*/*PNOA* y a ser posible la clave *source:date* cuyo valor corresponde con la fecha en la que se realizó el vuelo
+En España, si se digitalizan datos sobre la ortofotografía del PNOA hay que
+añadir a **TODOS** los elementos digitalizados el par clave valor
+*source*/*PNOA* y a ser posible la clave *source:date* cuyo valor corresponde
+con la fecha en la que se realizó el vuelo
 
-Otros posibles orígenes de datos válidos para usar en España se pueden encontrar listados en la página web `Spain Datasources <http://wiki.openstreetmap.org/wiki/Spain_Potential_Datasources>`_ de la wiki de OpenStreetMap.
+Otros posibles orígenes de datos válidos para usar en España se pueden encontrar
+listados en la página web
+`Spain Datasources <http://wiki.openstreetmap.org/wiki/Spain_Potential_Datasources>`_
+de la wiki de OpenStreetMap.
+
 
 Consejos generales sobre digitalización y etiquetado
 -------------------------------------------------------
 
 Acude SIEMPRE a la documentación y los expertos
-    En caso de duda es mejor consultar la wiki primero y si no se encuentra la respuesta acudir a las `lista de correo en español de OpenStreetMap <http://lists.openstreetmap.org/listinfo/talk-es>`_
+    En caso de duda es mejor consultar la wiki primero y si no se
+    encuentra la respuesta acudir a las
+    `lista de correo en español de OpenStreetMap <http://lists.openstreetmap.org/listinfo/talk-es>`_
 
 *Don't map for the render*
-    O lo que es lo mismo, en general y excepto en muy contadas excepciones, no hay que dibujar y etiquetar las cosas "para que queden bonito en el mapa", se debe dibujar y etiquetar *la realidad* o la mejor representación de ella que se pueda conseguir.
+    O lo que es lo mismo, en general y excepto en muy contadas
+    excepciones, no hay que dibujar y etiquetar las cosas «para
+    que queden bonito en el mapa», se debe dibujar y etiquetar
+    *la realidad* o la mejor representación de ella que se pueda
+    conseguir.
 
 No reinventar la rueda
-    Hay mucho planeta cartografiado en OpenStreetMap, posiblemente alguién ya haya solucionado el probleam de representación de la realidad que se te presenta, muchas veces se aprende más intentando ver cómo han resuelto otros problemas similares, busca sitios donde ocurran los mísmos fenómenos que quieras representar y mira como lo han hecho otros.
+    Hay mucho planeta cartografiado en OpenStreetMap, posiblemente
+    alguien ya haya solucionado el problema de representación de
+    la realidad que se te presenta, muchas veces se aprende más
+    intentando ver cómo han resuelto otros problemas similares,
+    busca sitios donde ocurran los mismos fenómenos que quieras
+    representar y mira como lo han hecho otros.
+
+
+*Plugins* de JOSM
+---------------------
+
+JOSM es un *software* en constante evolución. Una de sus características más
+interesantes es la capacidad para ampliar su funcionalidad utilizando
+extensiones (conocidos como *plugins*). Se puede acceder a la lista de
+*plugins* desde el diágolo de preferencias en :menuselection:`Editar --> Preferencias`
+o pulsando :kbd:`F12`. En este diálogo accedemos a la lista de *plugins* desde
+la cuarta sección. La primera vez habrá que descargar la lista de extensiones
+disponibles.
+
+Algunos *plugins* interesantes son:
+
+- `building tools <http://wiki.openstreetmap.org/wiki/JOSM/Plugins/BuildingsTools>`_:
+  añade herramientas para crear edificios de forma muy eficiente
+- `imagery offset db <http://wiki.openstreetmap.org/wiki/Imagery_Offset_Database>`_:
+  ofrece una base de datos de correcciones de imágenes que
+  están desplazadas de su ubicación correcta
+- `notes <http://wiki.openstreetmap.org/wiki/JOSM/Plugins/Notes>`_: añade la
+  capa de notas de la web de OSM
+- `utils plugin 2 <https://wiki.openstreetmap.org/wiki/JOSM/Plugins/utilsplugin2>`_:
+  añade una gran cantidad de nuevas herramientas tanto para la selección como
+  para la creación de entidades.
+
 
 Guardando el archivo
 ----------------------------
 
-Para poder continuar con el taller será necesario guardar esta información, para lo que pulsaremos con el botón derecho del ratón sobre el nombre de la capa y seleccionaremos la opción ``Save as...`` lo que nos permitirá guardar la información en formato *.osm* que es el formato XML de OpenStreetMap.
+Puede ser interesante guardar la capa que estamos editando para usarla con
+otras  herramientas que veremos en el curso. Para guardar la capa que estamos
+editando pulsaremos con el botón derecho del ratón sobre el nombre de la capa
+y seleccionaremos la opción :guilabel:`Save as...` lo que nos permitirá
+guardar la información en formato :file:`.osm` que es el formato XML de
+OpenStreetMap.
+
+
+
+Subir al servidor
+--------------------------
+
+Por último, si la cartografía fuese de interés para el proyecto, es posible
+subir los cambios seleccionando la opción de menú
+:menuselection:`Archivo --> Subir cambios`. Para poder subir los cambios
+previamente habrá que introducir las credenciales del usuario del proyecto
+en el diálogo de preferencias.
+
+Para subir los cambios hay además que indicar un texto que describa el trabajo
+realizado y es también muy conveniente indicar en el diálogo el origen de los
+datos que se han usado como referencia.
+
+
+.. image:: ../img/josm-subir.png
+   :width: 350 px
+   :alt: Dialogo para rotonda
+   :align: center
+
 
 Ejercicio
 ----------------------------
 
-En la provincia de Valencia, al sur de la Albufera, se encuentra la localidad de Polinyà de Xúquer, una pequeña población de 2.000 habitantes que a fecha de redacción de este taller no tiene ni siquiera el entramado básico de calles.
+Como ejercicio se propone que cada alumno del curso elija alguna de las zonas
+propuestas y haga una sesión de edición que mejore la cartografía de la zona.
+Las zonas seleccionadas son pequeños municipios de la Comunidad Valenciana que
+están pobremente cartografiados por lo que cualquier contribución realizada
+por el alumno será de ayuda. Por supuesto, el alumno es libre de elegir
+cualquier otra zona de OSM siempre que le permita practicar con la creación de
+nuevas geometrías, añadir etiquetas, etc.
 
-======= ======= ======= =======
-======= ======= ======= =======
-min lat 39.1899 min lon -0.3773
-max lat 39.2025 max lon -0.3603
-======= ======= ======= =======
+Se recomiendan las siguientes tareas:
 
-.. image:: ../img/polinya.png
-   :width: 600 px
-   :alt: Estado de Polinyà de Xúquer al redactar el taller
-   :align: center
+- Dar de alta calles y edificios públicos relevantes (colegios, equipamientos, etc.)
+- Dar de alta zonas de uso del suelo: residencial, industrial, parques
+- Dar de alta puntos de interés: farmacias, bancos,...
+- Revisar nombres y sentidos de las vías
 
-Como ejercicio del taller se propone levantar el entramado de calles de Polinyà del Xúquer, digitalizar los edificios de una manzana y señalar algunos elementos puntuales.
+.. note:: Aunque se darán unos datos de partida nuevos para las siguientes
+   secciones del curso, los datos editados podrían usarse como
+   extensión si el alumno así lo desea.
+
+
+
+.. botones
 
 .. |btnfiltro| image:: ../img/josmbotonfiltro.png
    :width: 35 px

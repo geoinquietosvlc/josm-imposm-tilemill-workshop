@@ -1,9 +1,9 @@
 Taller de OSM + IMPOSM + TILEMILL
 =================================
 
-Puedes descargar el material  del taller [tal cual se impartió en las VI Jornadas de SIG Libre de Girona.] (http://www.sigte.udg.edu/jornadassiglibre2012/uploads/talleres_12/Taller_TileMill_SigLibre2012_v2.zip)
+Puedes consultar la documentación del taller en [https://taller-de-josm-imposm-tilemill.readthedocs.org/](https://taller-de-josm-imposm-tilemill.readthedocs.org/es/feature-cfp2014/)
 
-Puedes consultar la documentación [generada directamente en Read the Docs] (http://taller-de-josm-imposm-tilemill.readthedocs.org/)
+Versión para el taller impartido en el curso [OpenStreetMap, TileMill y MapProxy. Metodología moderna de publicación de cartografía en Internet](https://www.cfp.upv.es/formacion-permanente/cursos/openstreetmap--tilemill-y-mapproxy--metodologia-moderna-de-publicacion-de-cartografia-en-la-web_idiomaes-menuupvtrue-cid35699.html).
 
 Autores
 --------------
@@ -11,3 +11,4 @@ Autores
 - [Pedro-Juan Ferrer](http://twitter.com/vehrka)
 - [Iván Sanchez](http://twitter.com/realivansanchez)
 - [Santiago Tramoyeres](http://twitter.com/santracraus)
+- [Jorge Sanz](http://twitter.com/xurxosanz)
