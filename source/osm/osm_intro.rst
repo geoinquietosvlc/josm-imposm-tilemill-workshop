@@ -127,9 +127,9 @@ clientes web como hasta hace poco Potlach2 y actualmente iD:
 
 .. (jorge) me quedo revisando por aquí
 
-.. image:: ../img/potlach2.png
+.. image:: ../img/osm-edit.png
    :width: 600 px
-   :alt: editor potlach2
+   :alt: editor iD
    :align: center
 
 y el cliente de escritorio JOSM:
