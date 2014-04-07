@@ -8,7 +8,6 @@ Taller de OSM + IMPOSM + TILEMILL
    osm/osm_intro.rst
    osm/osm_taller.rst
    imposm/imposm_intro.rst
-   tilemill/tilemill_intro.rst
    tilemill/tilemill_taller.rst
 
 Este taller pretende ser una breve introducción a un flujo de trabajo que
