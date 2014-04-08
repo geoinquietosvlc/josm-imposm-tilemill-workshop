@@ -123,6 +123,7 @@ Crear el entorno virtual e instalar los paquetes necesarios ejecutando:
 .. code-block:: bash
 
   $ virtualenv venv
+  $ source venv/bin/activate
   (venv)$ pip install imposm rtree
 
 
@@ -136,7 +137,7 @@ y nos aseguramos de descomprimirlo en la carpeta
 
 .. code-block:: bash
 
-  $ virtualenv venv
+  $ source venv/bin/activate
 
 Comprobar la versión de ``imposm``
 +++++++++++++++++++++++++++++++++++++++
