@@ -1,7 +1,7 @@
 .. _imposm:
 
-Importando datos de OSM a una base de datos PostGIS
-========================================================
+Importando datos a PostGIS
+==================================
 
 Qué es Imposm
 ---------------------
@@ -137,7 +137,13 @@ y nos aseguramos de descomprimirlo en la carpeta
 
 .. code-block:: bash
 
+  $ cd /home/user/tallerimposm
   $ source venv/bin/activate
+
+.. important:: Para que el taller funcione debe descomprimirse en la
+               carpeta que se ha indicado, no funciona en ninguna otra
+               ubicación sin hacer bastantes cambios en su configuración
+               interna (y esto tampoco es aconsejable en cualquier caso).
 
 Comprobar la versión de ``imposm``
 +++++++++++++++++++++++++++++++++++++++
