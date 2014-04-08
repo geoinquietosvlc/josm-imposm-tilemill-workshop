@@ -108,7 +108,8 @@ instaladas algunas de ellas):
 
   $ sudo apt-get install build-essential python-dev protobuf-compiler \
                       libprotobuf-dev libtokyocabinet-dev python-psycopg2 \
-                      libgeos-c1 libgdal1-dev libspatialindex-dev
+                      libgeos-c1 libgdal1-dev libspatialindex-dev \
+                      python-virtualenv tree
 
 El siguiente paso depende de si nuestra máquina tiene acceso a Internet por el
 puerto 443 y por tanto podemos instalar paquetes con ``pip`` o no. En el
@@ -122,6 +123,7 @@ Crear el entorno virtual e instalar los paquetes necesarios ejecutando:
 .. code-block:: bash
 
   $ virtualenv venv
+  $ source venv/bin/activate
   (venv)$ pip install imposm rtree
 
 
@@ -135,7 +137,7 @@ y nos aseguramos de descomprimirlo en la carpeta
 
 .. code-block:: bash
 
-  $ virtualenv venv
+  $ source venv/bin/activate
 
 Comprobar la versión de ``imposm``
 +++++++++++++++++++++++++++++++++++++++
