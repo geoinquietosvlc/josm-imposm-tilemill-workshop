@@ -1,15 +1,27 @@
 .. _tallertilemill:
 
-Qué es TileMill
-================
+TileMill, el estudio cartográfico
+====================================
 
-TileMill es un herramienta que permite un acercamiento al diseño
-cartográfico a través de un lenguaje que es familiar a los desarrolladores
-web.
+TileMill_ es un herramienta que permite un acercamiento al diseño cartográfico
+a través de un lenguaje que es familiar a los desarrolladores web. Se trata de
+un producto de escritorio (aunque se puede ejecutar para acceder vía *web*).
+El objetivo de TileMill es diseñar cartografía de la forma más sencilla y
+atractiva posible generando como productos finales diferentes visualizaciones,
+tal y como se verá más adelante.
+
+TilMill es *software* libre, está desarrollado por Mapbox_ y el código fuente
+está disponible en su `repo en GitHub <https://github.com/mapbox/tilemill>`_.
+
+
+.. _TileMill: http://www.mapbox.com/tilemill/
+.. _Mapbox: http://www.mapbox.com
 
 
 Iniciando TileMill
 ----------------------------
+
+.. note:: Este taller está diseñado para ejecutarse en OSGeo Liver 7.0
 
 Arrancamos TileMill seleccionando la opción del menú
 :menuselection:`Geospatial --> Spatial Tools --> TileMill`
@@ -41,7 +53,7 @@ introducir los datos básicos que lo identifiquen.
     Curso TileMill CFP 2014
 
 **Description**
-    Mapa del entorno de Gillet
+    Mapa de Nottingham
 
 **File format**
     PNG 24
@@ -106,29 +118,29 @@ En la ventana que aparece seleccionaremos la opción de
    :align: center
 
 **ID**
-    turismo_puntos
+    osm_puntos
 
 **Class**
-    turismo
+    puntos
 
 **Connection**
-    host=localhost port=5432 user=osm password=osm dbname=osm
+    dbname=osm_local host=localhost port=5432 user=user password=user
 
 **Table or subquery**
-    osm_tourism
+    planet_osm_point
 
 **Unique key field**
     osm_id
 
 **Geometry field**
-    geometry
+    way
 
 **SRS**
-    Dejamos la opción por defecto `900913`
+    Seleccionamos ``WGS84``
 
-Y pulsamos :menuselection:`Save & Style` para que añada los datos.
+Y pulsamos :menuselection:`Save & Style` para que añada los datos con un estilo por defecto.
 
-Veremos como inmediatamente aparece un punto en la zona de España.
+Veremos como inmediatamente aparece un punto en la zona de Inglaterra.
 
 .. image:: ../img/tilemillpuntosnivel2.png
    :width: 600 px
@@ -150,13 +162,13 @@ ello pulsaremos en el botón de configuración del proyecto |btnconfigprj| y
 lo configuramos de la siguiente forma:
 
 Zoom
-    Desplazar las barras para que los niveles de zoom estén entre 14 y 20
+    Desplazar las barras para que los niveles de zoom estén entre 12 y 20
 
 Center
-   2.8279,41.9855,14
+   -1.1476,52.9531,12
 
 Bounds
-   2.8256, 41.9834, 2.8304, 41.9867
+   -1.2488, 52.9083, -1.0771, 53.0076
 
 .. image:: ../img/tilemillconfigproyecto.png
     :width: 348 px
@@ -182,11 +194,12 @@ Pintando puntos
 
 .. code-block:: css
 
-  #puntos{
-    marker-width: 2;
-    marker-fill: #EE0000;
-    marker-line-color: #FFFABB;
-  }
+    #osm_puntos {
+      marker-width: 6;
+      marker-fill: #EE0000;
+      marker-line-color: #55060f;
+    }
+
 
 Existen dos tipos de *puntos* **Point** y **Marker** entre los dos suman 24
 propiedades.
@@ -198,13 +211,17 @@ propiedades.
 
 Pintando lineas
 ```````````````````
+Puedes añadir la capa ``planet_osm_line`` o ``planet_osm_roads`` con los mismos parámetros que la de puntos:
+
+- campo identificador: ``osm_id``
+- campo geometría: ``way``
+- sistema de coordenadas: ``WGS84``
 
 .. code-block:: css
 
-  #linea {
-    line-color: #c0d8ff;
-    line-cap: round;
-    line-join: round;
+  #osm_lineas {
+    line-width:1;
+    line-color:#168;
   }
 
 Existen 11 propiedades distintas para las ĺíneas.
@@ -216,15 +233,20 @@ Existen 11 propiedades distintas para las ĺíneas.
 
 Pintando áreas
 ```````````````````
+En este caso se ha añadido la capa ``planet_osm_polygon`` con los mismos parámetros que las capas anteriores pero en lugar de cargar la tabla completa de la base de datos se ha preparado la siguiente subconsulta que filtra de la tabla solo los polígonos correspondientes a edificios:
+
+.. code-block:: sql
+
+  (SELECT * FROM planet_osm_polygon WHERE building = 'yes') AS data
 
 .. code-block:: css
 
-  #areas {
-    line-color: #FFFABB;
-    line-width: 0.5;
-    polygon-opacity: 1;
-    polygon-fill: #6B9;
-   }
+  #osm_buildings {
+      line-color: darken(#ccc,40%);
+      line-width: 2;
+      polygon-opacity: 1;
+      polygon-fill: #ccc;
+  }
 
 Existen 5 propiedades distintas para las áreas.
 
@@ -233,23 +255,53 @@ Existen 5 propiedades distintas para las áreas.
    :alt: ejemplo con áreas dibujadas
    :align: center
 
+
 .. _pintandoconclase:
 
 Pintando con clase
 ```````````````````````
 
-También se pueden usar clases (y condiciones).
+También se pueden usar clases y condiciones para filtrar las propiedades por
+atributos o por el nivel de **zoom** en el que nos encontremos. Finalmente los
+selectores se pueden anidar para compartir propiedades. En el ejemplo
+siguiente se seleccionan todos los puntos de la capa ``osm_puntos`` que tengan
+algún dato en el campo ``tourism``. En ese selector se establecen unas
+propiedades generales de tamaño y color del borde y a continuación se anidan
+selectores por cada una de las clases a renderizar estableciendo solo la
+propiedad que va a cambiar, esto es, el color del símbolo.
 
 .. code-block:: css
 
-  .natural[TYPE='water'],
-  .water {
-    polygon-fill:#c0d8ff;
-  }
+    #osm_puntos[tourism!=""][zoom>13]{
+        /** propiedades generales **/
+        marker-width: 8;
+        marker-line-color: #000;
 
-  .natural[TYPE='forest'] {
-    polygon-fill:#cea;
-  }
+        /** temático por tipo de turismo **/
+        [tourism="artwork"]{
+          marker-fill: #a6cee3;
+        }
+        [tourism="attraction"]{
+          marker-fill: #1f78b4;
+        }
+        [tourism="gallery"]{
+          marker-fill: #b2df8a;
+        }
+        [tourism="hostel"]{
+          marker-fill: #33a02c;
+        }
+        [tourism="museum"]{
+          marker-fill: #e31a1c;
+        }
+    }
+
+
+.. image:: ../img/ejemplo-clases.png
+   :width: 600 px
+   :alt: ejemplo con clases
+   :align: center
+
+
 
 Y alguna cosilla más
 ```````````````````````
@@ -261,54 +313,18 @@ El uso de **@** te permite definir **variables**
   @water:#c0d8ff;
   @forest:#cea;
 
-Y los selectores se pueden anidar
+
+Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos, etc. (`referencia de color <https://www.mapbox.com/carto/api/2.3.0/#color>`_) :
 
 .. code-block:: css
 
-  .highway[TYPE='motorway'] {
-    .line[zoom>=7]  {
-      line-color:spin(darken(@motorway,36),-10);
-      line-cap:round;
-      line-join:round;
-    }
-    .fill[zoom>=10] {
-      line-color:@motorway;
-      line-cap:round;
-      line-join:round;
-    }
-  }
-
-Simbología de valores únicos
-----------------------------------
-
-Como se puede apreciar los 7 puntos de interes de tipo *Amenities/Tourism*
-que hay en la zona aparecen representados con la misma simbología, sin
-embargo sabemos que corresponden a tipos distintos.
+  @border-water: darken(@water,50%);
 
 
-Para definir las condiciones para pintarlo es necesario conocer el nombre
-del campo de la tabla (*type*) y sus valores (*hotel*, *museum*, *viewpoint*
-e *information*)
+.. me quedo por aquí, lo siguiente habrá que cambiarlo bastante porque los datos
+   importados usan otra estructura completamente diferente
 
-.. code-block:: css
 
-    #turismo_puntos {
-      marker-width:3;
-      marker-line-color:#813;
-      marker-allow-overlap:true;
-      [type = 'hotel'] {
-         marker-fill:#f45;
-      }
-      [type = 'museum'] {
-         marker-fill:#ffc425;
-      }
-      [type = 'viewpoint'] {
-         marker-fill:#94ff14;
-      }
-      [type = 'information'] {
-         marker-fill:#1cffb1;
-      }
-    }
 
 Elementos lineales
 ---------------------------
@@ -523,7 +539,7 @@ las tablas `osm_arboles` y `osm_landusages`.
 Extra: OSM-Bright
 ---------------------------
 
-Recientemente MapBox ha publicado un ejemplo completo de representación de
+Recientemente Mapbox ha publicado un ejemplo completo de representación de
 datos de OSM empleando TileMill.
 
 Si queremos ver como quedaría nuestro juego de datos con este estilo
@@ -540,7 +556,7 @@ Si volvemos a abrir TileMill veremos que se ahora existe un proyecto nuevo
 llamado `OSM Bright Universitat de Girona` y tras abrirlo, teniendo en
 cuenta que puede tardar un poco mientras comprueba las capas,
 
-En el ejemplo proporcionado por MapBox se puede ver como se representan
+En el ejemplo proporcionado por Mapbox se puede ver como se representan
 muchos elementos y como condicionar la visualización usando niveles de zoom.
 
 .. image:: ../img/tilemillosmbright.png

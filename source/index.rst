@@ -1,6 +1,6 @@
 
-Taller de OSM + IMPOSM + TILEMILL
-=============================================================
+Taller de OpenStreetMap, Imposm y TileMill
+============================================
 
 .. toctree::
    :hidden:
