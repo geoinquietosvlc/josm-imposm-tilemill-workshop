@@ -163,6 +163,16 @@ al directorio de trabajo (disponible en el
 Puedes consultar el fichero :file:`README.md`
 para saber más sobre cómo se ha generado ese fichero.
 
+.. note:: El formato ``pbf`` es un formato binario pensado para almacenar
+          información de forma muy eficiente y de rápido acceso. Los ficheros
+          ``pbf`` no necesitan ser comprimidos y pueden ser consumidos directamente
+          tanto por ``imposm`` como por ``osmosis``, el *software* de transformación
+          de datos de OSM. Puedes consultar más información en la página
+          `PBF Format <https://wiki.openstreetmap.org/wiki/PBF_Format>`_ del wiki
+          de OpenStreetMap.
+
+
+
 
 Preparando la base de datos
 ------------------------------------
@@ -196,7 +206,7 @@ los tres pasos por separado:
 * Optimización
 
 Lectura
-`````````````````
+++++++++++++++++
 
 Se realiza empleando el comando:
 
@@ -219,7 +229,7 @@ datos preparados para ser incluidos en la base de datos.
 
 
 Escritura
-`````````````````
+++++++++++++++++
 
 Se realiza empleando el comando:
 
@@ -259,7 +269,7 @@ generalizadas en función de dos tolerancias y unas vistas que agrupan todas
 las carreteras.
 
 Optimización
-`````````````````
+++++++++++++++++
 
 El último paso de la carga de datos sería la optimización de los datos que se
 realiza empleando el comando:
@@ -269,7 +279,7 @@ realiza empleando el comando:
     (venv)$ imposm --database gilet --host localhost --user user --optimize
 
 Todo en un paso
-```````````````````
+++++++++++++++++
 
 En realidad los tres pasos anteriores se podrían ejecutar en un solo comando:
 
