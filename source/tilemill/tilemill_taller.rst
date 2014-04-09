@@ -297,19 +297,19 @@ En la ventana que aparece seleccionaremos la opción de
     puntos
 
 **Connection**
-    dbname=osm_local host=localhost port=5432 user=user password=user
+    dbname=nott-osm host=localhost port=5432 user=user password=user
 
 **Table or subquery**
-    planet_osm_point
+    osm_places
 
 **Unique key field**
     osm_id
 
 **Geometry field**
-    way
+    geometry
 
 **SRS**
-    Seleccionamos ``WGS84``
+    Seleccionamos ``900913``
 
 Y pulsamos :menuselection:`Save & Style` para que añada los datos con un estilo por defecto.
 
