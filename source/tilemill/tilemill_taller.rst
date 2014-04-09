@@ -116,19 +116,25 @@ Bases de datos admitidas
 * PostGIS
 
 
-Introducción al lenguaje Carto
---------------------------------
+Introducción al lenguaje CartoCSS
+----------------------------------
 
-Carto es el lenguaje que utiliza TileMill para aplicar estilos a las
-primitivas cartográficas.
+CartoCSS_ es el lenguaje que utiliza TileMill para aplicar estilos a las
+primitivas cartográficas. Está basado en *Cascadenik* que es un
+pre-procesador de estilos más antiguo. CartoCSS_ utiliza la
+biblioteca de renderizado de cartografía Mapnik_, otro excelente
+componente de *software libre*.
 
-Está basado en *Cascadenik* que es un pre-procesador de estilos para Mapnik.
+Mapnik_ se configura directamente mediante ficheros XML, pero poca gente
+entiende XML así que hace un tiempo que aparecieron estas herramientas
+que generan su XML a partir de un lenguaje más sencillo y expresivo, en
+definitiva para hacer «la vida más fácil» a los usuarios de Mapnik_.
 
-Mapnik solo entiende XML pero poca gente entiende XML así que aparecieron
-pre-procesadores para hacer "la vida más fácil" a los usuarios de Mapnik.
+TileMill usa Mapnik_ por debajo y CartoCSS_ es el lenguaje con el que
+le comunica cómo deben quedar las cosas.
 
-TileMill usa Mapnik por debajo y Carto es el lenguaje con el que le comunica
-como deben quedar las cosas.
+.. _CartoCSS: https://www.mapbox.com/tilemill/docs/manual/carto/
+.. _Mapnik: http://www.mapnik.org/
 
 Pintando puntos
 ```````````````````
@@ -142,7 +148,7 @@ Pintando puntos
     }
 
 
-Existen dos tipos de *puntos* **Point** y **Marker** entre los dos suman 24
+Existen dos tipos de *puntos* **Point** y **Marker** entre los dos suman 30
 propiedades.
 
 .. image:: ../img/ejemplopuntos.png
@@ -152,11 +158,6 @@ propiedades.
 
 Pintando lineas
 ```````````````````
-Puedes añadir la capa ``planet_osm_line`` o ``planet_osm_roads`` con los mismos parámetros que la de puntos:
-
-- campo identificador: ``osm_id``
-- campo geometría: ``way``
-- sistema de coordenadas: ``WGS84``
 
 .. code-block:: css
 
@@ -165,7 +166,7 @@ Puedes añadir la capa ``planet_osm_line`` o ``planet_osm_roads`` con los mismos
     line-color:#168;
   }
 
-Existen 11 propiedades distintas para las ĺíneas.
+Existen 19 propiedades distintas para las ĺíneas.
 
 .. image:: ../img/ejemplolineas.png
    :width: 600 px
@@ -173,13 +174,7 @@ Existen 11 propiedades distintas para las ĺíneas.
    :align: center
 
 Pintando áreas
-```````````````````
-En este caso se ha añadido la capa ``planet_osm_polygon`` con los mismos parámetros que las capas anteriores pero en lugar de cargar la tabla completa de la base de datos se ha preparado la siguiente subconsulta que filtra de la tabla solo los polígonos correspondientes a edificios:
-
-.. code-block:: sql
-
-  (SELECT * FROM planet_osm_polygon WHERE building = 'yes') AS data
-
+````````````````
 .. code-block:: css
 
   #osm_buildings {
@@ -204,12 +199,15 @@ Pintando con clase
 
 También se pueden usar clases y condiciones para filtrar las propiedades por
 atributos o por el nivel de **zoom** en el que nos encontremos. Finalmente los
-selectores se pueden anidar para compartir propiedades. En el ejemplo
-siguiente se seleccionan todos los puntos de la capa ``osm_puntos`` que tengan
-algún dato en el campo ``tourism``. En ese selector se establecen unas
-propiedades generales de tamaño y color del borde y a continuación se anidan
-selectores por cada una de las clases a renderizar estableciendo solo la
-propiedad que va a cambiar, esto es, el color del símbolo.
+selectores se pueden anidar para compartir propiedades.
+
+En el ejemplo siguiente se seleccionan todos los puntos de la capa
+``osm_puntos`` que tengan algún dato en el campo ``tourism`` (pidiendo que sea
+distinto a la cadena de texto vacía) y se aplicará solo a partir del nivel de
+*zoom* 14. En ese selector se establecen unas propiedades generales de tamaño
+y color del borde y a continuación se anidan selectores por cada una de las
+clases a renderizar estableciendo solo la propiedad que va a cambiar, es decir,
+el color del símbolo.
 
 .. code-block:: css
 
@@ -251,8 +249,25 @@ El uso de **@** te permite definir **variables**
 
 .. code-block:: css
 
-  @water:#c0d8ff;
-  @forest:#cea;
+  /** colores para agua y bosque**/
+  @water : #c0d8ff;
+  @forest: #cea;
+
+  /** estilos para usos del suelo
+      de para agua y bosque **/
+  #landusage{
+      /* características generales */
+      line-color: darken(#ccc,40%);
+      line-width: 2;
+      polygon-opacity: 1;
+
+      [type="water"]{
+        polygon-fill: @water;
+      }
+      [type="wood"]{
+        polygon-fill: @forest;
+      }
+  }
 
 
 Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos, etc. (`referencia de color <https://www.mapbox.com/carto/api/2.3.0/#color>`_) :
@@ -260,7 +275,6 @@ Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos,
 .. code-block:: css
 
   @border-water: darken(@water,50%);
-
 
 
 Taller
@@ -496,7 +510,7 @@ distintas.
    :alt: Ayuda de texto desplegada
    :align: center
 
-Más sobre el lenguaje Carto
+Más sobre el lenguaje CartoCSS
 -------------------------------------
 
 Usando iconos como marcadores
@@ -632,6 +646,6 @@ TileMill admite cierta interactividad que se puede configurar para cada mapa.
 Referencias y enlaces
 ---------------------------
 * `Página principal de TileMill <http://mapbox.com/TileMill/>`_
-* `Referencia del lenguaje Carto <http://mapbox.com/carto/>`_
+* `Referencia del lenguaje CartoCSS <http://mapbox.com/carto/>`_
 * `Estilo OSM Bright de Mapbox para cartografía de OpenStreetMap <https://github.com/mapbox/osm-bright>`_
 
