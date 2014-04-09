@@ -372,23 +372,30 @@ pero también crea una vista de PostGIS que aglutina toda la información
 relativa a estas.
 
 Añadiremos una nueva capa de PostGIS que lea la información de la tabla
-``osm_roads`` y añadiremos una entrada para cada tipo de vía.
-
-* footway
-* living_street
-* path
-* pedestrian
-* residential
-* service
-* steps
-* track
+``osm_roads``
 
 Para obtener todos los distintos tipos de vía podemos usar emplearemos
 `pgAdmin III` donde podemos lanzar la *query*:
 
 .. code-block:: sql
 
-    SELECT DISTINCT type FROM osm_roads;
+    SELECT type, count(type) FROM osm_roads GROUP BY type ORDER BY 2 DESC, 1;
+
+.. image:: ../img/tilemillsqllineales.png
+    :width: 500 px
+    :alt: Tipos de vía incluídos
+    :align: center
+
+Añadiremos una entrada para cada tipo de vía.
+
+* residential
+* footway
+* service
+* cycleway
+* tertiary
+* unclassified
+* primary
+* steps
 
 Para representarlo usaremos el código siguiente:
 
