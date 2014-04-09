@@ -163,21 +163,12 @@ Y deberíamos obtener::
 Obtener el juego de datos
 --------------------------
 
-Descargamos el fichero de datos :file:`gilet.pbf`
-al directorio de trabajo (disponible en el
-`siguiente enlace <https://drive.google.com/file/d/0B28vBRfHgG9pVjhBTmpSMUtwZkE/edit?usp=sharing>`_).
-Puedes consultar el fichero :file:`README.md`
-para saber más sobre cómo se ha generado ese fichero.
+Para este ejercicio vamos a usar una exportación de OpenStreetMap de la
+ciudad de Nottingham. Este juego de datos está ya en OSGeo Live 7 por lo
+que no tenemos que descargarlo.
 
-.. note:: El formato ``pbf`` es un formato binario pensado para almacenar
-          información de forma muy eficiente y de rápido acceso. Los ficheros
-          ``pbf`` no necesitan ser comprimidos y pueden ser consumidos directamente
-          tanto por ``imposm`` como por ``osmosis``, el *software* de transformación
-          de datos de OSM. Puedes consultar más información en la página
-          `PBF Format <https://wiki.openstreetmap.org/wiki/PBF_Format>`_ del wiki
-          de OpenStreetMap.
-
-
+El fichero que usaremos está es :file:`/usr/local/share/data/osm/Nottingham.osm.bz2`
+y dispone de unos 4000 puntos de interés y unas 84000 vías.
 
 
 Preparando la base de datos
@@ -187,18 +178,18 @@ El primer paso para la carga de datos es la creación de la base de datos.
 OSGeo Live 7.0 dispone de Posgres 9.1 con PostGIS 2.0. En esta combinación y
 con la configuración de OSGeo Live es muy sencillo crear una base de datos
 geográfica a la que nuestro usuario del sistema tendrá acceso. Para crear la
-base de datos ``gilet`` basta con ejecutar los siguientes comandos:
+base de datos ``nott-osm`` basta con ejecutar los siguientes comandos:
 
 .. code-block:: bash
 
-  (venv)$ createdb -E UTF8 gilet
-  (venv)$ psql -d gilet -c "create extension postgis;"
+  (venv)$ createdb -E UTF8 nott-osm
+  (venv)$ psql -d nott-osm -c "create extension postgis;"
 
 Si por alguna razón queremos borrar la base de datos basta con ejecutar:
 
 .. code-block:: bash
 
-  (venv)$ dropdb gilet
+  (venv)$ dropdb nott-osm
 
 
 Primera importación
@@ -218,7 +209,7 @@ Se realiza empleando el comando:
 
 .. code-block:: bash
 
-    $ imposm --read gilet.pbf
+    $ imposm --read /usr/local/share/data/osm/Nottingham.osm.bz2
 
 Como la cantidad de datos no es muy grande, solo tardará unos segundos. Una
 vez acaba podemos comprobar que ha creado los archivos de cache listando los
@@ -228,7 +219,7 @@ archivos del directorio:
 
     $ ls
 
-    gilet.pbf  imposm_coords.cache  imposm_nodes.cache  imposm_relations.cache  imposm_ways.cache  venv
+    imposm_coords.cache  imposm_nodes.cache  imposm_relations.cache  imposm_ways.cache  venv
 
 Imposm ha generado los archivos :file:`.cache` que son archivos binarios con los
 datos preparados para ser incluidos en la base de datos.
@@ -241,7 +232,7 @@ Se realiza empleando el comando:
 
 .. code-block:: bash
 
-    (venv)$ imposm --database gilet --host localhost --user user --write
+    (venv)$ imposm --database nott-osm --host localhost --user user --write
 
 Solicitará la constraseña del usuario ``user`` y cargará los datos que hay en
 los archivos :file:`.cache`.
@@ -256,7 +247,7 @@ comprobar que ha creado 24 tablas nuevas, todas con el sufijo ``new_``
    :align: center
 
 El esquema de tablas y qué etiquetas ha importado son los estándar ya que aún
-no hemos cambiado los `mappings`. En concreto podremos encontrar:
+no hemos cambiado los *mappings*. En concreto podremos encontrar:
 
 * Amenities
 * Places
@@ -282,7 +273,7 @@ realiza empleando el comando:
 
 .. code-block:: bash
 
-    (venv)$ imposm --database gilet --host localhost --user user --optimize
+    (venv)$ imposm --database nott-osm --host localhost --user user --optimize
 
 Todo en un paso
 ++++++++++++++++
@@ -291,7 +282,8 @@ En realidad los tres pasos anteriores se podrían ejecutar en un solo comando:
 
 .. code-block:: bash
 
-    $ imposm --database gilet --host localhost --user user  --read --write --optimize gilet.pbf
+    $ imposm --database nott-osm --host localhost --user user  \
+        --read --write --optimize /usr/local/share/data/osm/Nottingham.osm.bz2
 
 Flujo de trabajo
 -----------------------
@@ -309,7 +301,7 @@ se inicia al ejecutar el comando:
 
 .. code-block:: bash
 
-    $ imposm --database gilet --host localhost --user user --deploy-production-tables
+    $ imposm --database nott-osm --host localhost --user user --deploy-production-tables
 
 La importación de datos se hace sobre tablas a las que se le añade el prefijo
 ``osm_new_`` en el nombre. Podremos comprobar con pgAdmin III como se ha
@@ -329,7 +321,8 @@ Si volvemos a cargar la *cache* y a pasar a producción las tablas con:
 
 .. code-block:: bash
 
-    $ imposm --database gilet --host localhost --user user  --write --optimize --deploy-production-tables
+    $ imposm --database nott-osm --host localhost --user user \
+       --write --optimize --deploy-production-tables
 
 veremos como las tablas que no tengan prefijo pasarán a tener el prefijo **old\_**.
 
@@ -348,7 +341,7 @@ marcadas con **new\_** se emplea el comando:
 
 .. code-block:: bash
 
-    $ imposm --database gilet --host localhost --user user  --remove-backup-tables
+    $ imposm --database nott-osm --host localhost --user user --remove-backup-tables
 
 .. image:: ../img/imposmflujorecover.png
    :width: 600 px
@@ -395,7 +388,7 @@ la que las claves de OSM (p.e. `highway`, `leisure`, `amenity`, etc.) son las
 claves del diccionario y los valores de OSM (p.e. `motorway`, `trunk`,
 `primary`, etc.) los valores de las claves del diccionario.
 
-Para una tabla de paradas de autobús, de tranvía y de ferrocarril el `mapping`
+Para una tabla de paradas de autobús, de tranvía y de ferrocarril el *mapping*
 debería ser parecido a este::
 
   mapping = {
@@ -471,7 +464,8 @@ registro de los siguientes tipos y subtipos:
 * Tourism
 * Barrier
 
-Por lo que debemos modificar el archivo de `mapping` para que los incluya. El archivo `mapping` se encuentra en la siguiente localización:
+Por lo que debemos modificar el archivo de *mapping* para que los incluya. El
+archivo *mapping* se encuentra en la siguiente localización:
 
     /usr/local/lib/python2.7/dist-packages/imposm/defaultmapping.py
 
@@ -491,9 +485,13 @@ la lupa de la barra de herramientas.
    :alt: Tablas cargadas por Imposm
    :align: center
 
-Como podemos ver, Imposm por defecto tiene determinados tipos de Amenity cuando son puntos pero no tiene ninguno de los indicados en la lista referida un par de párrafos más arriba.
+Como podemos ver, Imposm por defecto tiene determinados tipos de Amenity
+cuando son puntos pero no tiene ninguno de los indicados en la lista referida
+un par de párrafos más arriba.
 
-Vamos a añadir al argumento `mapping` los elementos que le faltan (no importa el orden) respetando la sintaxis de tuplas de Python de forma que quede de la siguiente manera:
+Vamos a añadir al argumento *mapping* los elementos que le faltan (no importa
+el orden) respetando la sintaxis de tuplas de Python de forma que quede de la
+siguiente manera:
 
 .. code-block:: python
 
@@ -518,7 +516,7 @@ Vamos a añadir al argumento `mapping` los elementos que le faltan (no importa e
     })
 
 El caso de los árboles (*natural/tree*) es distinto ya que por defecto Imposm
-no incluye un `mapping` para la clave `Natural`, por lo que la crearemos desde
+no incluye un *mapping* para la clave `Natural`, por lo que la crearemos desde
 cero, justo debajo del objeto `amenities` vamos a crear un nuevo objeto para
 poder importarlos.
 
@@ -539,21 +537,36 @@ Ejecutamos el comando para escribir y optimizar los datos en la base de datos:
 
 .. code-block:: bash
 
-    (venv)$ imposm --database gilet --host localhost --user user \
-      --read gilet.pbf --write --optimize --deploy-production-tables \
+    (venv)$ imposm --database nott-osm --host localhost --user user \
+      --read /usr/local/share/data/osm/Nottingham.osm.bz2 \
+      --write --optimize --deploy-production-tables \
       --overwrite-cache --remove-backup-tables -m mappingtaller.py
 
 En este caso es necesario volver a leer los datos y generar los archivos de
 cache, ya que hemos modificado la estructura de los datos. Con la opción
 ``--overwrite-cache`` se sobrescribirán directamente los archivos necesarios.
 
+Con pgAdmin podemos comprobar como se han importado 1059 árboles y si echamos
+un vistazo a la tabla ``osm_amenities`` veremos que se han importado puntos
+con las etiquetas que hemos elegido.
+
+.. image:: ../img/pgAdminsql.png
+   :width: 300 px
+   :alt: Amenities por tipo
+   :align: center
+
+
 Ejercicio
 +++++++++++
 
-Como ejercicio del taller se propone crear el `mapping` para las claves de
-farolas (``highway/street_lamp``), los postes de la luz (``power/pole``) y las
-piscinas (``leisure/swimming_pool``); a continuación escribir los datos en la
-base de datos y desplegar las tablas.
+Como ejercicio del taller se propone crear el *mapping*, escribir los datos en
+la base de datos y desplegar las tablas para las claves de OSM siguientes:
+
+``tourism`` (71 puntos nuevos):
+  ``information``, ``hotel``, ``artwork`` y ``attraction``
+
+``barrier`` (1688 puntos nuevos):
+  ``gate``, ``bollard``, ``entrance``, ``cycle_barrier``, ``lift_gate``, ``stile`` y ``fence``
 
 
 Referencias y enlaces
