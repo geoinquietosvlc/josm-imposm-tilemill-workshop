@@ -258,7 +258,7 @@ El uso de **@** te permite definir **variables**
       de para agua y bosque **/
   #landusage{
       /* características generales */
-      line-color: darken(#ccc,40%);
+      line-color: #000;
       line-width: 2;
       polygon-opacity: 1;
 
@@ -277,6 +277,31 @@ Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos,
 
   @border-water: darken(@water,50%);
 
+En algo como esto:
+
+.. code-block:: css
+
+  @water  : #c0d8ff;
+  @forest : #cea;
+
+  /** los bordes más oscuros **/
+  @border-water  : darken(@water,50%);
+  @border-forest : darken(@forest,50%);
+
+  #landusage{
+      /* características generales */
+      line-width      : 2;
+      polygon-opacity : 1;
+
+      [type="water"]{
+        polygon-fill : @water;
+        line-color   : @border-water;
+      }
+      [type="wood"]{
+        polygon-fill : @forest;
+        line-color   : @border-forest;
+      }
+  }
 
 Taller
 --------------
