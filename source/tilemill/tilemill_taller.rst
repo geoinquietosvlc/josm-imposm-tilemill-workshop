@@ -199,7 +199,8 @@ Pintando con clase
 
 También se pueden usar clases y condiciones para filtrar las propiedades por
 atributos o por el nivel de **zoom** en el que nos encontremos. Finalmente los
-selectores se pueden anidar para compartir propiedades.
+selectores se pueden anidar para compartir propiedades. Más información en la
+`documentación sobre selectores <https://www.mapbox.com/tilemill/docs/guides/selectors/>`_.
 
 En el ejemplo siguiente se seleccionan todos los puntos de la capa
 ``osm_puntos`` que tengan algún dato en el campo ``tourism`` (pidiendo que sea
@@ -631,21 +632,47 @@ Pasar de MBTiles a una estructura de directorios para TMS `usando mbutil
 Otras alimañas
 ---------------
 
-Soporte para plugins
+Extensiones
 ```````````````````````````
 
-A partir de la versión 0.9 y aprovechando que node.js también lo permite.
+TileMill_ es un *software* que dispone de extensiones conocidas como *plugins*.
+Esta funcionalidad se introdujo a partir de la versión 0.9 aprovechando que NodeJS_, el
+*software* sobre el que está construído., facilitó el mecanismo
+para gestionarlos.
 
-Añaden funcionalidades como poder ver varios niveles de zoom a la vez.
+Las funcionalidades principales de TileMill_ se agrupan en cuatro extensiones
+básicas que no se pueden desactivar (marcadas como *Core*) y 7 extensiones
+opcionales disponibles que añaden funcionaliades diversas como poder ver el
+mapa en varios niveles de *zoom* a la vez, poder utilizar mapas de Mapbox_
+como mapa base o poder ordenar las columnas en la vista de tabla.
 
-A fecha de hoy hay 5 plugins *Core* y 2 plugins adicionales.
+.. image:: ../img/tilemill-plugins.png
+   :width: 600 px
+   :alt: ejemplo de mapa interactivo
+   :align: center
+
+.. _NodeJS: http://www.nodejs.org/
+
+
 
 Mapas interactivos
 ```````````````````````````
 
-TileMill admite cierta interactividad que se puede configurar para cada mapa.
+TileMill admite cierta interactividad que se puede configurar para cada mapa. Esta interactividad solo es útil si se va a subir el mapa al servicio de alojamiento de teselas de Mapbox_, ya que en los productos generados revisados (imágenes, MBTiles, etc.) no se puede acceder a esta funcionaliad. El proyecto *Geography Class* está cargado por defecto en la instalación de TileMill y es un ejemplo excelente de interacción en el mapa.
 
 .. image:: ../img/ejemplointeractivo.png
+   :width: 600 px
+   :alt: ejemplo de mapa interactivo
+   :align: center
+
+Las dos características más interesantes a configurar son:
+
+* Leyenda: aparecerá sobre el mapa en la esquina inferior derecha. Se trata de un documento HTML estático que deberemos editar directamente en TileMill.
+* *Tooltip*: se configura una plantilla en HTML en la que se puede hacer referencia a los valores del objeto sobre el que el ratón se posiciona. El *tooltip* solo puede acceder a los campos de una única capa.
+
+Estas opciones se establecen haciendo clic sobre el icono con forma de mano en la parte inferior izquierda de la interfaz de TileMill.
+
+.. image:: ../img/tilemill-teaser.png
    :width: 600 px
    :alt: ejemplo de mapa interactivo
    :align: center
