@@ -21,7 +21,7 @@ está disponible en su `repo en GitHub <https://github.com/mapbox/tilemill>`_.
 Iniciando TileMill
 ----------------------------
 
-.. note:: Este taller está diseñado para ejecutarse en OSGeo Liver 7.0
+.. note:: Este taller está diseñado para ejecutarse en OSGeo Live 7.0
 
 Arrancamos TileMill seleccionando la opción del menú
 :menuselection:`Geospatial --> Spatial Tools --> TileMill`
@@ -96,84 +96,6 @@ Bases de datos admitidas
 * SQLite
 * PostGIS
 
-
-Añadiendo una capa de puntos
------------------------------------
-
-Procederemos ahora a añadir nuestra primera capa de puntos, para lo que
-desplegaremos el menú de capas pulsando en el botón |btnmenucapas| y
-seleccionamos :menuselection:`+ Add layer`
-
-.. |btnmenucapas| image:: ../img/tilemillbtnmenucapa.png
-    :width: 48 px
-    :alt: Menú de capas
-    :align: middle
-
-En la ventana que aparece seleccionaremos la opción de
-:menuselection:`PostGIS` y rellenamos los campos como se indica.
-
-.. image:: ../img/tilemilladdpostgis.png
-   :width: 600 px
-   :alt: Añadiendo una capa PostGIS
-   :align: center
-
-**ID**
-    osm_puntos
-
-**Class**
-    puntos
-
-**Connection**
-    dbname=osm_local host=localhost port=5432 user=user password=user
-
-**Table or subquery**
-    planet_osm_point
-
-**Unique key field**
-    osm_id
-
-**Geometry field**
-    way
-
-**SRS**
-    Seleccionamos ``WGS84``
-
-Y pulsamos :menuselection:`Save & Style` para que añada los datos con un estilo por defecto.
-
-Veremos como inmediatamente aparece un punto en la zona de Inglaterra.
-
-.. image:: ../img/tilemillpuntosnivel2.png
-   :width: 600 px
-   :alt: Añadiendo una capa PostGIS
-   :align: center
-
-Corrigiendo la visualización por defecto
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. |btnconfigprj| image:: ../img/tilemillbtnconfigproyecto.png
-    :width: 48 px
-    :alt: Menú de capas
-    :align: middle
-
-En realidad nuestra zona de trabajo es bastante más pequeña que la que
-muestra por defecto TileMill, por lo que modificaremos las preferencias para
-que muestre por defecto una zona más ajustada a nuestro juego de datos. Para
-ello pulsaremos en el botón de configuración del proyecto |btnconfigprj| y
-lo configuramos de la siguiente forma:
-
-Zoom
-    Desplazar las barras para que los niveles de zoom estén entre 12 y 20
-
-Center
-   -1.1476,52.9531,12
-
-Bounds
-   -1.2488, 52.9083, -1.0771, 53.0076
-
-.. image:: ../img/tilemillconfigproyecto.png
-    :width: 348 px
-    :alt: Menú de capas
-    :align: center
 
 Introducción al lenguaje Carto
 --------------------------------
@@ -326,8 +248,87 @@ Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos,
 
 
 
-Elementos lineales
----------------------------
+Añadiendo una capa de puntos
+-----------------------------------
+
+Procederemos ahora a añadir nuestra primera capa de puntos, para lo que
+desplegaremos el menú de capas pulsando en el botón |btnmenucapas| y
+seleccionamos :menuselection:`+ Add layer`
+
+.. |btnmenucapas| image:: ../img/tilemillbtnmenucapa.png
+    :width: 48 px
+    :alt: Menú de capas
+    :align: middle
+
+En la ventana que aparece seleccionaremos la opción de
+:menuselection:`PostGIS` y rellenamos los campos como se indica.
+
+.. image:: ../img/tilemilladdpostgis.png
+   :width: 600 px
+   :alt: Añadiendo una capa PostGIS
+   :align: center
+
+**ID**
+    osm_puntos
+
+**Class**
+    puntos
+
+**Connection**
+    dbname=osm_local host=localhost port=5432 user=user password=user
+
+**Table or subquery**
+    planet_osm_point
+
+**Unique key field**
+    osm_id
+
+**Geometry field**
+    way
+
+**SRS**
+    Seleccionamos ``WGS84``
+
+Y pulsamos :menuselection:`Save & Style` para que añada los datos con un estilo por defecto.
+
+Veremos como inmediatamente aparece un punto en la zona de Inglaterra.
+
+.. image:: ../img/tilemillpuntosnivel2.png
+   :width: 600 px
+   :alt: Añadiendo una capa PostGIS
+   :align: center
+
+Corrigiendo la visualización por defecto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. |btnconfigprj| image:: ../img/tilemillbtnconfigproyecto.png
+    :width: 48 px
+    :alt: Menú de capas
+    :align: middle
+
+En realidad nuestra zona de trabajo es bastante más pequeña que la que
+muestra por defecto TileMill, por lo que modificaremos las preferencias para
+que muestre por defecto una zona más ajustada a nuestro juego de datos. Para
+ello pulsaremos en el botón de configuración del proyecto |btnconfigprj| y
+lo configuramos de la siguiente forma:
+
+Zoom
+    Desplazar las barras para que los niveles de zoom estén entre 12 y 20
+
+Center
+   -1.1476,52.9531,12
+
+Bounds
+   -1.2488, 52.9083, -1.0771, 53.0076
+
+.. image:: ../img/tilemillconfigproyecto.png
+    :width: 348 px
+    :alt: Menú de capas
+    :align: center
+
+
+Añadiendo elementos lineales
+------------------------------
 
 Para representar las calles utilizaremos una de las *ayudas* que proporciona
 ImpOSM; como ya hemos dicho, por defecto separa las vías en varias tablas,
@@ -388,6 +389,14 @@ Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
       polygon-opacity:1;
       polygon-fill:#d86ebb;
     }
+
+Orden de las capas
+---------------------------
+
+El orden de renderizado de las capas es el orden en el que aparecen en el
+gestor de capas |btnmenucapas|, para cambiar el orden basta pulsar en el
+indicador del tipo de capa (puntos, líneas y áreas) que hay junto al nombre
+y arrastrar hacia arriba o hacia abajo la capa.
 
 Añadiendo etiquetas
 ---------------------------
@@ -522,13 +531,7 @@ Pintando cajas de carretera
    :alt: ejemplo con carreteras
    :align: center
 
-Orden de las capas
----------------------------
 
-El orden de renderizado de las capas es el orden en el que aparecen en el
-gestor de capas |btnmenucapas|, para cambiar el orden basta pulsar en el
-indicador del tipo de capa (puntos, líneas y áreas) que hay junto al nombre
-y arrastrar hacia arriba o hacia abajo la capa.
 
 Ejercicio
 ---------------------------
