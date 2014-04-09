@@ -380,7 +380,7 @@ Para obtener todos los distintos tipos de vía podemos usar emplearemos
 
 .. code-block:: sql
 
-    SELECT type, count(type) FROM osm_roads GROUP BY type ORDER BY 2 DESC, 1;
+    SELECT type as tipo, count(type) as total FROM osm_roads GROUP BY type ORDER BY total DESC, tipo;
 
 .. image:: ../img/tilemillsqllineales.png
     :width: 500 px
@@ -398,7 +398,7 @@ Añadiremos una entrada para cada tipo de vía.
 * primary
 * steps
 
-Para representarlo usaremos el código siguiente:
+Para representarlo usaremos el código como el siguiente:
 
 .. code-block:: css
 
@@ -434,13 +434,11 @@ Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
       polygon-fill:#d86ebb;
     }
 
-Orden de las capas
-``````````````````````````````
-
-El orden de renderizado de las capas es el orden en el que aparecen en el
-gestor de capas |btnmenucapas|, para cambiar el orden basta pulsar en el
-indicador del tipo de capa (puntos, líneas y áreas) que hay junto al nombre
-y arrastrar hacia arriba o hacia abajo la capa.
+.. important:: El **orden de renderizado** de las capas es el
+   orden en el que aparecen en el gestor de capas |btnmenucapas|, para
+   cambiar el orden basta pulsar en el indicador del tipo de capa (puntos,
+   líneas y áreas) que hay junto al nombre y arrastrar hacia arriba o hacia
+   abajo la capa.
 
 Añadiendo etiquetas
 ``````````````````````````````
