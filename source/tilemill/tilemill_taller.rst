@@ -286,7 +286,7 @@ En algo como esto:
 
   /** los bordes más oscuros **/
   @border-water  : darken(@water,50%);
-  @border-forest : darken(forest,50%);
+  @border-forest : darken(@forest,50%);
 
   #landusage{
       /* características generales */
