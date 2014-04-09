@@ -26,6 +26,25 @@ Iniciando TileMill
 Arrancamos TileMill seleccionando la opción del menú
 :menuselection:`Geospatial --> Spatial Tools --> TileMill`
 
+Secciones
+--------------
+
+La interfaz de TileMill dispone de las siguientes secciones:
+
+*Editor*:
+  Es el espacio de trabajo del estudio, donde se cargan datos y se
+  a estilo a la cartografía.
+*Projects*:
+  Espacio para administrar los proyectos que tenemos cargados en TileMill.
+  Solo podemos tener cargado un proyecto cada vez en el editor.
+*Manual*:
+  Documentación integrada con diversos apartados sobre cómo funciona
+  TileMill.
+*Plugins*:
+  Sección para activar funcionalidad adicional de TileMill.
+*Settings*:
+  Configuracioń general de TileMill.
+
 Creando el proyecto
 -------------------------------
 
@@ -243,13 +262,16 @@ Y existen funciones para operar sobre los colores para aclararlos, oscurecerlos,
   @border-water: darken(@water,50%);
 
 
-.. me quedo por aquí, lo siguiente habrá que cambiarlo bastante porque los datos
-   importados usan otra estructura completamente diferente
 
+Taller
+--------------
 
+En las siguientes secciones se espera que el alumno repita las acciones
+propuestas para cargar los distintos tipos de datos soportados por TileMill
+y aplicando estilos similares a los indicados.
 
 Añadiendo una capa de puntos
------------------------------------
+``````````````````````````````
 
 Procederemos ahora a añadir nuestra primera capa de puntos, para lo que
 desplegaremos el menú de capas pulsando en el botón |btnmenucapas| y
@@ -328,7 +350,7 @@ Bounds
 
 
 Añadiendo elementos lineales
-------------------------------
+``````````````````````````````
 
 Para representar las calles utilizaremos una de las *ayudas* que proporciona
 ImpOSM; como ya hemos dicho, por defecto separa las vías en varias tablas,
@@ -377,7 +399,7 @@ Para representarlo usaremos el código siguiente:
     }
 
 Añadiendo los edificios
----------------------------
+``````````````````````````````
 
 Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
 
@@ -391,7 +413,7 @@ Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
     }
 
 Orden de las capas
----------------------------
+``````````````````````````````
 
 El orden de renderizado de las capas es el orden en el que aparecen en el
 gestor de capas |btnmenucapas|, para cambiar el orden basta pulsar en el
@@ -399,7 +421,7 @@ indicador del tipo de capa (puntos, líneas y áreas) que hay junto al nombre
 y arrastrar hacia arriba o hacia abajo la capa.
 
 Añadiendo etiquetas
----------------------------
+``````````````````````````````
 
 .. |btnfuentes| image:: ../img/tilemillbtnfuentes.png
    :width: 48 px
