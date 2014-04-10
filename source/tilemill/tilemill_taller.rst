@@ -11,7 +11,7 @@ atractiva posible generando como productos finales diferentes visualizaciones,
 tal y como se verá más adelante.
 
 TilMill es *software* libre, está desarrollado por Mapbox_ y el código fuente
-está disponible en su `repo en GitHub <https://github.com/mapbox/tilemill>`_.
+está disponible en su `repositorio en GitHub <https://github.com/mapbox/tilemill>`_.
 
 
 .. _TileMill: http://www.mapbox.com/tilemill/
@@ -43,7 +43,7 @@ La interfaz de TileMill dispone de las siguientes secciones:
 *Plugins*:
   Sección para activar funcionalidad adicional de TileMill.
 *Settings*:
-  Configuracioń general de TileMill.
+  Configuración de TileMill.
 
 Creando el proyecto
 -------------------------------
@@ -104,7 +104,7 @@ Formatos vectoriales admitidos
 * KML
 * GeoJSON
 
-Formatos raster admitidos
+Formatos *raster* admitidos
 ``````````````````````````````````````
 
 * GeoTIFF
@@ -351,7 +351,8 @@ En la ventana que aparece seleccionaremos la opción de
 **SRS**
     Seleccionamos ``900913``
 
-Y pulsamos :menuselection:`Save & Style` para que añada los datos con un estilo por defecto.
+Y pulsamos :menuselection:`Save & Style` para que añada los datos con un
+estilo por defecto.
 
 Veremos como inmediatamente aparece un punto en la zona de Inglaterra.
 
@@ -375,7 +376,7 @@ ello pulsaremos en el botón de configuración del proyecto |btnconfigprj| y
 lo configuramos de la siguiente forma:
 
 Zoom
-    Desplazar las barras para que los niveles de zoom estén entre 12 y 20
+    Desplazar las barras para que los niveles de *zoom* estén entre 12 y 20
 
 Center
    -1.1476,52.9531,12
@@ -401,11 +402,14 @@ Añadiremos una nueva capa de PostGIS que lea la información de la tabla
 ``osm_roads``
 
 Para obtener todos los distintos tipos de vía podemos usar emplearemos
-`pgAdmin III` donde podemos lanzar la *query*:
+`pgAdmin III` donde podemos lanzar la consulta:
 
 .. code-block:: sql
 
-    SELECT type as tipo, count(type) as total FROM osm_roads GROUP BY type ORDER BY total DESC, tipo;
+    SELECT type as tipo, count(type) as total
+    FROM osm_roads
+    GROUP BY type
+    ORDER BY total DESC, tipo;
 
 .. image:: ../img/tilemillsqllineales.png
     :width: 500 px
@@ -610,35 +614,120 @@ Pintando cajas de carretera
 Extra: OSM-Bright
 ---------------------------
 
-Recientemente Mapbox ha publicado un ejemplo completo de representación de
-datos de OSM empleando TileMill.
+Mapbox_ ha liberado un proyecto en TileMill_ para presentar datos de OSM con
+un estilo atractivo y bien documentado. Para poder usar este proyecto debemos
+descargar algunos datos base (línea de costa y límites administrativos) y
+luego ejecutar un *script* configurando algunos parámetros en un fichero.
 
-Si queremos ver como quedaría nuestro juego de datos con este estilo
-deberemos cerrar TileMill y en una consola de sistema escribir lo siguiente:
+En este caso usaremos como fuente de datos de nuevo el fichero de extracción
+de OSM de Nottingham, creando una nueva base de datos e importando el fichero
+usando ``imposm`` y un fichero de *mapping* de etiquetas proporcionado por
+OSM-Bright.
+
+En primer lugar nos esplazamos a la carpeta de trabajo y activamos un entorno
+virtual con ``imposm 2.5.0`` instalado:
 
 .. code-block:: bash
 
-    $ cd ../datos/mapbox-osm-bright/
-    $ ./make.py
-    $ cd ../..
-    $ imposm --read UniversitatGirona.osm --write --database osm --host localhost --user osm --optimize --overwrite-cache --deploy-production-tables -m /home/jornadas/taller_osm_tilemill/datos/mapbox-osm-bright/imposm-mapping.py
+    $ cd /home/user/tallerimposm
+    $ source venv/bin/activate
+    (venv)$ imposm --version
+    Enabling Shapely speedups.
+    imposm 2.5.0
 
-Si volvemos a abrir TileMill veremos que se ahora existe un proyecto nuevo
-llamado `OSM Bright Universitat de Girona` y tras abrirlo, teniendo en
-cuenta que puede tardar un poco mientras comprueba las capas,
 
-En el ejemplo proporcionado por Mapbox se puede ver como se representan
-muchos elementos y como condicionar la visualización usando niveles de zoom.
+A continuación descargamos OSM-Bright y lo descomprimimos obteniendo una
+carpeta :file:`osm-bright-master` a la que nos desplazaremos:
+
+.. code-block:: bash
+
+    (venv)$ wget -O osmbright.zip "https://github.com/mapbox/osm-bright/archive/master.zip"
+    (venv)$ unzip osmbright.zip
+    ...
+    (venv)$ cd osm-bright-master
+
+En esta carpeta descargaremos tres ficheros con cartografía (puede tardar un
+rato, uno de ellos es bastante pesado):
+
+.. code-block:: bash
+
+    (venv)$ wget http://tilemill-data.s3.amazonaws.com/osm/coastline-good.zip
+    (venv)$ wget http://tilemill-data.s3.amazonaws.com/osm/shoreline_300.zip
+    (venv)$ wget http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.3.0/physical/10m-land.zip
+
+Creamos la base de datos ``nott-osm-2`` y activamos la extensión de PostGIS:
+
+.. code-block:: bash
+
+    (venv)$ createdb -E UTF8 nott-osm-2
+    (venv)$ psql -d nott-osm-2 -c "create extension postgis"
+
+Y ya estamos listos para cargar la base de datos usando ``imposm`` y el
+fichero e *mapping* que hay en la carpeta :file:`imposm-mapping.py`:
+
+.. code-block:: bash
+
+    (venv)$ imposm --user user -d nott-osm-2 -m imposm-mapping.py \
+        --read --write --optimize --deploy-production-tables \
+        /usr/local/share/data/osm/Nottingham.osm.bz2
+
+El siguiente paso es configurar el fichero de OSM-Bright, para ello copiamos
+el archivo de ejemplo :file:`configure.py.sample` y lo editamos con *medit*:
+
+
+.. code-block:: bash
+
+    (venv)$ cp configure.py.sample configure.py
+    (venv)$ medit configure.py
+
+En este fichero deberemos establecer:
+
+- ``imposm`` como el importador que hemos usado
+- Si queremos, un nombre para el proyecto
+- Los parámetros de conexión a la base de datos
+- Las coordenadas de la zona de interés, que para la zona de
+  Nottingham son ``-139015.78, 6966053.88,-119902.22, 6984403.83``
+
+.. image:: ../img/osmbright-configure.png
+   :width: 500 px
+   :alt: Configuración de OSM Bright
+   :align: center
+
+Con el fichero correctamente configurado estamos listos para crear el proyecto
+de TileMill. Simplemente en la misma carpeta ejecutamos el *script*
+:file:`make.py`:
+
+.. code-block:: bash
+
+    (venv)$ python make.py
+    installing to /home/user/Documents/MapBox/project/OSMBrightNottingham
+
+A continuación podemos abrir TileMill y deberíamos de tener un nuevo proyecto.
+Al abrir este proyecto probablemente tarde unos segundos en responder ya que
+tiene que traer de la base de datos un buen número de elementos. Tras unos
+instantes podremos navegar por la cartografía. Si activamos el *plugin*
+``tilemill-lots`` podremos además ver cómo cambia la simbología en los
+diferentes niveles de *zoom*.
 
 .. image:: ../img/tilemillosmbright.png
-   :width: 600 px
-   :alt: La zona de trabajo usando OSM Bright
+   :width: 800 px
+   :alt: La zona de trabajo usando OSM Bright y varios niveles de zoom.
    :align: center
+
+La configuración de este proyecto es amplia y compleja, pero activando y
+desactivando capas y usando el mencionado *plugin* podemos ir repasando cómo
+se han ido filtrando los diferentes tipos, y cómo los diseñadores han ido
+jugando con los niveles de *zoom* para definir la simbología desde las escalas
+más pequeñas hasta las de mayor detalle.
+
 
 Exportando los mapas
 ---------------------------
 
-TileMill_ genera diferentes productos cartográficos a partir del diseño realizado. Es decir, una vez estamos satisfechos con la simbología, podemos exportar el mapa en diferentes formatos y que responden a diferentes necesidades.
+TileMill_ genera diferentes productos cartográficos a partir del diseño
+realizado. Es decir, una vez estamos satisfechos con la simbología, podemos
+exportar el mapa en diferentes formatos y que responden a diferentes
+necesidades.
 
 
 .. image:: ../img/tilemill-export-menu.png
@@ -668,10 +757,17 @@ TileMill_ genera diferentes productos cartográficos a partir del diseño realiz
 Montando un TMS
 `````````````````````
 
-Como hemos visto, TileMill_ genera un fichero en formato MBTiles_ para poder llevar nuestra renderización de un sitio a otro fácilmente. En ocasiones por otro lado, resulta conveniente exportar las teselas almacenadas en la base de datos de este formato a una estructura de carpetas siguiendo el estándar TMS_, ya que de esta forma puede resultar accesible por ejemplo por un cliente *web* como OpenLayers_.
+Como hemos visto, TileMill_ genera un fichero en formato MBTiles_ para poder
+llevar nuestra renderización de un sitio a otro fácilmente. En ocasiones por
+otro lado, resulta conveniente exportar las teselas almacenadas en la base de
+datos de este formato a una estructura de carpetas siguiendo el estándar TMS_,
+ya que de esta forma puede resultar accesible por ejemplo por un cliente *web*
+como OpenLayers_.
 
-Para extraer las imágenes de este tipo de ficheros podemos usar la herramienta `mbutil
-<https://github.com/mapbox/mbutil>`_, desarrollada por Mapbox_ y que ofrece un ejecutable para la línea de comandos que exporta el fichero fácilmente.
+Para extraer las imágenes de este tipo de ficheros podemos usar la herramienta
+`mbutil <https://github.com/mapbox/mbutil>`_, desarrollada por Mapbox_ y que
+ofrece un ejecutable para la línea de comandos que exporta el fichero
+fácilmente.
 
 Para instalarla teniendo un entorno virtual activado basta con ejecutar:
 
@@ -695,10 +791,10 @@ Otras alimañas
 Extensiones
 ```````````````````````````
 
-TileMill_ es un *software* que dispone de extensiones conocidas como *plugins*.
-Esta funcionalidad se introdujo a partir de la versión 0.9 aprovechando que NodeJS_, el
-*software* sobre el que está construído., facilitó el mecanismo
-para gestionarlos.
+TileMill_ es un *software* que dispone de extensiones conocidas como
+*plugins*. Esta funcionalidad se introdujo a partir de la versión 0.9
+aprovechando que NodeJS_, el *software* sobre el que está construído.,
+facilitó el mecanismo para gestionarlos.
 
 Las funcionalidades principales de TileMill_ se agrupan en cuatro extensiones
 básicas que no se pueden desactivar (marcadas como *Core*) y 7 extensiones
@@ -718,7 +814,12 @@ como mapa base o poder ordenar las columnas en la vista de tabla.
 Mapas interactivos
 ```````````````````````````
 
-TileMill admite cierta interactividad que se puede configurar para cada mapa. Esta interactividad solo es útil si se va a subir el mapa al servicio de alojamiento de teselas de Mapbox_, ya que en los productos generados revisados (imágenes, MBTiles, etc.) no se puede acceder a esta funcionaliad. El proyecto *Geography Class* está cargado por defecto en la instalación de TileMill y es un ejemplo excelente de interacción en el mapa.
+TileMill admite cierta interactividad que se puede configurar para cada mapa.
+Esta interactividad solo es útil si se va a subir el mapa al servicio de
+alojamiento de teselas de Mapbox_, ya que en los productos generados revisados
+(imágenes, MBTiles, etc.) no se puede acceder a esta funcionaliad. El proyecto
+*Geography Class* está cargado por defecto en la instalación de TileMill y es
+un ejemplo excelente de interacción en el mapa.
 
 .. image:: ../img/ejemplointeractivo.png
    :width: 600 px
@@ -727,10 +828,14 @@ TileMill admite cierta interactividad que se puede configurar para cada mapa. Es
 
 Las dos características más interesantes a configurar son:
 
-* Leyenda: aparecerá sobre el mapa en la esquina inferior derecha. Se trata de un documento HTML estático que deberemos editar directamente en TileMill.
-* *Tooltip*: se configura una plantilla en HTML en la que se puede hacer referencia a los valores del objeto sobre el que el ratón se posiciona. El *tooltip* solo puede acceder a los campos de una única capa.
+* Leyenda: aparecerá sobre el mapa en la esquina inferior derecha. Se
+  trata de un documento HTML estático que deberemos editar directamente en TileMill.
+* *Tooltip*: se configura una plantilla en HTML en la que se puede hacer
+  referencia a los valores del objeto sobre el que el ratón se posiciona.
+  El *tooltip* solo puede acceder a los campos de una única capa.
 
-Estas opciones se establecen haciendo clic sobre el icono con forma de mano en la parte inferior izquierda de la interfaz de TileMill.
+Estas opciones se establecen haciendo clic sobre el icono con forma de mano en
+la parte inferior izquierda de la interfaz de TileMill.
 
 .. image:: ../img/tilemill-teaser.png
    :width: 600 px
