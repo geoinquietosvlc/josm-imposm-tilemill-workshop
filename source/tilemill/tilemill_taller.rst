@@ -427,21 +427,28 @@ Para representarlo usaremos el código como el siguiente:
 
 .. code-block:: css
 
-    #calles_lineas {
+    #osm_lineas {
         line-width:1;
-
-        [type = 'footway'], [type = 'pedestrian'] {
+        line-color:#cce;
+        [type = 'footway'], [type = 'cycleway'] {
               line-color:#f2f974;
         }
-        [type = 'residential'],[type = 'living_street'],
-        [type = 'service']  {
+        [type = 'residential'],     [type = 'service']  {
               line-color:#aaa;
         }
         [type = 'steps'] {
               line-color:#7cc7fd;
         }
-        [type = 'path'], [type = 'track'] {
+        [type = 'unclassified'] {
               line-color:#ff9f3b;
+        }
+        [type = 'primary'] {
+              line-width:2;
+              line-color:darken(#ff9f3b, 30%);
+        }
+        [type = 'tertiary'] {
+              line-width:1.5;
+              line-color:darken(#8beb18, 10%);
         }
     }
 
@@ -452,7 +459,7 @@ Añadiremos ahora los edificios, que están en la tabla `osm_buildings`.
 
 .. code-block:: css
 
-    #edificios {
+    #osm_edificios {
       line-color:#a71b62;
       line-width:0.5;
       polygon-opacity:1;
@@ -600,12 +607,6 @@ Pintando cajas de carretera
 
 
 
-Ejercicio
----------------------------
-
-Como ejercicio del taller se propone incorporar al mapa los contenidos de
-las tablas `osm_arboles` y `osm_landusages`.
-
 Extra: OSM-Bright
 ---------------------------
 
@@ -699,6 +700,66 @@ Estas opciones se establecen haciendo clic sobre el icono con forma de mano en l
    :width: 600 px
    :alt: ejemplo de mapa interactivo
    :align: center
+
+Ejercicio
+---------------------------
+
+Empleando la cartografía existente en la base de datos :file:`nott-osm` se
+requiere realizar un diseño cartográfico que destaque los siguientes
+elementos:
+
+
+Vías
+~~~~
+
+Se destacará la red viaria de forma que exista una clasificación de
+carreteras que permita identificar visualmente los siguientes tipos:
+
+* *motorway* y *motorway_link*
+* *trunk* y *trunk_link*
+* *primary* y *primary_link*
+* *secondary* y *secondary_link*
+* *tertiary*
+* *residential*
+* *pedestrian*, *path* y *cycleway*
+* *rail*
+* *resto*
+
+Edificios
+~~~~~~~~~
+
+Se destacará el entramado urbano que permita diferenciar los siguientes
+tipos:
+
+* *city_hall*, *conservatory* y *museum*
+* *college*, *library* y *university* 
+* *flat*, *flats*, *house* y *residential*
+* *industrial*, *light_industry_units*
+* *retail*, *shop*, *shopping_mall* y *shops*
+* *resto*
+
+Áreas
+~~~~~
+
+Se destacarán con un color distinto debajo de la capa de edificios las
+siguientes áreas urbanas:
+
+* *commercial*, *retail*
+* *hospital*
+* *industrial*
+* *nature_reserve*, *park*, *wood*
+* *residential*
+* *university*
+
+En caso de existir una correspondencia entre un tipo de edificios y un área,
+el área deberá ser un 20% más oscura que el edificio pero emplear el mismo
+tono.
+
+Lugares de interés
+~~~~~~~~~~~~~~~~~~
+
+Se representarán las comisarías de policía y los hospitales con un símbolo
+puntual distintivo.
 
 Referencias y enlaces
 ---------------------------
