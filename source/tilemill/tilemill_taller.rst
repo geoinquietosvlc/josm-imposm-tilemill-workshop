@@ -551,10 +551,15 @@ distintas.
 Más sobre el lenguaje CartoCSS
 -------------------------------------
 
+.. _iconosmarcadores:
+
 Usando iconos como marcadores
 `````````````````````````````````
 
-Por ejemplo para pintar puntos de interes
+Para usar los iconos deben referenciarse con una
+ruta relativa a la carpeta del proyecto
+
+Por ejemplo para pintar puntos de interés
 
 .. code-block:: css
 
@@ -710,7 +715,7 @@ elementos:
 
 
 Vías
-~~~~
+``````````````````````````````````````
 
 Se destacará la red viaria de forma que exista una clasificación de
 carreteras que permita identificar visualmente los siguientes tipos:
@@ -725,8 +730,11 @@ carreteras que permita identificar visualmente los siguientes tipos:
 * *rail*
 * *resto*
 
+Tabla
+    osm_roads
+
 Edificios
-~~~~~~~~~
+``````````````````````````````````````
 
 Se destacará el entramado urbano que permita diferenciar los siguientes
 tipos:
@@ -738,8 +746,11 @@ tipos:
 * *retail*, *shop*, *shopping_mall* y *shops*
 * *resto*
 
+Tabla
+    osm_buildings
+
 Áreas
-~~~~~
+``````````````````````````````````````
 
 Se destacarán con un color distinto debajo de la capa de edificios las
 siguientes áreas urbanas:
@@ -755,11 +766,56 @@ En caso de existir una correspondencia entre un tipo de edificios y un área,
 el área deberá ser un 20% más oscura que el edificio pero emplear el mismo
 tono.
 
-Lugares de interés
-~~~~~~~~~~~~~~~~~~
+*¿Qué tabla hay que emplear?* Abre la aplicación :menuselection:`Geospatial
+--> Databases -->` :program:`pgAdminIII` y explora la base de datos
+**nott-osm** para averiguar dónde está la información.
 
-Se representarán las comisarías de policía y los hospitales con un símbolo
-puntual distintivo.
+Lugares de interés
+``````````````````````````````````````
+
+Para la simbología de lugares de interés emplearemos la biblioteca de
+símbolos Maki_ desarrollada también por la empresa *Mapbox* y el código que
+hemos visto en la sección :ref:`iconosmarcadores`
+
+Se representarán las comisarías de policía |icopoli| y los hospitales
+|icohosp| cada uno con su símbolo puntual distintivo.
+
+La biblioteca de iconos *Maki* ha sido especialmente diseñada para ser
+empleada con :program:`TileMill` y proporciona los iconos tanto en
+formato raster (:file:`.png`) como en formato vectorial (:file:`.svg`).
+
+En la página web está el enlace para descargar la biblioteca en ambos
+formatos en un archivo :file:`.zip` .
+
+También se puede encontrar el `enlace a un tutorial sobre las posibilidades
+de empleo en TileMill
+<https://www.mapbox.com/tilemill/docs/guides/using-maki-icons/>`_.
+
+Para usar las imágenes de Policía y Hospital crearemos una carpeta
+:file:`imgs` dentro del directorio del proyecto que podemos encontrar en
+:file:`/home/user/Documents/MapBox/project/cfp2014`.
+
+Descomprimimos el archivo :file:`.zip`, que es una copia del repositorio de
+*GitHub*, y navegamos hasta la carpeta :file:`renders`. 
+
+Copiaremos las imágenes :file:`police*.png` y :file:`hospital*.png` en el
+directorio :file:`imgs` que hemos creado anteriormente.
+
+*¿Qué tabla hay que emplear?* Abre la aplicación  :menuselection:`Geospatial
+--> Databases -->` :program:`pgAdminIII` y explora la base de datos
+**nott-osm** para averiguar dónde está la información.
+
+.. |icopoli| image:: ../img/police-24@2x.png
+   :width: 24px
+   :alt: Icono de comisaría 
+   :align: middle
+
+.. |icohosp| image:: ../img/hospital-24@2x.png
+   :width: 24px
+   :alt: Icono de hospital 
+   :align: middle
+
+.. _Maki: https://www.mapbox.com/maki/
 
 Referencias y enlaces
 ---------------------------
