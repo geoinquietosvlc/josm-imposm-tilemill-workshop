@@ -499,23 +499,26 @@ utilizar, es siempre muy recomendable volver a añadir la capa y usarla
 exclusivamente para las etiquetas. En este caso rellenaremos los campos con
 los siguientes datos:
 
-ID
+**ID**
   calles_nombres
 
-Class
+**Class**
   nombres
 
-Connection
-  dbname=osm host=localhost port=5432 user=osm password=osm
+**Connection**
+    dbname=nott-osm host=localhost port=5432 user=user password=user
 
-Table or subquery
-  (SELECT * FROM osm_roads WHERE name IS NOT NULL) AS foo
+**Table or subquery**
+    (SELECT * FROM osm_roads WHERE name IS NOT NULL) AS foo
 
-Unique key field
-  osm_id
+**Unique key field**
+    osm_id
 
-Geometry field
-  geometry
+**Geometry field**
+    geometry
+
+**SRS**
+    Seleccionamos ``900913``
 
 En esta ocasión en vez de la tabla, hemos usado una subconsulta, de forma
 que solo carguemos en memoria las entidades que tengan algún valor en el
