@@ -90,31 +90,77 @@ Añadiendo datos
 ------------------
 
 El primer paso siempre es añadir datos y el primer paso para añadirlos es
-tener claros sus metadatos, en especial:
+tener claros sus metadatos, **siempre** hay que poner especial atención a:
 
 * Su Formato
 * Su Tamaño
 * y su Sistema de referencia
 
+La confusión en cualquiera de los tres campos puede llevarnos a que la
+cartografía no se pueda cargar o no quede alineada correctamente.
+
+TileMill no puede reproyectar los datos que usa como origen de información
+de los mapas que componen, por lo que siempre se le deben proporcionar en
+uno de los SRS soportados que son EPSG:900913 (`EPSG:3857
+<http://spatialreference.org/ref/sr-org/6864/>`_) y WGS84 (`EPSG:4326
+<http://spatialreference.org/ref/epsg/4326/>`_) aunque existe la posibilidad
+de forzar la reproyección introduciendo los valores adecuados para `proj4
+<http://proj.osgeo.org>`_ que suelen poder conseguirse en
+http://spatialreference.org.
+
 Formatos vectoriales admitidos
 ``````````````````````````````````````
 
-* CSV
-* Shapefile
-* KML
-* GeoJSON
+CSV_ 
+    Se trata de archivos de hoja de cálculo con variables separadas **por
+    comas** y que tienen la información geográfica en columnas que se llaman
+    «lat» o «latitude» o incluso «geo_longitude», TileMill reconoce
+    automáticamente el nombre de esas columnas.
+
+`ESRI Shapefile`_ 
+    Uno de los formatos vectoriales más populares
+    antiguamente. Si el archivo :file:`.prj` no está presente TileMill
+    intentará averiguar el SRS de la información contenida.
+  
+*KML* 
+    Este formato soportado, tiene algunas limitaciones para ser usado en
+    TileMill ya que no reconoce algunas de las funcionalidades avanzadas de
+    los KMLs (estilos embebidos, imágenes, modelos 3D). Tampoco reconoce el
+    formato KMZ.
+
+GeoJSON_ 
+    Es uno de los formatos más populares actualmente, es un formato
+    basado solamente en texto con una estructura flexible.
+
+.. _CSV: https://www.mapbox.com/tilemill/docs/crashcourse/point-data/
+.. _ESRI Shapefile: https://www.mapbox.com/tilemill/docs/guides/add-shapefile/
+.. _GeoJSON: http://geojson.org/
 
 Formatos raster admitidos
 ``````````````````````````````````````
 
-* GeoTIFF
+GeoTIFF_ 
+  Es uno de los formatos más conocidos para almacenar imágenes aéreas,
+  satélite y modelos de elevación del terreno. Para manipular la información
+  raster TileMill emplea `GDAL <http://gdal.org>`_ que es una potentisima
+  biblioteca de acceso a datos raster.
+
+.. _GeoTIFF: https://www.mapbox.com/tilemill/docs/guides/reprojecting-geotiff/
 
 Bases de datos admitidas
 ``````````````````````````````````````
 
-* SQLite
-* PostGIS
+SQLite_
+    Es el sistema de bases de datos basadas en un solo archivo más popular del
+    Software Libre. Estas bases de datos se pueden generar empleando un
+    software de escritorio como :program:`QGis`.
 
+PostGIS_
+    Literalmente el elefante en la habitación. El mayor proyecto de base de
+    datos relacional geográfica del Software Libre.
+
+.. _SQLite: https://www.mapbox.com/tilemill/docs/tutorials/sqlite-work/
+.. _PostGIS: https://www.mapbox.com/tilemill/docs/guides/postgis-work/
 
 Introducción al lenguaje CartoCSS
 ----------------------------------
@@ -861,4 +907,5 @@ Referencias y enlaces
 * `Página principal de TileMill <http://mapbox.com/TileMill/>`_
 * `Referencia del lenguaje CartoCSS <http://mapbox.com/carto/>`_
 * `Estilo OSM Bright de Mapbox para cartografía de OpenStreetMap <https://github.com/mapbox/osm-bright>`_
+
 
