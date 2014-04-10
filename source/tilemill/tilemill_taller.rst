@@ -643,20 +643,56 @@ muchos elementos y como condicionar la visualización usando niveles de zoom.
 Exportando los mapas
 ---------------------------
 
-* PNG
-* PDF
-* MBTiles
-* SVG
+TileMill_ genera diferentes productos cartográficos a partir del diseño realizado. Es decir, una vez estamos satisfechos con la simbología, podemos exportar el mapa en diferentes formatos y que responden a diferentes necesidades.
+
+
+.. image:: ../img/tilemill-export-menu.png
+   :width: 200 px
+   :alt: Menú de exportación de TileMill
+   :align: center
+
+* Carga en Mapbox_: subir las teselas al servicio de este proveedor
+  para poder insertarlo fácilmente en nuestras aplicaciones *web*.
+* PNG: generar una única imagen, lista para insertar en cualquier informe,
+  página *web* o cualquier otro documento.
+* PDF: genear una única imagen dentro de un documento en formato PDF.
+* MBTiles: renderizar las teselas en un fichero en formato MBTiles_. Este
+  fichero luego puede utilizarse en cualquier aplicación que soporte este
+  formato.
+* SVG: la salida en este formato mantiene el formato vectorial y puede ser
+  utilizado por ejemplo para impresiones de alta calidad al permitir su
+  escalado sin perder detalle.
+* XML de Mapnik: esta salida no devuelve una imagen sino un fichero para
+  la librería Mapnik_ que podemos luego utilizar con otras herramientas.
+  En este fichero se encuentra definido todo lo necesario para acceder a los
+  datos y darles la simbología seleccionada.
+
+.. _MBTiles: https://www.mapbox.com/developers/mbtiles/
+
 
 Montando un TMS
 `````````````````````
 
-Pasar de MBTiles a una estructura de directorios para TMS `usando mbutil
-<https://github.com/mapbox/mbutil>`_
+Como hemos visto, TileMill_ genera un fichero en formato MBTiles_ para poder llevar nuestra renderización de un sitio a otro fácilmente. En ocasiones por otro lado, resulta conveniente exportar las teselas almacenadas en la base de datos de este formato a una estructura de carpetas siguiendo el estándar TMS_, ya que de esta forma puede resultar accesible por ejemplo por un cliente *web* como OpenLayers_.
+
+Para extraer las imágenes de este tipo de ficheros podemos usar la herramienta `mbutil
+<https://github.com/mapbox/mbutil>`_, desarrollada por Mapbox_ y que ofrece un ejecutable para la línea de comandos que exporta el fichero fácilmente.
+
+Para instalarla teniendo un entorno virtual activado basta con ejecutar:
 
 .. code-block:: bash
 
-   $ mb-util exportado.mbtiles directorio/
+  (venv)$ pip install mbutil
+
+Para generar un TMS ejecutamos:
+
+.. code-block:: bash
+
+   (venv)$ mb-util --scheme=tms exportado.mbtiles directorio/
+
+
+.. _TMS: http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification
+.. _OpenLayers: http://www.openlayers.org
 
 Otras alimañas
 ---------------
@@ -740,7 +776,7 @@ Se destacará el entramado urbano que permita diferenciar los siguientes
 tipos:
 
 * *city_hall*, *conservatory* y *museum*
-* *college*, *library* y *university* 
+* *college*, *library* y *university*
 * *flat*, *flats*, *house* y *residential*
 * *industrial*, *light_industry_units*
 * *retail*, *shop*, *shopping_mall* y *shops*
