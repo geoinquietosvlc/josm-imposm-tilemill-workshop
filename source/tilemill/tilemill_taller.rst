@@ -1,12 +1,12 @@
 .. _tallertilemill:
 
-:program:`TileMil`, el estudio cartográfico
-====================================
+TileMill, el estudio cartográfico
+================================================
 
 TileMill_ es un herramienta que permite un acercamiento al diseño cartográfico
 a través de un lenguaje que es familiar a los desarrolladores web. Se trata de
 un producto de escritorio (aunque se puede ejecutar para acceder vía *web*).
-El objetivo de :program:`TileMil` es diseñar cartografía de la forma más sencilla y
+El objetivo de :program:`TileMill` es diseñar cartografía de la forma más sencilla y
 atractiva posible generando como productos finales diferentes visualizaciones,
 tal y como se verá más adelante.
 
@@ -18,37 +18,37 @@ está disponible en su `repositorio en GitHub <https://github.com/mapbox/tilemil
 .. _Mapbox: http://www.mapbox.com
 
 
-Iniciando :program:`TileMil`
+Iniciando TileMill
 ----------------------------
 
 .. note:: Este taller está diseñado para ejecutarse en OSGeo Live 7.0
 
-Arrancamos :program:`TileMil` seleccionando la opción del menú
+Arrancamos :program:`TileMill` seleccionando la opción del menú
 :menuselection:`Geospatial --> Spatial Tools --> TileMill`
 
 Secciones
 --------------
 
-La interfaz de :program:`TileMil` dispone de las siguientes secciones:
+La interfaz de :program:`TileMill` dispone de las siguientes secciones:
 
 *Editor*:
   Es el espacio de trabajo del estudio, donde se cargan datos y se
   a estilo a la cartografía.
 *Projects*:
-  Espacio para administrar los proyectos que tenemos cargados en :program:`TileMil`.
+  Espacio para administrar los proyectos que tenemos cargados en :program:`TileMill`.
   Solo podemos tener cargado un proyecto cada vez en el editor.
 *Manual*:
   Documentación integrada con diversos apartados sobre cómo funciona
-  :program:`TileMil`.
+  :program:`TileMill`.
 *Plugins*:
-  Sección para activar funcionalidad adicional de :program:`TileMil`.
+  Sección para activar funcionalidad adicional de :program:`TileMill`.
 *Settings*:
-  Configuración de :program:`TileMil`.
+  Configuración de :program:`TileMill`.
 
 Creando el proyecto
 -------------------------------
 
-:program:`TileMil` carga por defecto la pestaña de :menuselection:`Projects` y en ella
+:program:`TileMill` carga por defecto la pestaña de :menuselection:`Projects` y en ella
 tenemos el botón :menuselection:`+ New Project` que pulsaremos definir
 nuestro proyecto.
 
@@ -99,7 +99,7 @@ tener claros sus metadatos, **siempre** hay que poner especial atención a:
 La confusión en cualquiera de los tres campos puede llevarnos a que la
 cartografía no se pueda cargar o no quede alineada correctamente.
 
-:program:`TileMil` no puede reproyectar los datos que usa como origen de información
+:program:`TileMill` no puede reproyectar los datos que usa como origen de información
 de los mapas que componen, por lo que siempre se le deben proporcionar en
 uno de los SRS soportados que son EPSG:900913 (`EPSG:3857
 <http://epsg.io/3857>`_) y WGS84 (`EPSG:4326
@@ -114,7 +114,7 @@ Formatos vectoriales admitidos
 CSV_
     Se trata de archivos de hoja de cálculo con variables separadas **por
     comas** y que tienen la información geográfica en columnas que se llaman
-    «lat» o «latitude» o incluso «geo_longitude», :program:`TileMil` reconoce
+    «lat» o «latitude» o incluso «geo_longitude», :program:`TileMill` reconoce
     automáticamente el nombre de esas columnas.
 
 `ESRI Shapefile`_
@@ -124,7 +124,7 @@ CSV_
 
 *KML*
     Este formato soportado, tiene algunas limitaciones para ser usado en
-    :program:`TileMil` ya que no reconoce algunas de las funcionalidades avanzadas de
+    :program:`TileMill` ya que no reconoce algunas de las funcionalidades avanzadas de
     los KMLs (estilos embebidos, imágenes, modelos 3D). Tampoco reconoce el
     formato KMZ.
 
@@ -142,7 +142,7 @@ Formatos *raster* admitidos
 GeoTIFF_
   Es uno de los formatos más conocidos para almacenar imágenes aéreas,
   satélite y modelos de elevación del terreno. Para manipular la información
-  raster :program:`TileMil` emplea `GDAL <http://gdal.org>`_ que es una potentisima
+  raster :program:`TileMill` emplea `GDAL <http://gdal.org>`_ que es una potentisima
   biblioteca de acceso a datos raster.
 
 .. _GeoTIFF: https://www.mapbox.com/tilemill/docs/guides/reprojecting-geotiff/
@@ -165,7 +165,7 @@ PostGIS_
 Introducción al lenguaje CartoCSS
 ----------------------------------
 
-CartoCSS_ es el lenguaje que utiliza :program:`TileMil` para aplicar estilos a las
+CartoCSS_ es el lenguaje que utiliza :program:`TileMill` para aplicar estilos a las
 primitivas cartográficas. Está basado en *Cascadenik* que es un
 pre-procesador de estilos más antiguo. CartoCSS_ utiliza la
 biblioteca de renderizado de cartografía Mapnik_, otro excelente
@@ -176,7 +176,7 @@ entiende XML así que hace un tiempo que aparecieron estas herramientas
 que generan su XML a partir de un lenguaje más sencillo y expresivo, en
 definitiva para hacer «la vida más fácil» a los usuarios de Mapnik_.
 
-:program:`TileMil` usa Mapnik_ por debajo y CartoCSS_ es el lenguaje con el que
+:program:`TileMill` usa Mapnik_ por debajo y CartoCSS_ es el lenguaje con el que
 le comunica cómo deben quedar las cosas.
 
 .. _CartoCSS: https://www.mapbox.com/tilemill/docs/manual/carto/
@@ -539,7 +539,7 @@ sustitutas si la fuente no está instalada en el sistema.
 
     @futura_med: "Futura Medium","Function Pro Medium","Ubuntu Regular","Trebuchet MS Regular","DejaVu Sans Book";
 
-:program:`TileMil` incorpora un gestor de fuentes que nos permite ver qué fuentes hay
+:program:`TileMill` incorpora un gestor de fuentes que nos permite ver qué fuentes hay
 instaladas en el sistema al que se accede empleando el botón de fuentes
 |btnfuentes|, las fuentes instaladas aparecen en **negrita** y el gestor nos
 permite copiar y pegar literalmente el nombre de la fuente.
@@ -573,9 +573,9 @@ los siguientes datos:
 En esta ocasión en vez de la tabla, hemos usado una subconsulta, de forma
 que solo carguemos en memoria las entidades que tengan algún valor en el
 campo `name`. A las subconsultas hay que añadirles un alias para que
-:program:`TileMil` las reconozca.
+:program:`TileMill` las reconozca.
 
-:program:`TileMil` habrá asignado a la capa un estilo por defecto para capas de
+:program:`TileMill` habrá asignado a la capa un estilo por defecto para capas de
 líneas, aunque nosotros lo vamos a modificar para que represente textos:
 
 .. code-block:: css
@@ -756,7 +756,7 @@ de TileMill. Simplemente en la misma carpeta ejecutamos el *script*
     (venv)$ python make.py
     installing to /home/user/Documents/MapBox/project/OSMBrightNottingham
 
-A continuación podemos abrir :program:`TileMil` y deberíamos de tener un nuevo proyecto.
+A continuación podemos abrir :program:`TileMill` y deberíamos de tener un nuevo proyecto.
 Al abrir este proyecto probablemente tarde unos segundos en responder ya que
 tiene que traer de la base de datos un buen número de elementos. Tras unos
 instantes podremos navegar por la cartografía. Si activamos el *plugin*
@@ -868,11 +868,11 @@ como mapa base o poder ordenar las columnas en la vista de tabla.
 Mapas interactivos
 ```````````````````````````
 
-:program:`TileMil` admite cierta interactividad que se puede configurar para cada mapa.
+:program:`TileMill` admite cierta interactividad que se puede configurar para cada mapa.
 Esta interactividad solo es útil si se va a subir el mapa al servicio de
 alojamiento de teselas de Mapbox_, ya que en los productos generados revisados
 (imágenes, MBTiles, etc.) no se puede acceder a esta funcionaliad. El proyecto
-*Geography Class* está cargado por defecto en la instalación de :program:`TileMil` y es
+*Geography Class* está cargado por defecto en la instalación de :program:`TileMill` y es
 un ejemplo excelente de interacción en el mapa.
 
 .. image:: ../img/ejemplointeractivo.png
@@ -902,6 +902,11 @@ Ejercicio
 Empleando la cartografía existente en la base de datos :file:`nott-osm` se
 requiere realizar un diseño cartográfico que destaque los siguientes
 elementos:
+
+.. image:: ../img/ejcfp2014.png
+   :width: 400 px
+   :alt: ejemplo de resolución del ejercicio
+   :align: center
 
 
 Vías
