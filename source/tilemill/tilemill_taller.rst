@@ -959,7 +959,7 @@ siguientes áreas urbanas:
 
 En caso de existir una correspondencia entre un tipo de edificios y un área,
 el área deberá ser un 20% más oscura que el edificio pero emplear el mismo
-tono.
+tono, además los polígonos de área deberán tener una opacidad del 10%.
 
 *¿Qué tabla hay que emplear?* Abre la aplicación :menuselection:`Geospatial
 --> Databases -->` :program:`pgAdminIII` y explora la base de datos
